@@ -4,519 +4,316 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liga Caixabank - Portal Oficial</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ==========================================================================
-           1. REGLAS ANTI-IMÁGENES GIGANTES Y RESET
-           ========================================================================== */
-        *, *::before, *::after {
+        :root {
+            --cb-blue: #007FAE;
+            --cb-dark: #121212;
+            --cb-card: #1E1E1E;
+            --cb-gray: #E5E8EB;
+            --cb-white: #FFFFFF;
+        }
+
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
         }
 
-        :root {
-            --cb-blue: #007FAE;
-            --cb-blue-hover: #0099d4;
-            --cb-dark: #121212;
-            --cb-card: #1e1e1e;
-            --cb-card-header: #181818;
-            --cb-border: #2c2c2c;
-            --cb-text: #e1e4e8;
-            --cb-muted: #8c929d;
-            --cb-white: #ffffff;
-
-            /* Paletas de Clubes */
-            --castrelos-main: #1E3F20;
-            --castrelos-sec: #1B2A4A;
-            --castrelos-acc: #E2E5E8;
-
-            --lucentino-main: #0055A5;
-            --lucentino-sec: #111827;
-            --lucentino-acc: #E5A93C;
-
-            --triana-main: #9E1B32;
-            --triana-sec: #3A5A40;
-            --triana-acc: #F8F9FA;
-
-            --gijon-main: #C8102E;
-            --gijon-sec: #1D2A44;
-            --gijon-acc: #FFFFFF;
-        }
-
-        /* REGLA CRÍTICA Anti-Agrandado */
-        img {
-            max-width: 32px !important;
-            max-height: 32px !important;
-            width: 32px !important;
-            height: 32px !important;
-            object-fit: contain !important;
-            display: inline-block !important;
-            flex-shrink: 0 !important;
-        }
-
-        /* Excepciones estrictas para logos específicos */
-        img.league-logo {
-            max-width: 130px !important;
-            max-height: 30px !important;
-            width: auto !important;
-            height: 30px !important;
-        }
-
-        img.club-shield {
-            max-width: 44px !important;
-            max-height: 44px !important;
-            width: 44px !important;
-            height: 44px !important;
-        }
-
-        img.match-shield {
-            max-width: 28px !important;
-            max-height: 28px !important;
-            width: 28px !important;
-            height: 28px !important;
-        }
-
-        img.table-shield {
-            max-width: 18px !important;
-            max-height: 18px !important;
-            width: 18px !important;
-            height: 18px !important;
+        /* OBLIGAR A QUE NINGUNA IMAGEN SEA GIGANTE EN TODO EL SITIO */
+        img, svg {
+            max-width: 100% !important;
+            height: auto !important;
+            display: inline-block;
+            vertical-align: middle;
         }
 
         body {
             background-color: var(--cb-dark);
-            color: var(--cb-text);
+            color: var(--cb-gray);
             font-size: 13px;
-            line-height: 1.3;
-            -webkit-font-smoothing: antialiased;
-            padding-bottom: 2rem;
+            line-height: 1.4;
         }
 
-        /* Escudos SVG Generados de Repuesto (Fallback) */
-        .svg-crest {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: inline-flex;
+        /* Header ultra compacto */
+        header {
+            background: linear-gradient(135deg, #080808 0%, #1a1a1a 100%);
+            border-bottom: 3px solid var(--cb-blue);
+            padding: 10px 15px;
+            text-align: center;
+        }
+
+        .header-container {
+            display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 800;
-            font-size: 10px;
-            color: #ffffff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.2);
-            flex-shrink: 0;
-            text-transform: uppercase;
-        }
-
-        .svg-crest.lg {
-            width: 44px;
-            height: 44px;
-            font-size: 13px;
-        }
-
-        /* ==========================================================================
-           2. HEADER COMPACTO Y NAVEGACIÓN (FLASHSCORE STYLE)
-           ========================================================================== */
-        header {
-            background: #0a0a0a;
-            border-bottom: 2px solid var(--cb-blue);
-            padding: 8px 12px;
-            position: sticky;
-            top: 0;
-            z-index: 200;
-        }
-
-        .header-inner {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .brand-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .brand-text {
-            font-weight: 900;
-            font-size: 1.1rem;
-            color: var(--cb-white);
-            letter-spacing: -0.5px;
-            text-transform: uppercase;
-        }
-
-        .brand-text span {
-            color: var(--cb-blue);
-        }
-
-        .badge-live {
-            background: rgba(0, 127, 174, 0.2);
-            color: var(--cb-blue);
-            border: 1px solid var(--cb-blue);
-            font-size: 10px;
-            font-weight: 800;
-            padding: 2px 6px;
-            border-radius: 3px;
-            text-transform: uppercase;
-        }
-
-        /* NAV TABS */
-        nav {
-            background: #141414;
-            border-bottom: 1px solid var(--cb-border);
-        }
-
-        .nav-inner {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            gap: 2px;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-
-        .nav-inner::-webkit-scrollbar {
-            display: none;
-        }
-
-        .nav-inner a {
-            color: var(--cb-muted);
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 9px 14px;
-            white-space: nowrap;
-            transition: all 0.15s ease;
-            border-bottom: 2px solid transparent;
-            text-transform: uppercase;
-        }
-
-        .nav-inner a:hover, .nav-inner a.active {
-            color: var(--cb-white);
-            border-bottom-color: var(--cb-blue);
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        /* ==========================================================================
-           3. ESTRUCTURA Y MÓDULOS DE ALTA DENSIDAD
-           ========================================================================== */
-        .layout-grid {
-            max-width: 1000px;
-            margin: 12px auto;
-            padding: 0 8px;
-            display: grid;
-            grid-template-columns: 1fr 280px;
             gap: 12px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .panel-box {
-            background: var(--cb-card);
-            border: 1px solid var(--cb-border);
-            border-radius: 6px;
-            margin-bottom: 12px;
-            overflow: hidden;
+        .header-logo {
+            max-height: 38px !important;
+            width: auto !important;
+            object-fit: contain;
         }
 
-        .panel-header {
-            background: var(--cb-card-header);
-            padding: 8px 12px;
-            border-bottom: 1px solid var(--cb-border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .panel-title {
-            font-size: 11px;
-            font-weight: 800;
+        header h1 {
             color: var(--cb-white);
+            font-size: 1.3rem;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+
+        /* Menú de navegación */
+        nav {
+            background-color: #0d0d0d;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        nav a:hover {
+            background-color: var(--cb-blue);
+            color: var(--cb-white);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1000px;
+            margin: 15px auto;
+            padding: 0 10px;
+            display: grid;
+            grid-template-columns: 2.2fr 1fr;
+            gap: 15px;
+        }
+
+        .card {
+            background: var(--cb-card);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 1px solid #2a2a2a;
+        }
+
+        h2 {
+            color: var(--cb-white);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            border-left: 3px solid var(--cb-blue);
+            padding-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Marcadores */
+        .matches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .match-card {
+            background: #161616;
+            border: 1px solid #2a2a2a;
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .match-teams {
             display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: space-around;
+            margin: 6px 0;
         }
 
-        .panel-title::before {
-            content: '';
-            width: 3px;
-            height: 12px;
-            background: var(--cb-blue);
-            border-radius: 1px;
+        .team-crest-wrapper {
+            width: 32px !important;
+            height: 32px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* ==========================================================================
-           4. MARCADOR Y ENFRENTAMIENTOS
-           ========================================================================== */
-        .match-row {
-            padding: 10px 12px;
-            border-bottom: 1px solid var(--cb-border);
-            display: grid;
-            grid-template-columns: 90px 1fr 60px;
+        .team-crest-wrapper img, .team-crest-wrapper svg {
+            max-width: 32px !important;
+            max-height: 32px !important;
+            object-fit: contain;
+        }
+
+        .match-vs {
+            font-weight: 800;
+            color: var(--cb-blue);
+            font-size: 0.9rem;
+        }
+
+        .match-time {
+            font-size: 0.7rem;
+            color: #777;
+        }
+
+        /* Tabla de Clasificación */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+        }
+
+        th, td {
+            padding: 8px 5px;
+            text-align: center;
+            border-bottom: 1px solid #282828;
+        }
+
+        th {
+            background-color: #121212;
+            color: var(--cb-blue);
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+
+        .team-td {
+            display: flex;
             align-items: center;
             gap: 8px;
-            transition: background 0.15s;
+            text-align: left;
         }
 
-        .match-row:last-child {
-            border-bottom: none;
+        .team-td .team-crest-wrapper {
+            width: 24px !important;
+            height: 24px !important;
         }
 
-        .match-row:hover {
-            background: rgba(255, 255, 255, 0.02);
+        .team-td .team-crest-wrapper img, .team-td .team-crest-wrapper svg {
+            max-width: 24px !important;
+            max-height: 24px !important;
         }
 
-        .match-time-box {
-            font-size: 11px;
-            color: var(--cb-muted);
+        .team-link {
+            color: var(--cb-white);
+            text-decoration: none;
             font-weight: 600;
         }
 
-        .match-teams-block {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .team-line {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--cb-white);
-        }
-
-        .match-score-badge {
-            text-align: center;
-            background: #111;
-            border: 1px solid var(--cb-border);
-            padding: 4px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 800;
+        .team-link:hover {
             color: var(--cb-blue);
         }
 
-        /* ==========================================================================
-           5. TABLA DE CLASIFICACIÓN
-           ========================================================================== */
-        .table-compact {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-        }
-
-        .table-compact th {
-            background: #151515;
-            color: var(--cb-muted);
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 6px 4px;
-            text-align: center;
-            border-bottom: 1px solid var(--cb-border);
-        }
-
-        .table-compact td {
-            padding: 7px 4px;
-            text-align: center;
-            border-bottom: 1px solid #252525;
-            color: var(--cb-text);
-        }
-
-        .table-compact tr:last-child td {
-            border-bottom: none;
-        }
-
-        .table-compact tr:hover {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .td-club {
-            text-align: left !important;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .td-club a {
-            color: var(--cb-white);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .td-club a:hover {
-            color: var(--cb-blue);
-        }
-
-        .td-pts {
-            font-weight: 900;
-            color: var(--cb-white);
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        /* ==========================================================================
-           6. TARJETAS DE CLUBES (TARJETAS COMPACTAS)
-           ========================================================================== */
-        .clubs-grid-compact {
+        /* Grilla de Equipos */
+        .teams-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            padding: 8px;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
         }
 
-        .club-card-box {
+        .team-card {
             border-radius: 6px;
-            padding: 10px 8px;
+            padding: 10px;
             text-align: center;
+            color: var(--cb-white);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            gap: 6px;
-            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .club-card-title {
-            font-size: 12px;
-            font-weight: 800;
+        .team-card .team-crest-wrapper {
+            width: 48px !important;
+            height: 48px !important;
+            margin-bottom: 6px;
+        }
+
+        .team-card .team-crest-wrapper img, .team-card .team-crest-wrapper svg {
+            max-width: 48px !important;
+            max-height: 48px !important;
+        }
+
+        .team-card h3 {
+            font-size: 0.85rem;
             line-height: 1.1;
+            margin-bottom: 3px;
         }
 
-        .club-card-city {
-            font-size: 10px;
+        .team-card p {
+            font-size: 0.7rem;
             opacity: 0.8;
         }
 
-        .club-card-btn {
-            display: inline-block;
-            padding: 3px 10px;
+        .btn-team {
+            margin-top: 8px;
+            padding: 4px 8px;
+            background: rgba(255,255,255,0.15);
             border-radius: 12px;
-            font-size: 9px;
-            font-weight: 800;
-            text-decoration: none;
-            text-transform: uppercase;
-            margin-top: 4px;
-        }
-
-        /* Colores de Equipos */
-        .card-castrelos {
-            background: linear-gradient(135deg, var(--castrelos-main), var(--castrelos-sec));
-            color: var(--castrelos-acc);
-        }
-        .card-castrelos .club-card-btn { background: var(--castrelos-acc); color: var(--castrelos-main); }
-
-        .card-lucentino {
-            background: linear-gradient(135deg, var(--lucentino-main), var(--lucentino-sec));
             color: var(--cb-white);
-        }
-        .card-lucentino .club-card-btn { background: var(--lucentino-acc); color: #000; }
-
-        .card-triana {
-            background: linear-gradient(135deg, var(--triana-main), var(--triana-sec));
-            color: var(--triana-acc);
-        }
-        .card-triana .club-card-btn { background: var(--triana-acc); color: var(--triana-main); }
-
-        .card-gijon {
-            background: linear-gradient(135deg, var(--gijon-main), var(--gijon-sec));
-            color: var(--gijon-acc);
-        }
-        .card-gijon .club-card-btn { background: var(--gijon-acc); color: var(--gijon-main); }
-
-        /* ==========================================================================
-           7. SIDEBAR COMPACTO
-           ========================================================================== */
-        .news-compact {
-            padding: 8px 12px;
-            border-bottom: 1px solid var(--cb-border);
-        }
-
-        .news-compact:last-child {
-            border-bottom: none;
-        }
-
-        .news-tag {
-            font-size: 9px;
-            font-weight: 800;
-            color: var(--cb-blue);
-            text-transform: uppercase;
-        }
-
-        .news-title {
-            font-size: 11px;
+            text-decoration: none;
+            font-size: 0.68rem;
             font-weight: 700;
+        }
+
+        .btn-team:hover {
+            background: var(--cb-white);
+            color: #111;
+        }
+
+        /* Equipos - Fondos y Bordes */
+        .bg-castrelos { background: linear-gradient(135deg, #1E3F20, #1B2A4A); border: 1px solid #E2E5E8; }
+        .bg-lucentino { background: linear-gradient(135deg, #0055A5, #111); border: 1px solid #E5A93C; }
+        .bg-triana { background: linear-gradient(135deg, #9E1B32, #3A5A40); border: 1px solid #F8F9FA; }
+        .bg-gijon { background: linear-gradient(135deg, #C8102E, #1D2A44); border: 1px solid #FFFFFF; }
+        .bg-zaragoza { background: linear-gradient(135deg, #A71930, #1D2A44); border: 1px solid #D4AF37; }
+
+        /* Noticias y Estadísticas */
+        .news-item {
+            border-bottom: 1px solid #282828;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .news-item h4 {
             color: var(--cb-white);
-            text-decoration: none;
-            display: block;
-            margin-top: 2px;
+            font-size: 0.82rem;
+            font-weight: 600;
         }
 
-        .news-title:hover {
+        .news-item span {
+            font-size: 0.68rem;
             color: var(--cb-blue);
+            font-weight: 700;
         }
 
-        .scorer-row {
-            padding: 6px 12px;
+        .stat-row {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid #252525;
-            font-size: 11px;
+            padding: 6px 0;
+            border-bottom: 1px solid #282828;
+            font-size: 0.8rem;
         }
 
-        .scorer-row:last-child {
-            border-bottom: none;
-        }
-
-        .scorer-left {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .scorer-num {
-            font-weight: 800;
-            color: var(--cb-muted);
-            width: 12px;
-        }
-
-        .scorer-name {
-            font-weight: 700;
-            color: var(--cb-white);
-        }
-
-        .scorer-team {
-            font-size: 10px;
-            color: var(--cb-muted);
-        }
-
-        .scorer-goals-pill {
-            background: rgba(0, 127, 174, 0.2);
-            color: var(--cb-blue);
-            font-weight: 800;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 10px;
-        }
-
-        /* ==========================================================================
-           8. RESPONSIVE MÓVIL
-           ========================================================================== */
         @media (max-width: 768px) {
-            .layout-grid {
+            .container {
                 grid-template-columns: 1fr;
             }
         }
@@ -524,258 +321,205 @@
 </head>
 <body>
 
-    <!-- HEADER / MARCA -->
     <header>
-        <div class="header-inner">
-            <a href="index.html" class="brand-link">
-                <!-- Imagen con fallback a SVG automático -->
-                <img src="img/logo-liga.png" class="league-logo" alt="Liga Caixabank" 
-                     onerror="this.onerror=null; this.outerHTML='<div class=\"brand-text\">Liga <span>Caixabank</span></div>';">
-                <div class="brand-text" style="display:none;">Liga <span>Caixabank</span></div>
-            </a>
-            <div class="badge-live">Oficial 2026</div>
+        <div class="header-container">
+            <img src="img/logo-liga.png" alt="Liga Caixabank Logo" class="header-logo" onerror="createSvgFallback(this, 'LC', '#007FAE', '#FFFFFF')">
+            <h1>Liga Caixabank</h1>
         </div>
     </header>
 
-    <!-- BARRA NAVEGACIÓN COMPACTA -->
     <nav>
-        <div class="nav-inner">
-            <a href="index.html" class="active">Inicio</a>
-            <a href="#jornada">Jornada 1</a>
-            <a href="#clasificacion">Clasificación</a>
-            <a href="#equipos">Clubes</a>
-            <a href="#noticias">Noticias</a>
-            <a href="#pichichi">Goleadores</a>
-        </div>
+        <a href="index.html">Inicio</a>
+        <a href="#jornada">Jornada 1</a>
+        <a href="#clasificacion">Clasificación</a>
+        <a href="#equipos">Equipos</a>
+        <a href="#estadisticas">Estadísticas</a>
+        <a href="#noticias">Noticias</a>
     </nav>
 
-    <!-- GRID PRINCIPAL COMPACTO -->
-    <div class="layout-grid">
+    <div class="container">
         
-        <!-- COLUMNA IZQUIERDA -->
+        <!-- COLUMNA PRINCIPAL -->
         <main>
-            
-            <!-- MARCADOR JORNADA 1 -->
-            <section id="jornada" class="panel-box">
-                <div class="panel-header">
-                    <span class="panel-title">Jornada 1</span>
-                    <span style="font-size:10px; color:var(--cb-muted); font-weight:600;">Liga Caixabank</span>
-                </div>
-                
-                <!-- Partido 1 -->
-                <div class="match-row">
-                    <div class="match-time-box">Sáb 18:00<br><span style="font-size:9px; font-weight:normal;">Vigo</span></div>
-                    <div class="match-teams-block">
-                        <div class="team-line">
-                            <img src="img/castrelos.png" class="match-shield" alt="CD Castrelos" 
-                                 onerror="this.onerror=null; this.outerHTML='<div class=\"svg-crest\" style=\"background:#1E3F20;\">CDC</div>';">
-                            <span>CD Castrelos</span>
+            <!-- 1. Marcador Próxima Jornada -->
+            <section id="jornada" class="card">
+                <h2>Próxima Jornada (Jornada 1)</h2>
+                <div class="matches-grid">
+                    <div class="match-card">
+                        <div class="match-time">Sábado 18:00 - Campo de Castrelos</div>
+                        <div class="match-teams">
+                            <div class="team-crest-wrapper"><img src="img/castrelos.png" alt="CD Castrelos" onerror="createSvgFallback(this, 'CDC', '#1E3F20', '#E2E5E8')"></div>
+                            <div class="match-vs">VS</div>
+                            <div class="team-crest-wrapper"><img src="img/gijon.png" alt="UD Gijón" onerror="createSvgFallback(this, 'UDG', '#C8102E', '#FFFFFF')"></div>
                         </div>
-                        <div class="team-line">
-                            <img src="img/gijon.png" class="match-shield" alt="UD Gijón" 
-                                 onerror="this.onerror=null; this.outerHTML='<div class=\"svg-crest\" style=\"background:#C8102E;\">UDG</div>';">
-                            <span>UD Gijón</span>
-                        </div>
+                        <p style="font-size: 0.78rem; font-weight: 700;">CD Castrelos vs UD Gijón</p>
                     </div>
-                    <div class="match-score-badge">VS</div>
-                </div>
-
-                <!-- Partido 2 -->
-                <div class="match-row">
-                    <div class="match-time-box">Dom 12:00<br><span style="font-size:9px; font-weight:normal;">Alicante</span></div>
-                    <div class="match-teams-block">
-                        <div class="team-line">
-                            <img src="img/lucentino.png" class="match-shield" alt="Sp. Lucentino" 
-                                 onerror="this.onerror=null; this.outerHTML='<div class=\"svg-crest\" style=\"background:#0055A5;\">SPL</div>';">
-                            <span>Sporting Lucentino</span>
+                    <div class="match-card">
+                        <div class="match-time">Domingo 12:00 - Estadio Lucentino</div>
+                        <div class="match-teams">
+                            <div class="team-crest-wrapper"><img src="img/lucentino.png" alt="Sporting Lucentino" onerror="createSvgFallback(this, 'SL', '#0055A5', '#E5A93C')"></div>
+                            <div class="match-vs">VS</div>
+                            <div class="team-crest-wrapper"><img src="img/triana.png" alt="Triana Balompié" onerror="createSvgFallback(this, 'TB', '#9E1B32', '#F8F9FA')"></div>
                         </div>
-                        <div class="team-line">
-                            <img src="img/triana.png" class="match-shield" alt="Triana Balompié" 
-                                 onerror="this.onerror=null; this.outerHTML='<div class=\"svg-crest\" style=\"background:#9E1B32;\">TBA</div>';">
-                            <span>Triana Balompié</span>
-                        </div>
+                        <p style="font-size: 0.78rem; font-weight: 700;">Lucentino vs Triana Balompié</p>
                     </div>
-                    <div class="match-score-badge">VS</div>
+                    <div class="match-card">
+                        <div class="match-time">Descansa esta jornada</div>
+                        <div class="match-teams">
+                            <div class="team-crest-wrapper"><img src="img/zaragoza.png" alt="RCD Zaragoza" onerror="createSvgFallback(this, 'RZ', '#A71930', '#D4AF37')"></div>
+                        </div>
+                        <p style="font-size: 0.78rem; font-weight: 700;">RCD Zaragoza</p>
+                    </div>
                 </div>
             </section>
 
-            <!-- CLASIFICACIÓN -->
-            <section id="clasificacion" class="panel-box">
-                <div class="panel-header">
-                    <span class="panel-title">Tabla de Posiciones</span>
-                </div>
-                <table class="table-compact">
+            <!-- 2. Tabla de Clasificación -->
+            <section id="clasificacion" class="card">
+                <h2>Tabla de Clasificación</h2>
+                <table>
                     <thead>
                         <tr>
-                            <th style="width:24px;">#</th>
-                            <th style="text-align:left;">Club</th>
+                            <th>Pos</th>
+                            <th style="text-align: left;">Club</th>
                             <th>PJ</th><th>PG</th><th>PE</th><th>PP</th>
-                            <th>GF</th><th>GC</th><th class="td-pts">PTS</th>
+                            <th>GF</th><th>GC</th><th>Pts</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>1</strong></td>
-                            <td class="td-club">
-                                <img src="img/castrelos.png" class="table-shield" alt="" 
-                                     onerror="this.onerror=null; this.outerHTML='<div class=\"svg-crest\" style=\"width:18px;height:18px;font-size:7px;background:#1E3F20;\">C</div>';">
-                                <a href="equipos/equipo-1.html">CD Castrelos</a>
+                            <td>1</td>
+                            <td class="team-td">
+                                <div class="team-crest-wrapper"><img src="img/castrelos.png" alt="" onerror="createSvgFallback(this, 'CDC', '#1E3F20', '#E2E5E8')"></div>
+                                <a href="equipos/equipo-1.html" class="team-link">CD Castrelos</a>
                             </td>
-                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
-                            <td class="td-pts">0</td>
+                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
                         </tr>
                         <tr>
-                            <td><strong>2</strong></td>
-                            <td class="td-club">
-                                <img src="img/lucentino.png" class="table-shield" alt="" 
-                                     onerror="this.onerror=null; this.outerHTML='<div class=\"svg-crest\" style=\"width:18px;height:18px;font-size:7px;background:#0055A5;\">L</div>';">
-                                <a href="equipos/equipo-2.html">Sp. Lucentino</a>
+                            <td>2</td>
+                            <td class="team-td">
+                                <div class="team-crest-wrapper"><img src="img/lucentino.png" alt="" onerror="createSvgFallback(this, 'SL', '#0055A5', '#E5A93C')"></div>
+                                <a href="equipos/equipo-2.html" class="team-link">Sporting Lucentino</a>
                             </td>
-                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
-                            <td class="td-pts">0</td>
+                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
                         </tr>
                         <tr>
-                            <td><strong>3</strong></td>
-                            <td class="td-club">
-                                <img src="img/triana.png" class="table-shield" alt="" 
-                                     onerror="this.onerror=null; this.outerHTML='<div class=\"svg-crest\" style=\"width:18px;height:18px;font-size:7px;background:#9E1B32;\">T</div>';">
-                                <a href="equipos/equipo-3.html">Triana Balompié</a>
+                            <td>3</td>
+                            <td class="team-td">
+                                <div class="team-crest-wrapper"><img src="img/triana.png" alt="" onerror="createSvgFallback(this, 'TB', '#9E1B32', '#F8F9FA')"></div>
+                                <a href="equipos/equipo-3.html" class="team-link">Triana Balompié</a>
                             </td>
-                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
-                            <td class="td-pts">0</td>
+                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
                         </tr>
                         <tr>
-                            <td><strong>4</strong></td>
-                            <td class="td-club">
-                                <img src="img/gijon.png" class="table-shield" alt="" 
-                                     onerror="this.onerror=null; this.outerHTML='<div class=\"svg-crest\" style=\"width:18px;height:18px;font-size:7px;background:#C8102E;\">G</div>';">
-                                <a href="equipos/equipo-4.html">UD Gijón</a>
+                            <td>4</td>
+                            <td class="team-td">
+                                <div class="team-crest-wrapper"><img src="img/gijon.png" alt="" onerror="createSvgFallback(this, 'UDG', '#C8102E', '#FFFFFF')"></div>
+                                <a href="equipos/equipo-4.html" class="team-link">UD Gijón</a>
                             </td>
-                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
-                            <td class="td-pts">0</td>
+                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td class="team-td">
+                                <div class="team-crest-wrapper"><img src="img/zaragoza.png" alt="" onerror="createSvgFallback(this, 'RZ', '#A71930', '#D4AF37')"></div>
+                                <a href="equipos/equipo-5.html" class="team-link">RCD Zaragoza</a>
+                            </td>
+                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
                         </tr>
                     </tbody>
                 </table>
             </section>
 
-            <!-- CLUBES -->
-            <section id="equipos" class="panel-box">
-                <div class="panel-header">
-                    <span class="panel-title">Equipos Participantes</span>
-                </div>
-                <div class="clubs-grid-compact">
-                    
-                    <!-- Castrelos -->
-                    <div class="club-card-box card-castrelos">
-                        <img src="img/castrelos.png" class="club-shield" alt="Castrelos" 
-                             onerror="this.onerror=null; this.outerHTML='<div class=\"svg-crest lg\" style=\"background:#1E3F20;\">CDC</div>';">
-                        <div>
-                            <div class="club-card-title">CD Castrelos</div>
-                            <div class="club-card-city">Vigo, Galicia</div>
-                        </div>
-                        <a href="equipos/equipo-1.html" class="club-card-btn">Ver Ficha</a>
+            <!-- 3. Equipos Oficiales -->
+            <section id="equipos" class="card">
+                <h2>Clubes Participantes</h2>
+                <div class="teams-grid">
+                    <div class="team-card bg-castrelos">
+                        <div class="team-crest-wrapper"><img src="img/castrelos.png" alt="CD Castrelos" onerror="createSvgFallback(this, 'CDC', '#1E3F20', '#E2E5E8')"></div>
+                        <h3>CD Castrelos</h3>
+                        <p>Vigo</p>
+                        <a href="equipos/equipo-1.html" class="btn-team">Ver Club →</a>
                     </div>
-
-                    <!-- Lucentino -->
-                    <div class="club-card-box card-lucentino">
-                        <img src="img/lucentino.png" class="club-shield" alt="Lucentino" 
-                             onerror="this.onerror=null; this.outerHTML='<div class=\"svg-crest lg\" style=\"background:#0055A5;\">SPL</div>';">
-                        <div>
-                            <div class="club-card-title">Sp. Lucentino</div>
-                            <div class="club-card-city">Alicante, Com. Val.</div>
-                        </div>
-                        <a href="equipos/equipo-2.html" class="club-card-btn">Ver Ficha</a>
+                    <div class="team-card bg-lucentino">
+                        <div class="team-crest-wrapper"><img src="img/lucentino.png" alt="Sporting Lucentino" onerror="createSvgFallback(this, 'SL', '#0055A5', '#E5A93C')"></div>
+                        <h3>Sporting Lucentino</h3>
+                        <p>Alicante</p>
+                        <a href="equipos/equipo-2.html" class="btn-team">Ver Club →</a>
                     </div>
-
-                    <!-- Triana -->
-                    <div class="club-card-box card-triana">
-                        <img src="img/triana.png" class="club-shield" alt="Triana" 
-                             onerror="this.onerror=null; this.outerHTML='<div class=\"svg-crest lg\" style=\"background:#9E1B32;\">TBA</div>';">
-                        <div>
-                            <div class="club-card-title">Triana Balompié</div>
-                            <div class="club-card-city">Sevilla, Andalucía</div>
-                        </div>
-                        <a href="equipos/equipo-3.html" class="club-card-btn">Ver Ficha</a>
+                    <div class="team-card bg-triana">
+                        <div class="team-crest-wrapper"><img src="img/triana.png" alt="Triana Balompié" onerror="createSvgFallback(this, 'TB', '#9E1B32', '#F8F9FA')"></div>
+                        <h3>Triana Balompié</h3>
+                        <p>Sevilla</p>
+                        <a href="equipos/equipo-3.html" class="btn-team">Ver Club →</a>
                     </div>
-
-                    <!-- Gijón -->
-                    <div class="club-card-box card-gijon">
-                        <img src="img/gijon.png" class="club-shield" alt="UD Gijón" 
-                             onerror="this.onerror=null; this.outerHTML='<div class=\"svg-crest lg\" style=\"background:#C8102E;\">UDG</div>';">
-                        <div>
-                            <div class="club-card-title">UD Gijón</div>
-                            <div class="club-card-city">Gijón, Asturias</div>
-                        </div>
-                        <a href="equipos/equipo-4.html" class="club-card-btn">Ver Ficha</a>
+                    <div class="team-card bg-gijon">
+                        <div class="team-crest-wrapper"><img src="img/gijon.png" alt="UD Gijón" onerror="createSvgFallback(this, 'UDG', '#C8102E', '#FFFFFF')"></div>
+                        <h3>UD Gijón</h3>
+                        <p>Gijón</p>
+                        <a href="equipos/equipo-4.html" class="btn-team">Ver Club →</a>
                     </div>
-
+                    <div class="team-card bg-zaragoza">
+                        <div class="team-crest-wrapper"><img src="img/zaragoza.png" alt="RCD Zaragoza" onerror="createSvgFallback(this, 'RZ', '#A71930', '#D4AF37')"></div>
+                        <h3>RCD Zaragoza</h3>
+                        <p>Zaragoza</p>
+                        <a href="equipos/equipo-5.html" class="btn-team">Ver Club →</a>
+                    </div>
                 </div>
             </section>
-
         </main>
 
-        <!-- COLUMNA DERECHA (SIDEBAR) -->
+        <!-- COLUMNA LATERAL (Noticias y Estadísticas) -->
         <aside>
-            
-            <!-- NOTICIAS -->
-            <section id="noticias" class="panel-box">
-                <div class="panel-header">
-                    <span class="panel-title">Noticias</span>
+            <!-- 4. Noticias de la Liga -->
+            <section id="noticias" class="card">
+                <h2>Última Hora</h2>
+                <div class="news-item">
+                    <span>RCD ZARAGOZA</span>
+                    <h4>El RCD Zaragoza se suma oficialmente a la Liga Caixabank</h4>
                 </div>
-                <div class="news-compact">
-                    <span class="news-tag">LIGA CAIXABANK</span>
-                    <a href="#" class="news-title">Se presenta el calendario de la nueva temporada oficial</a>
+                <div class="news-item">
+                    <span>LIGA CAIXABANK</span>
+                    <h4>Presentado el calendario oficial de la temporada</h4>
                 </div>
-                <div class="news-compact">
-                    <span class="news-tag">CD CASTRELOS</span>
-                    <a href="#" class="news-title">El club vigués ultima los detalles de la plantilla de inicio</a>
-                </div>
-                <div class="news-compact">
-                    <span class="news-tag">TRIANA BALOMPIÉ</span>
-                    <a href="#" class="news-headline news-title">Máxima expectación en Sevilla para el debut de la jornada 1</a>
+                <div class="news-item">
+                    <span>CD CASTRELOS</span>
+                    <h4>El club vigués ultima detalles para el debut</h4>
                 </div>
             </section>
 
-            <!-- MAXIMOS GOLEADORES -->
-            <section id="pichichi" class="panel-box">
-                <div class="panel-header">
-                    <span class="panel-title">Top Goleadores</span>
+            <!-- 5. Líderes / Estadísticas -->
+            <section id="estadisticas" class="card">
+                <h2>Top Goleadores</h2>
+                <div class="stat-row">
+                    <span>1. Mateo Rivas (Castrelos)</span>
+                    <strong style="color:var(--cb-blue);">0 goles</strong>
                 </div>
-                <div class="scorer-row">
-                    <div class="scorer-left">
-                        <span class="scorer-num">1</span>
-                        <div>
-                            <div class="scorer-name">Mateo Rivas</div>
-                            <div class="scorer-team">CD Castrelos</div>
-                        </div>
-                    </div>
-                    <span class="scorer-goals-pill">0 Goles</span>
+                <div class="stat-row">
+                    <span>2. Javi Soria (Lucentino)</span>
+                    <strong style="color:var(--cb-blue);">0 goles</strong>
                 </div>
-                <div class="scorer-row">
-                    <div class="scorer-left">
-                        <span class="scorer-num">2</span>
-                        <div>
-                            <div class="scorer-name">Javi Soria</div>
-                            <div class="scorer-team">Sp. Lucentino</div>
-                        </div>
-                    </div>
-                    <span class="scorer-goals-pill">0 Goles</span>
-                </div>
-                <div class="scorer-row">
-                    <div class="scorer-left">
-                        <span class="scorer-num">3</span>
-                        <div>
-                            <div class="scorer-name">Gonzalo Triana</div>
-                            <div class="scorer-team">Triana Balompié</div>
-                        </div>
-                    </div>
-                    <span class="scorer-goals-pill">0 Goles</span>
+                <div class="stat-row">
+                    <span>3. Alberto Zaragoza (RCD Zaragoza)</span>
+                    <strong style="color:var(--cb-blue);">0 goles</strong>
                 </div>
             </section>
-
         </aside>
 
     </div>
+
+    <script>
+        // Función para generar un escudo vectorial elegante si la imagen no existe
+        function createSvgFallback(imgElement, initials, bgColor, strokeColor) {
+            const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+                    <path d="M50 5 L85 20 V50 C85 72 50 95 50 95 C50 95 15 72 15 50 V20 Z" fill="${bgColor}" stroke="${strokeColor}" stroke-width="6"/>
+                    <text x="50" y="58" font-family="'Inter', sans-serif" font-size="30" font-weight="800" fill="${strokeColor}" text-anchor="middle" dominant-baseline="middle">${initials}</text>
+                </svg>
+            `;
+            const wrapper = imgElement.parentElement;
+            wrapper.innerHTML = svg;
+        }
+    </script>
 
 </body>
 </html>
