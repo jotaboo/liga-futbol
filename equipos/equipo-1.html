@@ -3,38 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equipo 1 - Ficha Oficial</title>
-    <link rel="stylesheet" href="../styles.css">
+    <title>CD Castrelos - Ficha Oficial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cb-blue: #007FAE;
+            --cb-dark: #121212;
+            --cb-card: #1E1E1E;
+            --cb-gray: #E5E8EB;
+            --cb-white: #FFFFFF;
+            --castrelos-green: #1E3F20;
+            --castrelos-blue: #1B2A4A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        img, svg {
+            max-width: 100% !important;
+            height: auto !important;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        body {
+            background-color: var(--cb-dark);
+            color: var(--cb-gray);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        /* Header del Club */
+        header {
+            background: linear-gradient(135deg, var(--castrelos-green) 0%, var(--castrelos-blue) 100%);
+            border-bottom: 3px solid #E2E5E8;
+            padding: 20px 15px;
+            text-align: center;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .team-crest-wrapper {
+            width: 55px !important;
+            height: 55px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-crest-wrapper img, .team-crest-wrapper svg {
+            max-width: 55px !important;
+            max-height: 55px !important;
+            object-fit: contain;
+        }
+
+        header h1 {
+            color: var(--cb-white);
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        /* Menú de navegación */
+        nav {
+            background-color: #0d0d0d;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 8px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        nav a:hover {
+            background-color: var(--castrelos-green);
+            color: var(--cb-white);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1000px;
+            margin: 15px auto;
+            padding: 0 10px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+        }
+
+        .card {
+            background: var(--cb-card);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #2a2a2a;
+        }
+
+        h2 {
+            color: var(--cb-white);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            border-left: 3px solid var(--castrelos-green);
+            padding-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Datos de fichas de club */
+        .club-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .info-box {
+            background: #161616;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border-left: 2px solid var(--castrelos-green);
+        }
+
+        .info-box span {
+            display: block;
+            font-size: 0.7rem;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .info-box strong {
+            font-size: 0.85rem;
+            color: var(--cb-white);
+        }
+
+        /* Estilos de Plantilla por Demarcaciones */
+        .position-group {
+            margin-bottom: 12px;
+        }
+
+        .position-title {
+            font-size: 0.8rem;
+            color: #7ce38b;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 3px;
+        }
+
+        .player-list {
+            list-style: none;
+        }
+
+        .player-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 8px;
+            border-bottom: 1px solid #222;
+            font-size: 0.82rem;
+        }
+
+        .player-item:hover {
+            background: #252525;
+            border-radius: 4px;
+        }
+
+        .player-num {
+            color: #888;
+            font-weight: 700;
+            margin-right: 8px;
+            width: 20px;
+        }
+
+        .player-name {
+            color: var(--cb-white);
+            font-weight: 600;
+            flex-grow: 1;
+        }
+
+        .palmares-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 0;
+            border-bottom: 1px solid #222;
+            font-size: 0.82rem;
+        }
+
+        .palmares-item span {
+            color: var(--cb-white);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .club-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
     <header>
-        <h1>⚽ Equipo 1</h1>
-        <p>Ciudad: Madrid | Estadio: Estadio Principal</p>
+        <div class="header-container">
+            <div class="team-crest-wrapper">
+                <img src="../img/castrelos.png" alt="CD Castrelos" onerror="createSvgFallback(this, 'CDC', '#1E3F20', '#E2E5E8')">
+            </div>
+            <div>
+                <h1>Club Deportivo Castrelos</h1>
+                <p>Fundado en 1945 • "Los Canteros / La Marea Verde"</p>
+            </div>
+        </div>
     </header>
 
     <nav>
         <a href="../index.html">← Volver a la Liga</a>
+        <a href="#historia">Historia</a>
+        <a href="#estadio">Estadio</a>
+        <a href="#plantilla">Plantilla (25)</a>
+        <a href="#palmares">Palmarés</a>
     </nav>
 
     <div class="container">
         
-        <section class="card">
-            <h2>Historia del Club</h2>
-            <p>Escribe aquí la historia de tu primer equipo creado.</p>
-        </section>
+        <!-- COLUMNA PRINCIPAL -->
+        <main>
+            <!-- 1. Historia y Origen -->
+            <section id="historia" class="card">
+                <h2>Historia y ADN del Club</h2>
+                <p style="margin-bottom: 10px; text-align: justify;">
+                    Fundado por obreros de las antiguas fábricas de la zona y marineros de la ría, el <strong>C.D. Castrelos</strong> es un histórico sufridor del fútbol norteño. Tras décadas vagando por categorías de bronce, el club logró un ascenso épico a la Liga CaixaBank gracias a una defensa infranqueable y a su fortaleza como local en Castrelos, donde la lluvia y el aliento de su gente hacen que los grandes sufran de verdad.
+                </p>
+                <p style="text-align: justify;">
+                    <strong>Rivalidades:</strong> Su gran rival histórico es el <em>Sporting Lucentino</em> debido al choque de estilos entre el arco atlántico y el mediterráneo, además de los intensos derbis gallegos que definen el orgullo regional.
+                </p>
+            </section>
 
-        <section class="card">
-            <h2>Plantilla de Jugadores</h2>
-            <ul>
-                <li><strong>1. Jugador Uno</strong> - Portero</li>
-                <li><strong>4. Jugador Dos</strong> - Defensa</li>
-                <li><strong>8. Jugador Tres</strong> - Centrocampista</li>
-                <li><strong>9. Jugador Cuatro</strong> - Delantero</li>
-            </ul>
-        </section>
+            <!-- 2. Plantilla Actual (25 jugadores detallados) -->
+            <section id="plantilla" class="card">
+                <h2>Plantilla Oficial de la Temporada</h2>
+                
+                <!-- Porteros -->
+                <div class="position-group">
+                    <div class="position-title">Guardametas (3)</div>
+                    <ul class="player-list">
+                        <li class="player-item"><span class="player-num">1</span><span class="player-name">Iago Souto</span></li>
+                        <li class="player-item"><span class="player-num">13</span><span class="player-name">Xoel Rey</span></li>
+                        <li class="player-item"><span class="player-num">25</span><span class="player-name">Adrián Paz</span></li>
+                    </ul>
+                </div>
+
+                <!-- Defensas -->
+                <div class="position-group">
+                    <div class="position-title">Defensas (8)</div>
+                    <ul class="player-list">
+                        <li class="player-item"><span class="player-num">2</span><span class="player-name">Nuno Antúnez</span></li>
+                        <li class="player-item"><span class="player-num">3</span><span class="player-name">Hugo Varela</span></li>
+                        <li class="player-item"><span class="player-num">4</span><span class="player-name">Brais Fontán</span></li>
+                        <li class="player-item"><span class="player-num">5</span><span class="player-name">Diego Saavedra</span></li>
+                        <li class="player-item"><span class="player-num">12</span><span class="player-name">Roi Estévez</span></li>
+                        <li class="player-item"><span class="player-num">18</span><span class="player-name">Lucas Carballo</span></li>
+                        <li class="player-item"><span class="player-num">22</span><span class="player-name">Yago Maceira</span></li>
+                        <li class="player-item"><span class="player-num">24</span><span class="player-name">Martiño Freire</span></li>
+                    </ul>
+                </div>
+
+                <!-- Centrocampistas -->
+                <div class="position-group">
+                    <div class="position-title">Centrocampistas (8)</div>
+                    <ul class="player-list">
+                        <li class="player-item"><span class="player-num">6</span><span class="player-name">Gael Vázquez</span></li>
+                        <li class="player-item"><span class="player-num">8</span><span class="player-name">Antón Mouriño</span></li>
+                        <li class="player-item"><span class="player-num">10</span><span class="player-name">Pablo Domínguez</span></li>
+                        <li class="player-item"><span class="player-num">14</span><span class="player-name">Samuel Penas</span></li>
+                        <li class="player-item"><span class="player-num">16</span><span class="player-name">Xabi Loureiro</span></li>
+                        <li class="player-item"><span class="player-num">20</span><span class="player-name">Mateo Silva</span></li>
+                        <li class="player-item"><span class="player-num">21</span><span class="player-name">Breogán Nogueira</span></li>
+                        <li class="player-item"><span class="player-num">23</span><span class="player-name">Unai Cambón</span></li>
+                    </ul>
+                </div>
+
+                <!-- Delanteros -->
+                <div class="position-group">
+                    <div class="position-title">Delanteros (6)</div>
+                    <ul class="player-list">
+                        <li class="player-item"><span class="player-num">7</span><span class="player-name">Damián Castro</span></li>
+                        <li class="player-item"><span class="player-num">9</span><span class="player-name">Thiago Da Silva</span></li>
+                        <li class="player-item"><span class="player-num">11</span><span class="player-name">Mateo Aspas</span></li>
+                        <li class="player-item"><span class="player-num">15</span><span class="player-name">Anxo Villar</span></li>
+                        <li class="player-item"><span class="player-num">17</span><span class="player-name">Cibrán Loureiro</span></li>
+                        <li class="player-item"><span class="player-num">19</span><span class="player-name">Lucas Rivas</span></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <!-- COLUMNA LATERAL (Estadio y Palmarés) -->
+        <aside>
+            <!-- 3. Información del Estadio -->
+            <section id="estadio" class="card">
+                <h2>Estadio</h2>
+                <div class="club-info-grid" style="grid-template-columns: 1fr;">
+                    <div class="info-box" style="margin-bottom: 8px;">
+                        <span>Nombre oficial</span>
+                        <strong>Estadio Municipal de Castrelos</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 8px;">
+                        <span>Ubicación</span>
+                        <strong>Junto al histórico parque y los pazos de Vigo</strong>
+                    </div>
+                    <div class="info-box">
+                        <span>Capacidad</span>
+                        <strong>18.500 espectadores</strong>
+                    </div>
+                </div>
+                <p style="font-size: 0.78rem; color: #aaa; margin-top: 8px;">
+                    Sabor clásico inglés, gradas muy cerca del césped y una presión ambiental asfixiante para los visitantes.
+                </p>
+            </section>
+
+            <!-- 4. Palmarés -->
+            <section id="palmares" class="card">
+                <h2>Palmarés Oficial</h2>
+                <div class="palmares-item">
+                    <span>🏆 1x Copa Federación de Segunda División</span>
+                </div>
+                <div class="palmares-item">
+                    <span>🥈 2x Subcampeonatos de Copa del Norte</span>
+                </div>
+            </section>
+        </aside>
 
     </div>
+
+    <script>
+        function createSvgFallback(imgElement, initials, bgColor, strokeColor) {
+            const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+                    <path d="M50 5 L85 20 V50 C85 72 50 95 50 95 C50 95 15 72 15 50 V20 Z" fill="${bgColor}" stroke="${strokeColor}" stroke-width="6"/>
+                    <text x="50" y="58" font-family="'Inter', sans-serif" font-size="30" font-weight="800" fill="${strokeColor}" text-anchor="middle" dominant-baseline="middle">${initials}</text>
+                </svg>
+            `;
+            const wrapper = imgElement.parentElement;
+            wrapper.innerHTML = svg;
+        }
+    </script>
 
 </body>
 </html>
