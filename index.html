@@ -3,87 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liga de Fútbol - Universo Creado</title>
+    <title>Liga Caixabank - Portal Oficial</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header>
-        <h1>🏆 Liga Española Ficticia</h1>
-        <p>Universo alternativo de fútbol</p>
+        <div class="header-container">
+            <img src="img/logo-liga.png" alt="Liga Caixabank Logo" class="header-logo" onerror="this.style.display='none'">
+            <h1>Liga Caixabank</h1>
+        </div>
     </header>
 
     <nav>
         <a href="index.html">Inicio</a>
+        <a href="#jornada">Jornada 1</a>
         <a href="#clasificacion">Clasificación</a>
         <a href="#equipos">Equipos</a>
+        <a href="#estadisticas">Estadísticas</a>
+        <a href="#noticias">Noticias</a>
     </nav>
 
     <div class="container">
         
-        <!-- Tabla de Clasificación -->
-        <section id="clasificacion" class="card">
-            <h2>Tabla de Clasificación</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Pos</th>
-                        <th>Equipo</th>
-                        <th>PJ</th><th>PG</th><th>PE</th><th>PP</th>
-                        <th>GF</th><th>GC</th><th>Pts</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><a href="equipos/equipo-1.html" class="team-link">Equipo 1</a></td>
-                        <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
-                        <td><strong>0</strong></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><a href="equipos/equipo-2.html" class="team-link">Equipo 2</a></td>
-                        <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
-                        <td><strong>0</strong></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><a href="equipos/equipo-3.html" class="team-link">Equipo 3</a></td>
-                        <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
-                        <td><strong>0</strong></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td><a href="equipos/equipo-4.html" class="team-link">Equipo 4</a></td>
-                        <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
-                        <td><strong>0</strong></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <!-- COLUMNA PRINCIPAL -->
+        <main>
+            <!-- 1. Marcador Próxima Jornada -->
+            <section id="jornada" class="card">
+                <h2>Próxima Jornada (Jornada 1)</h2>
+                <div class="matches-grid">
+                    <div class="match-card">
+                        <div class="match-time">Sábado 18:00 - Campo de Castrelos</div>
+                        <div class="match-teams">
+                            <div class="match-team"><img src="img/castrelos.png" alt="Castrelos"></div>
+                            <div class="match-vs">VS</div>
+                            <div class="match-team"><img src="img/gijon.png" alt="Gijón"></div>
+                        </div>
+                        <p style="font-size: 0.85rem; font-weight: bold;">CD Castrelos vs UD Gijón</p>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-time">Domingo 12:00 - Estadio Lucentino</div>
+                        <div class="match-teams">
+                            <div class="match-team"><img src="img/lucentino.png" alt="Lucentino"></div>
+                            <div class="match-vs">VS</div>
+                            <div class="match-team"><img src="img/triana.png" alt="Triana"></div>
+                        </div>
+                        <p style="font-size: 0.85rem; font-weight: bold;">Sporting Lucentino vs Triana Balompié</p>
+                    </div>
+                </div>
+            </section>
 
-        <!-- Galería de Equipos -->
-        <section id="equipos" class="card">
-            <h2>Equipos de la Liga</h2>
-            <div class="teams-grid">
-                <div class="team-card">
-                    <h3>Equipo 1</h3>
-                    <a href="equipos/equipo-1.html" class="team-link">Ver club →</a>
+            <!-- 2. Tabla de Clasificación -->
+            <section id="clasificacion" class="card">
+                <h2>Tabla de Clasificación</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th style="text-align: left;">Club</th>
+                            <th>PJ</th><th>PG</th><th>PE</th><th>PP</th>
+                            <th>GF</th><th>GC</th><th>Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="team-td">
+                                <img src="img/castrelos.png" alt="">
+                                <a href="equipos/equipo-1.html" class="team-link">CD Castrelos</a>
+                            </td>
+                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="team-td">
+                                <img src="img/lucentino.png" alt="">
+                                <a href="equipos/equipo-2.html" class="team-link">Sporting Lucentino</a>
+                            </td>
+                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="team-td">
+                                <img src="img/triana.png" alt="">
+                                <a href="equipos/equipo-3.html" class="team-link">Triana Balompié</a>
+                            </td>
+                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td class="team-td">
+                                <img src="img/gijon.png" alt="">
+                                <a href="equipos/equipo-4.html" class="team-link">UD Gijón</a>
+                            </td>
+                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- 3. Equipos Oficiales -->
+            <section id="equipos" class="card">
+                <h2>Clubes Participantes</h2>
+                <div class="teams-grid">
+                    <div class="team-card bg-castrelos">
+                        <img src="img/castrelos.png" alt="CD Castrelos">
+                        <h3>CD Castrelos</h3>
+                        <p>Vigo (Galicia)</p>
+                        <a href="equipos/equipo-1.html" class="btn-team">Ver Club →</a>
+                    </div>
+                    <div class="team-card bg-lucentino">
+                        <img src="img/lucentino.png" alt="Sporting Lucentino">
+                        <h3>Sporting Lucentino</h3>
+                        <p>Alicante (Com. Valenciana)</p>
+                        <a href="equipos/equipo-2.html" class="btn-team">Ver Club →</a>
+                    </div>
+                    <div class="team-card bg-triana">
+                        <img src="img/triana.png" alt="Triana Balompié">
+                        <h3>Triana Balompié</h3>
+                        <p>Sevilla (Andalucía)</p>
+                        <a href="equipos/equipo-3.html" class="btn-team">Ver Club →</a>
+                    </div>
+                    <div class="team-card bg-gijon">
+                        <img src="img/gijon.png" alt="UD Gijón">
+                        <h3>UD Gijón</h3>
+                        <p>Gijón (Asturias)</p>
+                        <a href="equipos/equipo-4.html" class="btn-team">Ver Club →</a>
+                    </div>
                 </div>
-                <div class="team-card">
-                    <h3>Equipo 2</h3>
-                    <a href="equipos/equipo-2.html" class="team-link">Ver club →</a>
+            </section>
+        </main>
+
+        <!-- COLUMNA LATERAL (Noticias y Estadísticas) -->
+        <aside>
+            <!-- 4. Noticias de la Liga -->
+            <section id="noticias" class="card">
+                <h2>Última Hora</h2>
+                <div class="news-item">
+                    <span>LIGA CAIXABANK</span>
+                    <h4>Presentado oficialmente el calendario de la temporada</h4>
                 </div>
-                <div class="team-card">
-                    <h3>Equipo 3</h3>
-                    <a href="equipos/equipo-3.html" class="team-link">Ver club →</a>
+                <div class="news-item">
+                    <span>CD CASTRELOS</span>
+                    <h4>El club vigués anuncia su pretemporada</h4>
                 </div>
-                <div class="team-card">
-                    <h3>Equipo 4</h3>
-                    <a href="equipos/equipo-4.html" class="team-link">Ver club →</a>
+                <div class="news-item">
+                    <span>TRIANA BALOMPIÉ</span>
+                    <h4>Gran ambiente en la previa del derbi en Sevilla</h4>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- 5. Lideres / Estadísticas -->
+            <section id="estadisticas" class="card">
+                <h2>Top Goleadores</h2>
+                <div class="stat-row">
+                    <span>1. Mateo Rivas (Castrelos)</span>
+                    <strong style="color:var(--cb-blue);">0 goles</strong>
+                </div>
+                <div class="stat-row">
+                    <span>2. Javi Soria (Lucentino)</span>
+                    <strong style="color:var(--cb-blue);">0 goles</strong>
+                </div>
+                <div class="stat-row">
+                    <span>3. Gonzalo Triana (Triana)</span>
+                    <strong style="color:var(--cb-blue);">0 goles</strong>
+                </div>
+            </section>
+        </aside>
 
     </div>
 
