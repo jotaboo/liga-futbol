@@ -1,1 +1,605 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sporting Lucentino - Ficha Oficial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cb-dark: #121212;
+            --cb-card: #1E1E1E;
+            --cb-gray: #E5E8EB;
+            --cb-white: #FFFFFF;
+            --lucentino-blue: #0055A5;
+            --lucentino-gold: #E5A93C;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        img, svg {
+            max-width: 100% !important;
+            height: auto !important;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        body {
+            background-color: var(--cb-dark);
+            color: var(--cb-gray);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--lucentino-blue) 0%, #0d1b2a 100%);
+            border-bottom: 3px solid var(--lucentino-gold);
+            padding: 20px 15px;
+            text-align: center;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .team-crest-wrapper {
+            width: 55px !important;
+            height: 55px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header h1 {
+            color: var(--cb-white);
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        nav {
+            background-color: #0d0d0d;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 8px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        nav a:hover {
+            background-color: var(--lucentino-blue);
+            color: var(--cb-white);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 15px auto;
+            padding: 0 10px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+        }
+
+        .card {
+            background: var(--cb-card);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #2a2a2a;
+        }
+
+        h2 {
+            color: var(--cb-white);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            border-left: 3px solid var(--lucentino-gold);
+            padding-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .city-photo {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border: 1px solid #333;
+        }
+
+        .club-info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .info-box {
+            background: #161616;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border-left: 2px solid var(--lucentino-gold);
+        }
+
+        .info-box span {
+            display: block;
+            font-size: 0.7rem;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .info-box strong {
+            font-size: 0.85rem;
+            color: var(--cb-white);
+        }
+
+        /* Línea de tiempo de Historia */
+        .history-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .timeline-item {
+            background: #161616;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid var(--lucentino-blue);
+        }
+
+        .timeline-item strong {
+            color: var(--cb-white);
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .timeline-item p {
+            font-size: 0.8rem;
+            color: #ccc;
+            text-align: justify;
+        }
+
+        /* Equipaciones */
+        .kits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            text-align: center;
+        }
+
+        .kit-card {
+            background: #161616;
+            border: 1px solid #2a2a2a;
+            border-radius: 6px;
+            padding: 8px;
+        }
+
+        .kit-card img {
+            max-height: 120px !important;
+            object-fit: contain;
+            margin-bottom: 5px;
+        }
+
+        .kit-card span {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--cb-white);
+            display: block;
+        }
+
+        /* Tabla histórica y patrocinios */
+        table.history-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        table.history-table td {
+            padding: 6px 8px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        table.history-table td:nth-child(odd) {
+            color: #aaa;
+        }
+
+        table.history-table td:nth-child(even) {
+            color: var(--cb-white);
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .sponsor-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #161616;
+            padding: 8px 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 2px solid var(--lucentino-gold);
+        }
+
+        .sponsor-logo-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sponsor-logo-name img {
+            max-height: 24px !important;
+            width: auto !important;
+            object-fit: contain;
+        }
+
+        .sponsor-info span {
+            display: block;
+            font-size: 0.68rem;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .sponsor-info strong {
+            font-size: 0.82rem;
+            color: var(--cb-white);
+        }
+
+        .sponsor-amount {
+            color: var(--lucentino-gold);
+            font-weight: 700;
+            font-size: 0.82rem;
+        }
+
+        .position-group {
+            margin-bottom: 12px;
+        }
+
+        .position-title {
+            font-size: 0.8rem;
+            color: var(--lucentino-gold);
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 3px;
+        }
+
+        .player-list {
+            list-style: none;
+        }
+
+        .player-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 8px;
+            border-bottom: 1px solid #222;
+            font-size: 0.82rem;
+        }
+
+        .player-item:hover {
+            background: #252525;
+            border-radius: 4px;
+        }
+
+        .player-num {
+            color: #888;
+            font-weight: 700;
+            margin-right: 8px;
+            width: 20px;
+        }
+
+        .player-name {
+            color: var(--cb-white);
+            font-weight: 600;
+            flex-grow: 1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .kits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="team-crest-wrapper">
+                <img src="../img/lucentino.png" alt="Sporting Lucentino" onerror="createSvgFallback(this, 'SL', '#0055A5', '#E5A93C')">
+            </div>
+            <div>
+                <h1>Sporting Lucentino</h1>
+                <p>Fundado en 1921 • "Los Guerreros del Mediterráneo / Los Blanquiazules"</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="../index.html">← Volver a la Liga</a>
+        <a href="#historia">Historia</a>
+        <a href="#equipaciones">Equipaciones</a>
+        <a href="#estadio">Estadio & Ciudad</a>
+        <a href="#presidente">Presidencia</a>
+        <a href="#patrocinadores">Patrocinio</a>
+        <a href="#clasificacion-historica">Historial 1ª Div</a>
+        <a href="#masasocial">Masa Social</a>
+        <a href="#plantilla">Plantilla (25)</a>
+    </nav>
+
+    <div class="container">
+        
+        <!-- COLUMNA PRINCIPAL -->
+        <main>
+            <!-- 1. Historia cronológica -->
+            <section id="historia" class="card">
+                <h2>Historia y Evolución del Club</h2>
+                <div class="history-timeline">
+                    <div class="timeline-item">
+                        <strong>Orígenes / Fundación (1921)</strong>
+                        <p>Fundado por marineros, estibadores del puerto y comerciantes de la costa de Alicante que buscaban llevar la pasión del fútbol británico a la fachada mediterránea. Adoptaron el azul y el blanco como reflejo del mar y la espuma de las olas.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Consolidación (1950–1975)</strong>
+                        <p>Tras décadas compitiendo en el ámbito regional levantino, el club da el salto a la categoría de plata nacional y estrena el vetusto San Gabriel. Se forja el carácter alegre, técnico y vertical del equipo, conocido en el levante como un bloque difícil de superar en su feudo.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Época Dorada (1982–1998)</strong>
+                        <p>El cénit histórico de la entidad. El Sporting Lucentino logra un histórico ascenso a la máxima categoría de la liga, consolidándose durante más de una década en la élite gracias a fichajes de talento sudamericano y una generación dorada de la cantera alicantina. En este periodo alcanzan unas semifinales de copa y llenan San Gabriel cada fin de semana.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Crisis y Rescate (2002–2015)</strong>
+                        <p>Los excesos económicos de principios de siglo arrastraron al club a una situación de concurso de acreedores y descensos administrativos a la categoría de bronce. La masa social se organizó en plataformas de salvación ciudadana para evitar la liquidación, logrando mantener vivo el espíritu democrático del club.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Era Moderna (2015–Presente)</strong>
+                        <p>Bajo la presidencia de Vicente "Tono" Pastor, el club se ha saneado por completo, recuperando la estabilidad institucional y afianzándose como un fijo competitivo en la Liga CaixaBank.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Equipaciones Oficiales -->
+            <section id="equipaciones" class="card">
+                <h2>Equipaciones Oficiales</h2>
+                <div class="kits-grid">
+                    <div class="kit-card">
+                        <img src="../img/1equipacionlucentino.png" alt="1ª Equipación" onerror="this.src='https://via.placeholder.com/100?text=1ª+Lucentino'">
+                        <span>1ª Equipación (Local)</span>
+                    </div>
+                    <div class="kit-card">
+                        <img src="../img/2equipacionlucentino.png" alt="2ª Equipación" onerror="this.src='https://via.placeholder.com/100?text=2ª+Lucentino'">
+                        <span>2ª Equipación (Visitante)</span>
+                    </div>
+                    <div class="kit-card">
+                        <img src="../img/3equipacionlucentino.png" alt="3ª Equipación" onerror="this.src='https://via.placeholder.com/100?text=3ª+Lucentino'">
+                        <span>3ª Equipación (Alternativa)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Clasificación Histórica en Primera División -->
+            <section id="clasificacion-historica" class="card">
+                <h2>Clasificación Histórica en Primera División</h2>
+                <table class="history-table">
+                    <tr><td>Temporadas en Primera</td><td>34 temporadas</td></tr>
+                    <tr><td>Partidos jugados</td><td>1.258</td></tr>
+                    <tr><td>Victorias</td><td>445</td></tr>
+                    <tr><td>Empates</td><td>312</td></tr>
+                    <tr><td>Derrotas</td><td>501</td></tr>
+                    <tr><td>Goles a favor (GF)</td><td>1.520</td></tr>
+                    <tr><td>Goles en contra (GC)</td><td>1.685</td></tr>
+                    <tr><td>Puntos totales históricos</td><td><strong>1.687 puntos</strong></td></tr>
+                </table>
+            </section>
+
+            <!-- 4. Plantilla Oficial -->
+            <section id="plantilla" class="card">
+                <h2>Plantilla Oficial de la Temporada</h2>
+                
+                <div class="position-group">
+                    <div class="position-title">Guardametas (3)</div>
+                    <ul class="player-list">
+                        <li class="player-item"><span class="player-num">1</span><span class="player-name">Aitor Fornés</span></li>
+                        <li class="player-item"><span class="player-num">13</span><span class="player-name">Vicent Alcover</span></li>
+                        <li class="player-item"><span class="player-num">25</span><span class="player-name">Dani Riquelme</span></li>
+                    </ul>
+                </div>
+
+                <div class="position-group">
+                    <div class="position-title">Defensas (8)</div>
+                    <ul class="player-list">
+                        <li class="player-item"><span class="player-num">2</span><span class="player-name">Sergio "Checho" Navarro</span></li>
+                        <li class="player-item"><span class="player-num">3</span><span class="player-name">Marc Giner</span></li>
+                        <li class="player-item"><span class="player-num">4</span><span class="player-name">Pau Albiol (C)</span></li>
+                        <li class="player-item"><span class="player-num">5</span><span class="player-name">Borja Moratal</span></li>
+                        <li class="player-item"><span class="player-num">12</span><span class="player-name">Lucas Pastor</span></li>
+                        <li class="player-item"><span class="player-num">18</span><span class="player-name">Iker Sanchis</span></li>
+                        <li class="player-item"><span class="player-num">22</span><span class="player-name">Héctor Esquerdo</span></li>
+                        <li class="player-item"><span class="player-num">24</span><span class="player-name">Adrián Plaza</span></li>
+                    </ul>
+                </div>
+
+                <div class="position-group">
+                    <div class="position-title">Centrocampistas (8)</div>
+                    <ul class="player-list">
+                        <li class="player-item"><span class="player-num">6</span><span class="player-name">Rubén Sivera</span></li>
+                        <li class="player-item"><span class="player-num">8</span><span class="player-name">Kiko Martí</span></li>
+                        <li class="player-item"><span class="player-num">10</span><span class="player-name">Enric Cerdà</span></li>
+                        <li class="player-item"><span class="player-num">14</span><span class="player-name">Joel Candela</span></li>
+                        <li class="player-item"><span class="player-num">16</span><span class="player-name">David Bernabéu</span></li>
+                        <li class="player-item"><span class="player-num">20</span><span class="player-name">Adrián Lledó</span></li>
+                        <li class="player-item"><span class="player-num">21</span><span class="player-name">Miquel Faura</span></li>
+                        <li class="player-item"><span class="player-num">23</span><span class="player-name">Tono Benet</span></li>
+                    </ul>
+                </div>
+
+                <div class="position-group">
+                    <div class="position-title">Delanteros (6)</div>
+                    <ul class="player-list">
+                        <li class="player-item"><span class="player-num">7</span><span class="player-name">Joan Llopis</span></li>
+                        <li class="player-item"><span class="player-num">9</span><span class="player-name">"El Tanque" Rodrigo Moreno</span></li>
+                        <li class="player-item"><span class="player-num">11</span><span class="player-name">Carlos Fayos</span></li>
+                        <li class="player-item"><span class="player-num">15</span><span class="player-name">Yago Pastor</span></li>
+                        <li class="player-item"><span class="player-num">17</span><span class="player-name">Cesc Monzó</span></li>
+                        <li class="player-item"><span class="player-num">19</span><span class="player-name">Damián Poveda</span></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <!-- COLUMNA LATERAL -->
+        <aside>
+            <!-- 5. Estadio & Ciudad -->
+            <section id="estadio" class="card">
+                <h2>Estadio & Ciudad</h2>
+                <div class="club-info-grid">
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Ciudad</span>
+                        <strong>Alicante (Com. Valenciana)</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Nombre estadio</span>
+                        <strong>Estadio Municipal de San Gabriel</strong>
+                    </div>
+                    <div class="info-box">
+                        <span>Capacidad</span>
+                        <strong>21.200 espectadores</strong>
+                    </div>
+                </div>
+                <p style="font-size: 0.78rem; color: #aaa; margin-top: 8px;">
+                    Frente al litoral alicantino, con brisa marina y gradas muy cercanas al terreno de juego.
+                </p>
+            </section>
+
+            <!-- 6. Presidencia -->
+            <section id="presidente" class="card">
+                <h2>Presidencia</h2>
+                <div class="club-info-grid">
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Presidente</span>
+                        <strong>Vicente "Tono" Pastor</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Fecha de nacimiento</span>
+                        <strong>22 de noviembre de 1967 (58 años)</strong>
+                    </div>
+                    <div class="info-box">
+                        <span>En el cargo desde</span>
+                        <strong>4 de julio de 2015 (Mandato hasta temp. 29/30)</strong>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Proveedor y Patrocinadores con Logos -->
+            <section id="patrocinadores" class="card">
+                <h2>Patrocinio y Economía</h2>
+                
+                <div class="sponsor-item">
+                    <div class="sponsor-logo-name">
+                        <img src="../img/meyba.png" alt="Meyba" onerror="this.style.display='none'">
+                        <div class="sponsor-info">
+                            <span>Proveedor Técnico</span>
+                            <strong>Meyba</strong>
+                        </div>
+                    </div>
+                    <div class="sponsor-amount">1.5M € / año</div>
+                </div>
+
+                <div class="sponsor-item">
+                    <div class="sponsor-logo-name">
+                        <img src="../img/balearia.png" alt="Baleària" onerror="this.style.display='none'">
+                        <div class="sponsor-info">
+                            <span>Patrocinador Principal</span>
+                            <strong>Baleària</strong>
+                        </div>
+                    </div>
+                    <div class="sponsor-amount">4.2M € / año</div>
+                </div>
+
+                <div class="sponsor-item">
+                    <div class="sponsor-logo-name">
+                        <img src="../img/comunitatvalenciana.png" alt="Turisme CV" onerror="this.style.display='none'">
+                        <div class="sponsor-info">
+                            <span>2º Patrocinador</span>
+                            <strong>Turisme CV / Costa Blanca</strong>
+                        </div>
+                    </div>
+                    <div class="sponsor-amount">1.0M € / año</div>
+                </div>
+                <p style="font-size: 0.75rem; color: var(--lucentino-gold); margin-top: 8px; font-weight: 600;">
+                    Ingresos anuales totales: 6,7 millones de euros
+                </p>
+            </section>
+
+            <!-- 8. Masa Social -->
+            <section id="masasocial" class="card">
+                <h2>Masa Social</h2>
+                <div class="club-info-grid">
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Socios totales</span>
+                        <strong>18.340 (100% independientes, con voto)</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Abonados con asiento</span>
+                        <strong>15.650 abonados</strong>
+                    </div>
+                    <div class="info-box">
+                        <span>Grupo de Animación / Ultras</span>
+                        <strong style="color: var(--lucentino-gold);">Frente Blanquiazul</strong>
+                    </div>
+                </div>
+            </section>
+        </aside>
+
+    </div>
+
+    <script>
+        function createSvgFallback(imgElement, initials, bgColor, strokeColor) {
+            const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+                    <path d="M50 5 L85 20 V50 C85 72 50 95 50 95 C50 95 15 72 15 50 V20 Z" fill="${bgColor}" stroke="${strokeColor}" stroke-width="6"/>
+                    <text x="50" y="58" font-family="'Inter', sans-serif" font-size="30" font-weight="800" fill="${strokeColor}" text-anchor="middle" dominant-baseline="middle">${initials}</text>
+                </svg>
+            `;
+            const wrapper = imgElement.parentElement;
+            wrapper.innerHTML = svg;
+        }
+    </script>
+</body>
+</html>
