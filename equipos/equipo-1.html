@@ -128,6 +128,17 @@
             letter-spacing: 0.5px;
         }
 
+        /* FOTO DE VIGO SELECCIONADA POR TI */
+        .city-photo {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border: 1px solid #333;
+        }
+
         .club-info-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -232,7 +243,7 @@
     <nav>
         <a href="../index.html">← Volver a la Liga</a>
         <a href="#historia">Historia</a>
-        <a href="#estadio">Estadio</a>
+        <a href="#estadio">Estadio & Ciudad</a>
         <a href="#plantilla">Plantilla (25)</a>
         <a href="#palmares">Palmarés</a>
     </nav>
@@ -306,15 +317,18 @@
 
         <aside>
             <section id="estadio" class="card">
-                <h2>Estadio</h2>
+                <h2>Estadio & Ciudad</h2>
+                <!-- FOTO DE VIGO SELECCIONADA POR EL USUARIO -->
+                <img src="https://media.istockphoto.com/id/680650270/es/foto/vista-de-la-ciudad-de-vigo-en-galicia-espa%C3%B1a-al-atardecer.jpg?s=170667a&w=0&k=20&c=x5bzX_tR9YRC63_dlrgeiUwUmjbt7ZMdUdeKYxIvQ9Q=" alt="Ciudad de Vigo" class="city-photo">
+                
                 <div class="club-info-grid">
-                    <div class="info-box" style="margin-bottom: 8px;">
-                        <span>Nombre oficial</span>
-                        <strong>Estadio Municipal de Castrelos</strong>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Ciudad</span>
+                        <strong>Vigo (Galicia)</strong>
                     </div>
-                    <div class="info-box" style="margin-bottom: 8px;">
-                        <span>Ubicación</span>
-                        <strong>Junto al histórico parque y los pazos de Vigo</strong>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Nombre estadio</span>
+                        <strong>Estadio Municipal de Castrelos</strong>
                     </div>
                     <div class="info-box">
                         <span>Capacidad</span>
@@ -322,7 +336,7 @@
                     </div>
                 </div>
                 <p style="font-size: 0.78rem; color: #aaa; margin-top: 8px;">
-                    Sabor clásico inglés, gradas muy cerca del césped y una presión ambiental asfixiante.
+                    Sabor clásico inglés, gradas junto al césped y ambiente de auténtica presión local.
                 </p>
             </section>
 
