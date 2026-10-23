@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --cb-blue: #007FAE;
             --cb-dark: #121212;
             --cb-card: #1E1E1E;
             --cb-gray: #E5E8EB;
@@ -37,7 +36,6 @@
             line-height: 1.4;
         }
 
-        /* Header del Club */
         header {
             background: linear-gradient(135deg, var(--castrelos-green) 0%, var(--castrelos-blue) 100%);
             border-bottom: 3px solid #E2E5E8;
@@ -62,12 +60,6 @@
             justify-content: center;
         }
 
-        .team-crest-wrapper img, .team-crest-wrapper svg {
-            max-width: 55px !important;
-            max-height: 55px !important;
-            object-fit: contain;
-        }
-
         header h1 {
             color: var(--cb-white);
             font-size: 1.5rem;
@@ -82,7 +74,6 @@
             margin-top: 4px;
         }
 
-        /* Menú de navegación */
         nav {
             background-color: #0d0d0d;
             display: flex;
@@ -110,7 +101,6 @@
             color: var(--cb-white);
         }
 
-        /* Layout */
         .container {
             max-width: 1000px;
             margin: 15px auto;
@@ -138,12 +128,10 @@
             letter-spacing: 0.5px;
         }
 
-        /* Datos de fichas de club */
         .club-info-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 12px;
+            grid-template-columns: 1fr;
+            gap: 8px;
         }
 
         .info-box {
@@ -165,7 +153,6 @@
             color: var(--cb-white);
         }
 
-        /* Estilos de Plantilla por Demarcaciones */
         .position-group {
             margin-bottom: 12px;
         }
@@ -217,18 +204,12 @@
             padding: 6px 0;
             border-bottom: 1px solid #222;
             font-size: 0.82rem;
-        }
-
-        .palmares-item span {
             color: var(--cb-white);
             font-weight: 600;
         }
 
         @media (max-width: 768px) {
             .container {
-                grid-template-columns: 1fr;
-            }
-            .club-info-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -258,9 +239,7 @@
 
     <div class="container">
         
-        <!-- COLUMNA PRINCIPAL -->
         <main>
-            <!-- 1. Historia y Origen -->
             <section id="historia" class="card">
                 <h2>Historia y ADN del Club</h2>
                 <p style="margin-bottom: 10px; text-align: justify;">
@@ -271,11 +250,9 @@
                 </p>
             </section>
 
-            <!-- 2. Plantilla Actual (25 jugadores detallados) -->
             <section id="plantilla" class="card">
                 <h2>Plantilla Oficial de la Temporada</h2>
                 
-                <!-- Porteros -->
                 <div class="position-group">
                     <div class="position-title">Guardametas (3)</div>
                     <ul class="player-list">
@@ -285,7 +262,6 @@
                     </ul>
                 </div>
 
-                <!-- Defensas -->
                 <div class="position-group">
                     <div class="position-title">Defensas (8)</div>
                     <ul class="player-list">
@@ -300,7 +276,6 @@
                     </ul>
                 </div>
 
-                <!-- Centrocampistas -->
                 <div class="position-group">
                     <div class="position-title">Centrocampistas (8)</div>
                     <ul class="player-list">
@@ -315,7 +290,6 @@
                     </ul>
                 </div>
 
-                <!-- Delanteros -->
                 <div class="position-group">
                     <div class="position-title">Delanteros (6)</div>
                     <ul class="player-list">
@@ -330,12 +304,10 @@
             </section>
         </main>
 
-        <!-- COLUMNA LATERAL (Estadio y Palmarés) -->
         <aside>
-            <!-- 3. Información del Estadio -->
             <section id="estadio" class="card">
                 <h2>Estadio</h2>
-                <div class="club-info-grid" style="grid-template-columns: 1fr;">
+                <div class="club-info-grid">
                     <div class="info-box" style="margin-bottom: 8px;">
                         <span>Nombre oficial</span>
                         <strong>Estadio Municipal de Castrelos</strong>
@@ -350,19 +322,14 @@
                     </div>
                 </div>
                 <p style="font-size: 0.78rem; color: #aaa; margin-top: 8px;">
-                    Sabor clásico inglés, gradas muy cerca del césped y una presión ambiental asfixiante para los visitantes.
+                    Sabor clásico inglés, gradas muy cerca del césped y una presión ambiental asfixiante.
                 </p>
             </section>
 
-            <!-- 4. Palmarés -->
             <section id="palmares" class="card">
                 <h2>Palmarés Oficial</h2>
-                <div class="palmares-item">
-                    <span>🏆 1x Copa Federación de Segunda División</span>
-                </div>
-                <div class="palmares-item">
-                    <span>🥈 2x Subcampeonatos de Copa del Norte</span>
-                </div>
+                <div class="palmares-item" style="margin-bottom: 8px;">🏆 1x Copa Federación de Segunda Div.</div>
+                <div class="palmares-item">🥈 2x Subcampeonatos Copa del Norte</div>
             </section>
         </aside>
 
@@ -380,6 +347,5 @@
             wrapper.innerHTML = svg;
         }
     </script>
-
 </body>
 </html>
