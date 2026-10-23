@@ -78,7 +78,8 @@
             background-color: #0d0d0d;
             display: flex;
             justify-content: center;
-            gap: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
             padding: 8px;
             position: sticky;
             top: 0;
@@ -128,7 +129,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* FOTO DE VIGO SELECCIONADA POR TI */
         .city-photo {
             width: 100%;
             height: 190px;
@@ -162,6 +162,58 @@
         .info-box strong {
             font-size: 0.85rem;
             color: var(--cb-white);
+        }
+
+        /* Tabla histórica y patrocinios */
+        table.history-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        table.history-table td {
+            padding: 6px 8px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        table.history-table td:nth-child(odd) {
+            color: #aaa;
+        }
+
+        table.history-table td:nth-child(even) {
+            color: var(--cb-white);
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .sponsor-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #161616;
+            padding: 8px 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 2px solid var(--castrelos-green);
+        }
+
+        .sponsor-info span {
+            display: block;
+            font-size: 0.68rem;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .sponsor-info strong {
+            font-size: 0.82rem;
+            color: var(--cb-white);
+        }
+
+        .sponsor-amount {
+            color: #7ce38b;
+            font-weight: 700;
+            font-size: 0.82rem;
         }
 
         .position-group {
@@ -244,13 +296,18 @@
         <a href="../index.html">← Volver a la Liga</a>
         <a href="#historia">Historia</a>
         <a href="#estadio">Estadio & Ciudad</a>
+        <a href="#presidente">Presidencia</a>
+        <a href="#patrocinadores">Patrocinio</a>
+        <a href="#clasificacion-historica">Historial 1ª Div</a>
+        <a href="#masasocial">Masa Social</a>
         <a href="#plantilla">Plantilla (25)</a>
-        <a href="#palmares">Palmarés</a>
     </nav>
 
     <div class="container">
         
+        <!-- COLUMNA PRINCIPAL -->
         <main>
+            <!-- 1. Historia y ADN -->
             <section id="historia" class="card">
                 <h2>Historia y ADN del Club</h2>
                 <p style="margin-bottom: 10px; text-align: justify;">
@@ -261,6 +318,23 @@
                 </p>
             </section>
 
+            <!-- 2. Clasificación Histórica en Primera División -->
+            <section id="clasificacion-historica" class="card">
+                <h2>Clasificación Histórica en Primera División</h2>
+                <table class="history-table">
+                    <tr><td>Temporadas en Primera</td><td>28 temporadas</td></tr>
+                    <tr><td>Partidos jugados</td><td>1.026</td></tr>
+                    <tr><td>Victorias</td><td>362</td></tr>
+                    <tr><td>Empates</td><td>274</td></tr>
+                    <tr><td>Derrotas</td><td>390</td></tr>
+                    <tr><td>Goles a favor (GF)</td><td>1.245</td></tr>
+                    <tr><td>Goles en contra (GC)</td><td>1.340</td></tr>
+                    <tr><td>Diferencia de goles (DG)</td><td>-95</td></tr>
+                    <tr><td>Puntos totales históricos</td><td><strong>1.360 puntos</strong></td></tr>
+                </table>
+            </section>
+
+            <!-- 3. Plantilla Oficial -->
             <section id="plantilla" class="card">
                 <h2>Plantilla Oficial de la Temporada</h2>
                 
@@ -315,16 +389,21 @@
             </section>
         </main>
 
+        <!-- COLUMNA LATERAL -->
         <aside>
+            <!-- 4. Estadio & Ciudad -->
             <section id="estadio" class="card">
                 <h2>Estadio & Ciudad</h2>
-                <!-- FOTO DE VIGO SELECCIONADA POR EL USUARIO -->
                 <img src="https://media.istockphoto.com/id/680650270/es/foto/vista-de-la-ciudad-de-vigo-en-galicia-espa%C3%B1a-al-atardecer.jpg?s=170667a&w=0&k=20&c=x5bzX_tR9YRC63_dlrgeiUwUmjbt7ZMdUdeKYxIvQ9Q=" alt="Ciudad de Vigo" class="city-photo">
                 
                 <div class="club-info-grid">
                     <div class="info-box" style="margin-bottom: 6px;">
                         <span>Ciudad</span>
                         <strong>Vigo (Galicia)</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Habitantes</span>
+                        <strong>294.489 hab.</strong>
                     </div>
                     <div class="info-box" style="margin-bottom: 6px;">
                         <span>Nombre estadio</span>
@@ -335,12 +414,78 @@
                         <strong>18.500 espectadores</strong>
                     </div>
                 </div>
-                <p style="font-size: 0.78rem; color: #aaa; margin-top: 8px;">
-                    Sabor clásico inglés, gradas junto al césped y ambiente de auténtica presión local.
-                </p>
             </section>
 
-            <section id="palmares" class="card">
+            <!-- 5. Presidencia -->
+            <section id="presidente" class="card">
+                <h2>Presidencia</h2>
+                <div class="club-info-grid">
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Presidente</span>
+                        <strong>Celso Moure</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Fecha de nacimiento</span>
+                        <strong>14 de marzo de 1968</strong>
+                    </div>
+                    <div class="info-box">
+                        <span>En el cargo desde</span>
+                        <strong>14 de junio de 2012 (Fin mandato: 28/29)</strong>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Proveedor y Patrocinadores -->
+            <section id="patrocinadores" class="card">
+                <h2>Patrocinio y Marcas</h2>
+                
+                <div class="sponsor-item">
+                    <div class="sponsor-info">
+                        <span>Proveedor Técnico</span>
+                        <strong>Kelme / Castore *(Ejemplo)*</strong>
+                    </div>
+                    <div class="sponsor-amount">1.2M € / año</div>
+                </div>
+
+                <div class="sponsor-item">
+                    <div class="sponsor-info">
+                        <span>Primer Patrocinador</span>
+                        <strong>Estrella Galicia / Local</strong>
+                    </div>
+                    <div class="sponsor-amount">3.5M € / año</div>
+                </div>
+
+                <div class="sponsor-item">
+                    <div class="sponsor-info">
+                        <span>Segundo Patrocinador</span>
+                        <strong>Astilleros de la Ría</strong>
+                    </div>
+                    <div class="sponsor-amount">1.8M € / año</div>
+                </div>
+                <p style="font-size: 0.7rem; color: #888; margin-top: 5px;">*Puedes cambiar los nombres de marcas por los que prefieras en tu universo.*</p>
+            </section>
+
+            <!-- 7. Masa Social -->
+            <section id="masasocial" class="card">
+                <h2>Masa Social</h2>
+                <div class="club-info-grid">
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Socios totales</span>
+                        <strong>17.412 (Derecho a voto: Sí)</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Abonados</span>
+                        <strong>14.287</strong>
+                    </div>
+                    <div class="info-box">
+                        <span>Grupo de Animación / Ultras</span>
+                        <strong style="color: #7ce38b;">Frente Cantero</strong>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. Palmarés -->
+            <section class="card">
                 <h2>Palmarés Oficial</h2>
                 <div class="palmares-item" style="margin-bottom: 8px;">🏆 1x Copa Federación de Segunda Div.</div>
                 <div class="palmares-item">🥈 2x Subcampeonatos Copa del Norte</div>
