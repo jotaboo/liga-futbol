@@ -164,7 +164,6 @@
             color: var(--cb-white);
         }
 
-        /* Línea de tiempo de Historia */
         .history-timeline {
             display: flex;
             flex-direction: column;
@@ -191,7 +190,6 @@
             text-align: justify;
         }
 
-        /* Equipaciones */
         .kits-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -219,7 +217,6 @@
             display: block;
         }
 
-        /* Tabla histórica y patrocinios */
         table.history-table {
             width: 100%;
             border-collapse: collapse;
@@ -327,6 +324,17 @@
             flex-grow: 1;
         }
 
+        .palmares-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 0;
+            border-bottom: 1px solid #222;
+            font-size: 0.82rem;
+            color: var(--cb-white);
+            font-weight: 600;
+        }
+
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
@@ -360,14 +368,13 @@
         <a href="#patrocinadores">Patrocinio</a>
         <a href="#clasificacion-historica">Historial 1ª Div</a>
         <a href="#masasocial">Masa Social</a>
+        <a href="#palmares">Palmarés</a>
         <a href="#plantilla">Plantilla (25)</a>
     </nav>
 
     <div class="container">
         
-        <!-- COLUMNA PRINCIPAL -->
         <main>
-            <!-- 1. Historia cronológica -->
             <section id="historia" class="card">
                 <h2>Historia y Evolución del Club</h2>
                 <div class="history-timeline">
@@ -389,12 +396,11 @@
                     </div>
                     <div class="timeline-item">
                         <strong>Era Moderna (2015–Presente)</strong>
-                        <p>Bajo la presidencia de Vicente "Tono" Pastor, el club se ha saneado por completo, recuperando la estabilidad institucional y afianzándose como un fijo competitivo en la Liga CaixaBank.</p>
+                        <p>Bajo la presidencia de Vicente Pastor, el club se ha saneado por completo, recuperando la estabilidad institucional y afianzándose como un fijo competitivo en la Liga CaixaBank.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- 2. Equipaciones Oficiales -->
             <section id="equipaciones" class="card">
                 <h2>Equipaciones Oficiales</h2>
                 <div class="kits-grid">
@@ -413,7 +419,6 @@
                 </div>
             </section>
 
-            <!-- 3. Clasificación Histórica en Primera División -->
             <section id="clasificacion-historica" class="card">
                 <h2>Clasificación Histórica en Primera División</h2>
                 <table class="history-table">
@@ -424,11 +429,11 @@
                     <tr><td>Derrotas</td><td>501</td></tr>
                     <tr><td>Goles a favor (GF)</td><td>1.520</td></tr>
                     <tr><td>Goles en contra (GC)</td><td>1.685</td></tr>
+                    <tr><td>Diferencia de goles (DG)</td><td>-165</td></tr>
                     <tr><td>Puntos totales históricos</td><td><strong>1.687 puntos</strong></td></tr>
                 </table>
             </section>
 
-            <!-- 4. Plantilla Oficial -->
             <section id="plantilla" class="card">
                 <h2>Plantilla Oficial de la Temporada</h2>
                 
@@ -483,15 +488,19 @@
             </section>
         </main>
 
-        <!-- COLUMNA LATERAL -->
         <aside>
-            <!-- 5. Estadio & Ciudad -->
             <section id="estadio" class="card">
                 <h2>Estadio & Ciudad</h2>
+                <img src="https://t4.ftcdn.net/jpg/02/26/17/07/360_F_226170729_LPIutd0X3UhvZfAxwiGDPCgQ4vQfDBwP.jpg" alt="Alicante" class="city-photo">
+                
                 <div class="club-info-grid">
                     <div class="info-box" style="margin-bottom: 6px;">
                         <span>Ciudad</span>
                         <strong>Alicante (Com. Valenciana)</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Habitantes</span>
+                        <strong>366.221 hab.</strong>
                     </div>
                     <div class="info-box" style="margin-bottom: 6px;">
                         <span>Nombre estadio</span>
@@ -502,18 +511,14 @@
                         <strong>21.200 espectadores</strong>
                     </div>
                 </div>
-                <p style="font-size: 0.78rem; color: #aaa; margin-top: 8px;">
-                    Frente al litoral alicantino, con brisa marina y gradas muy cercanas al terreno de juego.
-                </p>
             </section>
 
-            <!-- 6. Presidencia -->
             <section id="presidente" class="card">
                 <h2>Presidencia</h2>
                 <div class="club-info-grid">
                     <div class="info-box" style="margin-bottom: 6px;">
                         <span>Presidente</span>
-                        <strong>Vicente "Tono" Pastor</strong>
+                        <strong>Vicente Pastor</strong>
                     </div>
                     <div class="info-box" style="margin-bottom: 6px;">
                         <span>Fecha de nacimiento</span>
@@ -521,12 +526,11 @@
                     </div>
                     <div class="info-box">
                         <span>En el cargo desde</span>
-                        <strong>4 de julio de 2015 (Mandato hasta temp. 29/30)</strong>
+                        <strong>4 de julio de 2015 (Fin mandato: 29/30)</strong>
                     </div>
                 </div>
             </section>
 
-            <!-- 7. Proveedor y Patrocinadores con Logos -->
             <section id="patrocinadores" class="card">
                 <h2>Patrocinio y Economía</h2>
                 
@@ -554,10 +558,10 @@
 
                 <div class="sponsor-item">
                     <div class="sponsor-logo-name">
-                        <img src="../img/comunitatvalenciana.png" alt="Turisme CV" onerror="this.style.display='none'">
+                        <img src="../img/comunitatvalenciana.png" alt="Comunitat Valenciana" onerror="this.style.display='none'">
                         <div class="sponsor-info">
                             <span>2º Patrocinador</span>
-                            <strong>Turisme CV / Costa Blanca</strong>
+                            <strong>Comunitat Valenciana</strong>
                         </div>
                     </div>
                     <div class="sponsor-amount">1.0M € / año</div>
@@ -567,23 +571,28 @@
                 </p>
             </section>
 
-            <!-- 8. Masa Social -->
             <section id="masasocial" class="card">
                 <h2>Masa Social</h2>
                 <div class="club-info-grid">
                     <div class="info-box" style="margin-bottom: 6px;">
                         <span>Socios totales</span>
-                        <strong>18.340 (100% independientes, con voto)</strong>
+                        <strong>18.340 (Derecho a voto: Sí)</strong>
                     </div>
                     <div class="info-box" style="margin-bottom: 6px;">
-                        <span>Abonados con asiento</span>
-                        <strong>15.650 abonados</strong>
+                        <span>Abonados</span>
+                        <strong>15.650</strong>
                     </div>
                     <div class="info-box">
                         <span>Grupo de Animación / Ultras</span>
                         <strong style="color: var(--lucentino-gold);">Frente Blanquiazul</strong>
                     </div>
                 </div>
+            </section>
+
+            <section id="palmares" class="card">
+                <h2>Palmarés Oficial</h2>
+                <div class="palmares-item" style="margin-bottom: 8px;">🏆 1x Copa del Levante</div>
+                <div class="palmares-item">🥉 1x Semifinales de Copa de S.M. el Rey</div>
             </section>
         </aside>
 
