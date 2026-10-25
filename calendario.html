@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario Oficial - Liga Caixabank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cb-blue: #007FAE;
+            --cb-dark: #121212;
+            --cb-card: #1E1E1E;
+            --cb-gray: #E5E8EB;
+            --cb-white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        img, svg {
+            max-width: 100% !important;
+            height: auto !important;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        body {
+            background-color: var(--cb-dark);
+            color: var(--cb-gray);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        header {
+            background: linear-gradient(135deg, #080808 0%, #1a1a1a 100%);
+            border-bottom: 3px solid var(--cb-blue);
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header-logo {
+            max-height: 38px !important;
+            width: auto !important;
+            object-fit: contain;
+        }
+
+        header h1 {
+            color: var(--cb-white);
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        nav {
+            background-color: #0d0d0d;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 8px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--cb-blue);
+            color: var(--cb-white);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 10px;
+        }
+
+        .card {
+            background: var(--cb-card);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #2a2a2a;
+        }
+
+        /* Cabecera con Flechas de Navegación */
+        .jornada-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #161616;
+            padding: 12px 20px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border: 1px solid #282828;
+        }
+
+        .jornada-header h2 {
+            color: var(--cb-white);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            border-left: none;
+            padding-left: 0;
+            margin-bottom: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn {
+            background: rgba(0, 127, 174, 0.2);
+            color: var(--cb-white);
+            border: 1px solid var(--cb-blue);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: var(--cb-blue);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            background: #222;
+            border-color: #444;
+        }
+
+        /* Vistas de las Jornadas */
+        .jornada-view {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .jornada-view.active {
+            display: flex;
+        }
+
+        /* Filas de Partido */
+        .match-row {
+            background: #161616;
+            border: 1px solid #282828;
+            border-radius: 6px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .match-date {
+            font-size: 0.72rem;
+            color: #888;
+            text-transform: uppercase;
+            font-weight: 700;
+            width: 150px;
+            flex-shrink: 0;
+        }
+
+        .match-versus {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        .team-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 40%;
+        }
+
+        .team-box.home { justify-content: flex-end; text-align: right; }
+        .team-box.away { justify-content: flex-start; text-align: left; }
+
+        .team-box span {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--cb-white);
+        }
+
+        .team-crest-wrapper {
+            width: 28px !important;
+            height: 28px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .team-crest-wrapper img, .team-crest-wrapper svg {
+            max-width: 28px !important;
+            max-height: 28px !important;
+            object-fit: contain;
+        }
+
+        .vs-badge {
+            background: var(--cb-blue);
+            color: var(--cb-white);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 650px) {
+            .match-row {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+            .match-date { width: auto; }
+            .team-box { width: 45%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <img src="img/logo-liga.png" alt="Liga Caixabank Logo" class="header-logo" onerror="createSvgFallback(this, 'LC', '#007FAE', '#FFFFFF')">
+            <h1>Liga Caixabank - Calendario</h1>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html">← Volver al Inicio</a>
+        <a href="calendario.html" class="active">Calendario</a>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            
+            <!-- Selector superior con Flechas -->
+            <div class="jornada-header">
+                <button class="nav-btn" id="btnPrev" onclick="cambiarJornada(-1)" disabled>❮</button>
+                <h2 id="jornadaTitle">Jornada 1</h2>
+                <button class="nav-btn" id="btnNext" onclick="cambiarJornada(1)">❯</button>
+            </div>
+
+            <!-- JORNADA 1 -->
+            <div class="jornada-view active" id="jornada-1">
+                
+                <div class="match-row">
+                    <span class="match-date">Viernes 21 Ago • 19:00</span>
+                    <div class="match-versus">
+                        <div class="team-box home">
+                            <span>Sporting Lucentino</span>
+                            <div class="team-crest-wrapper"><img src="img/lucentino.png" alt="" onerror="createSvgFallback(this, 'SL', '#0055A5', '#E5A93C')"></div>
+                        </div>
+                        <span class="vs-badge">VS</span>
+                        <div class="team-box away">
+                            <div class="team-crest-wrapper"><img src="img/realsevilla.png" alt="" onerror="createSvgFallback(this, 'SEV', '#0A192F', '#C0C0C0')"></div>
+                            <span>Real Sevilla</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="match-row">
+                    <span class="match-date">Viernes 21 Ago • 22:00</span>
+                    <div class="match-versus">
+                        <div class="team-box home">
+                            <span>UD Gijón</span>
+                            <div class="team-crest-wrapper"><img src="img/gijon.png" alt="" onerror="createSvgFallback(this, 'UDG', '#C8102E', '#FFFFFF')"></div>
+                        </div>
+                        <span class="vs-badge">VS</span>
+                        <div class="team-box away">
+                            <div class="team-crest-wrapper"><img src="img/aebarcelona.png" alt="" onerror="createSvgFallback(this, 'AEB', '#003366', '#C0C0C0')"></div>
+                            <span>AE Barcelona</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="match-row">
+                    <span class="match-date">Sábado 22 Ago • 17:00</span>
+                    <div class="match-versus">
+                        <div class="team-box home">
+                            <span>Athletic Valenciano</span>
+                            <div class="team-crest-wrapper"><img src="img/athleticvalenciano.png" alt="" onerror="createSvgFallback(this, 'ATV', '#DA291C', '#FFFFFF')"></div>
+                        </div>
+                        <span class="vs-badge">VS</span>
+                        <div class="team-box away">
+                            <div class="team-crest-wrapper"><img src="img/advallecas.png" alt="" onerror="createSvgFallback(this, 'ADV', '#EE2E3B', '#FFFFFF')"></div>
+                            <span>AD Vallecas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="match-row">
+                    <span class="match-date">Sábado 22 Ago • 19:30</span>
+                    <div class="match-versus">
+                        <div class="team-box home">
+                            <span>SD Pucela</span>
+                            <div class="team-crest-wrapper"><img src="img/sdpucela.png" alt="" onerror="createSvgFallback(this, 'PUC', '#5B2C6F', '#FFFFFF')"></div>
+                        </div>
+                        <span class="vs-badge">VS</span>
+                        <div class="team-box away">
+                            <div class="team-crest-wrapper"><img src="img/deportivobarakaldo.png" alt="" onerror="createSvgFallback(this, 'BAR', '#C99400', '#FFFFFF')"></div>
+                            <span>Deportivo Barakaldo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="match-row">
+                    <span class="match-date">Sábado 22 Ago • 22:00</span>
+                    <div class="match-versus">
+                        <div class="team-box home">
+                            <span>RCD Zaragoza</span>
+                            <div class="team-crest-wrapper"><img src="img/zaragoza.png" alt="" onerror="createSvgFallback(this, 'RZ', '#A71930', '#D4AF37')"></div>
+                        </div>
+                        <span class="vs-badge">VS</span>
+                        <div class="team-box away">
+                            <div class="team-crest-wrapper"><img src="img/cetarragona.png" alt="" onerror="createSvgFallback(this, 'CET', '#8B0000', '#FFFFFF')"></div>
+                            <span>CE Tarragona</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="match-row">
+                    <span class="match-date">Domingo 23 Ago • 17:30</span>
+                    <div class="match-versus">
+                        <div class="team-box home">
+                            <span>EK Euskaria</span>
+                            <div class="team-crest-wrapper"><img src="img/euskaria.png" alt="" onerror="createSvgFallback(this, 'EUS', '#009B48', '#FFFFFF')"></div>
+                        </div>
+                        <span class="vs-badge">VS</span>
+                        <div class="team-box away">
+                            <div class="team-crest-wrapper"><img src="img/rclugo.png" alt="" onerror="createSvgFallback(this, 'LUG', '#D32F2F', '#FFFFFF')"></div>
+                            <span>RC Lugo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="match-row">
+                    <span class="match-date">Domingo 23 Ago • 19:00</span>
+                    <div class="match-versus">
+                        <div class="team-box home">
+                            <span>Triana Balompié</span>
+                            <div class="team-crest-wrapper"><img src="img/triana.png" alt="" onerror="createSvgFallback(this, 'TB', '#9E1B32', '#F8F9FA')"></div>
+                        </div>
+                        <span class="vs-badge">VS</span>
+                        <div class="team-box away">
+                            <div class="team-crest-wrapper"><img src="img/rayocanario.png" alt="" onerror="createSvgFallback(this, 'RAY', '#FFC800', '#002855')"></div>
+                            <span>Rayo Canario</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="match-row">
+                    <span class="match-date">Domingo 23 Ago • 19:00</span>
+                    <div class="match-versus">
+                        <div class="team-box home">
+                            <span>CD Castrelos</span>
+                            <div class="team-crest-wrapper"><img src="img/castrelos.png" alt="" onerror="createSvgFallback(this, 'CDC', '#1E3F20', '#E2E5E8')"></div>
+                        </div>
+                        <span class="vs-badge">VS</span>
+                        <div class="team-box away">
+                            <div class="team-crest-wrapper"><img src="img/rcfmadrid.png" alt="" onerror="createSvgFallback(this, 'RCF', '#800020', '#FFFFFF')"></div>
+                            <span>RCF Madrid</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="match-row">
+                    <span class="match-date">Domingo 23 Ago • 22:00</span>
+                    <div class="match-versus">
+                        <div class="team-box home">
+                            <span>Metropolitano SC</span>
+                            <div class="team-crest-wrapper"><img src="img/metropolitanosc.png" alt="" onerror="createSvgFallback(this, 'MET', '#1B4D3E', '#C5A059')"></div>
+                        </div>
+                        <span class="vs-badge">VS</span>
+                        <div class="team-box away">
+                            <div class="team-crest-wrapper"><img src="img/fcmalaga.png" alt="" onerror="createSvgFallback(this, 'MAL', '#551A8B', '#FFFFFF')"></div>
+                            <span>FC Málaga</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- JORNADA 2 (Vista previa) -->
+            <div class="jornada-view" id="jornada-2">
+                <div class="match-row">
+                    <span class="match-date">Viernes 28 Ago • 20:00</span>
+                    <div class="match-versus">
+                        <div class="team-box home">
+                            <span>AE Barcelona</span>
+                            <div class="team-crest-wrapper"><img src="img/aebarcelona.png" alt="" onerror="createSvgFallback(this, 'AEB', '#003366', '#C0C0C0')"></div>
+                        </div>
+                        <span class="vs-badge">VS</span>
+                        <div class="team-box away">
+                            <div class="team-crest-wrapper"><img src="img/castrelos.png" alt="" onerror="createSvgFallback(this, 'CDC', '#1E3F20', '#E2E5E8')"></div>
+                            <span>CD Castrelos</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center; padding: 20px; color:#888;">
+                    <em>Próximamente el resto de horarios de la Jornada 2...</em>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let currentJornada = 1;
+        const totalJornadas = 2; // Incrementar según añadas más jornadas
+
+        function cambiarJornada(direction) {
+            // Ocultar la jornada actual
+            document.getElementById(`jornada-${currentJornada}`).classList.remove('active');
+
+            // Actualizar número de jornada
+            currentJornada += direction;
+
+            // Mostrar la nueva jornada
+            document.getElementById(`jornada-${currentJornada}`).classList.add('active');
+
+            // Actualizar título
+            document.getElementById('jornadaTitle').innerText = `Jornada ${currentJornada}`;
+
+            // Control de botones
+            document.getElementById('btnPrev').disabled = (currentJornada === 1);
+            document.getElementById('btnNext').disabled = (currentJornada === totalJornadas);
+        }
+
+        function createSvgFallback(imgElement, initials, bgColor, strokeColor) {
+            const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+                    <path d="M50 5 L85 20 V50 C85 72 50 95 50 95 C50 95 15 72 15 50 V20 Z" fill="${bgColor}" stroke="${strokeColor}" stroke-width="6"/>
+                    <text x="50" y="58" font-family="'Inter', sans-serif" font-size="30" font-weight="800" fill="${strokeColor}" text-anchor="middle" dominant-baseline="middle">${initials}</text>
+                </svg>
+            `;
+            const wrapper = imgElement.parentElement;
+            wrapper.innerHTML = svg;
+        }
+    </script>
+</body>
+</html>
