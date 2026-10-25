@@ -129,7 +129,7 @@
             letter-spacing: 0.5px;
         }
 
-        .city-photo {
+        .stadium-photo {
             width: 100%;
             height: 190px;
             object-fit: cover;
@@ -162,6 +162,30 @@
         .info-box strong {
             font-size: 0.85rem;
             color: var(--cb-white);
+        }
+
+        .president-card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .president-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #161616;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border-left: 2px solid var(--castrelos-green);
+        }
+
+        .president-photo {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #333;
         }
 
         .history-timeline {
@@ -294,7 +318,6 @@
             padding-bottom: 3px;
         }
 
-        /* Estilos para las tarjetas de jugador */
         .player-card-list {
             display: flex;
             flex-direction: column;
@@ -395,7 +418,6 @@
         .ovr-dark-green { background-color: #1c8211; }
         .ovr-cyan { background-color: #52aba4; }
 
-        /* Estilo para el palmarés */
         .palmares-item {
             display: flex;
             align-items: center;
@@ -575,7 +597,7 @@
         <aside>
             <section id="estadio" class="card">
                 <h2>Estadio & Ciudad</h2>
-                <img src="https://media.istockphoto.com/id/680650270/es/foto/vista-de-la-ciudad-de-vigo-en-galicia-espa%C3%B1a-al-atardecer.jpg?s=170667a&w=0&k=20&c=x5bzX_tR9YRC63_dlrgeiUwUmjbt7ZMdUdeKYxIvQ9Q=" alt="Ciudad de Vigo" class="city-photo">
+                <img src="../img/estadiocastrelos.png" alt="Estadio Municipal de Castrelos" class="stadium-photo" onerror="this.src='https://media.istockphoto.com/id/680650270/es/foto/vista-de-la-ciudad-de-vigo-en-galicia-espa%C3%B1a-al-atardecer.jpg?s=170667a&w=0&k=20&c=x5bzX_tR9YRC63_dlrgeiUwUmjbt7ZMdUdeKYxIvQ9Q='">
                 
                 <div class="club-info-grid">
                     <div class="info-box" style="margin-bottom: 6px;">
@@ -599,12 +621,15 @@
 
             <section id="presidente" class="card">
                 <h2>Presidencia</h2>
-                <div class="club-info-grid">
-                    <div class="info-box" style="margin-bottom: 6px;">
-                        <span>Presidente</span>
-                        <strong>Celso Moure</strong>
+                <div class="president-card-content">
+                    <div class="president-header">
+                        <img src="../img/celsomoure.png" alt="Celso Moure" class="president-photo" onerror="this.src='https://via.placeholder.com/50?text=CM'">
+                        <div class="info-text">
+                            <span style="font-size:0.68rem; color:#888; text-transform:uppercase; display:block;">Presidente</span>
+                            <strong style="color:var(--cb-white); font-size:0.9rem;">Celso Moure</strong>
+                        </div>
                     </div>
-                    <div class="info-box" style="margin-bottom: 6px;">
+                    <div class="info-box">
                         <span>Fecha de nacimiento</span>
                         <strong>14 de marzo de 1968</strong>
                     </div>
