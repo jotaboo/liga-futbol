@@ -203,21 +203,22 @@
             font-weight: 600;
         }
 
-        /* LAYOUT PRINCIPAL (50% - 50%) */
+        /* LAYOUT PRINCIPAL (50% - 50%) CON FLEXBOX ALINEADO */
         .main-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
-            align-items: start;
+            align-items: stretch;
         }
 
         .right-column {
             display: flex;
             flex-direction: column;
             gap: 15px;
+            height: 100%;
         }
 
-        /* TABLA DE CLASIFICACIÓN AMPLIADA Y TONOS AZULES */
+        /* TABLA DE CLASIFICACIÓN Y TONOS AZULES */
         table.clasificacion-table {
             width: 100%;
             border-collapse: collapse;
@@ -338,13 +339,13 @@
             flex-shrink: 0;
         }
 
-        /* BLOQUE FIJO Y RÍGIDO DE NOTICIAS */
+        /* NOTICIAS ADAPTATIVAS (CRECIMIENTO FLEX HASTA EL FINAL DE CLASIFICACIÓN) */
         .news-card-container {
-            height: 315px; /* Altura rígida exacta para no empujar la galería de abajo */
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            overflow: hidden;
+            margin-bottom: 0;
         }
 
         .news-header {
@@ -356,8 +357,10 @@
 
         .news-card-wrapper {
             position: relative;
-            height: 250px; /* Tamaño contenido estricto */
+            flex-grow: 1;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .news-slide {
@@ -390,7 +393,7 @@
 
         .news-big-img {
             width: 100%;
-            height: 125px !important; /* Foto fija y recortada homogéneamente */
+            height: 180px !important; /* Tamaño de foto optimizado para llenar la columna */
             object-fit: cover;
             border-radius: 6px;
             border: 1px solid #333;
@@ -400,7 +403,7 @@
         .news-content {
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 4px;
             overflow: hidden;
         }
 
@@ -414,22 +417,15 @@
 
         .news-title {
             color: var(--cb-white);
-            font-size: 0.88rem;
+            font-size: 0.92rem;
             font-weight: 800;
-            line-height: 1.2;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            line-height: 1.25;
         }
 
         .news-desc {
-            font-size: 0.74rem;
+            font-size: 0.76rem;
             color: #aaa;
-            line-height: 1.3;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            line-height: 1.35;
         }
 
         /* GALERÍA DE CLUBES (3 FILAS DE 6) */
@@ -638,8 +634,8 @@
         <!-- LAYOUT PRINCIPAL (2 COLUMNAS DE 50%) -->
         <div class="main-grid">
             
-            <!-- COLUMNA IZQUIERDA: TABLA DE CLASIFICACIÓN (SIN SIGLAS NI LEYENDA) -->
-            <section id="clasificacion" class="card">
+            <!-- COLUMNA IZQUIERDA: TABLA DE CLASIFICACIÓN ORDENADA ALFABÉTICAMENTE -->
+            <section id="clasificacion" class="card" style="margin-bottom: 0;">
                 <h2>Tabla de Clasificación</h2>
                 <table class="clasificacion-table">
                     <thead>
@@ -654,8 +650,8 @@
                         <tr>
                             <td class="pos-cell blue-rank-top">1</td>
                             <td class="team-td">
-                                <div class="team-crest-wrapper"><img src="img/rcfmadrid.png" alt="" onerror="createSvgFallback(this, 'MAD', '#800020', '#FFFFFF')"></div>
-                                <a href="equipos/rcfmadrid.html" class="team-link">RCF Madrid</a>
+                                <div class="team-crest-wrapper"><img src="img/advallecas.png" alt="" onerror="createSvgFallback(this, 'VLL', '#EE2E3B', '#FFFFFF')"></div>
+                                <a href="equipos/advallecas.html" class="team-link">AD Vallecas</a>
                             </td>
                             <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
                         </tr>
@@ -678,24 +674,24 @@
                         <tr>
                             <td class="pos-cell blue-rank-top">4</td>
                             <td class="team-td">
-                                <div class="team-crest-wrapper"><img src="img/realsevilla.png" alt="" onerror="createSvgFallback(this, 'SEV', '#0A192F', '#C0C0C0')"></div>
-                                <a href="equipos/realsevilla.html" class="team-link">Real Sevilla</a>
+                                <div class="team-crest-wrapper"><img src="img/castrelos.png" alt="" onerror="createSvgFallback(this, 'CAS', '#1E3F20', '#E2E5E8')"></div>
+                                <a href="equipos/equipo-1.html" class="team-link">CD Castrelos</a>
                             </td>
                             <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
                         </tr>
                         <tr>
                             <td class="pos-cell blue-rank-top">5</td>
                             <td class="team-td">
-                                <div class="team-crest-wrapper"><img src="img/metropolitanosc.png" alt="" onerror="createSvgFallback(this, 'MET', '#1B4D3E', '#C5A059')"></div>
-                                <a href="equipos/metropolitanosc.html" class="team-link">Metropolitano SC</a>
+                                <div class="team-crest-wrapper"><img src="img/cetarragona.png" alt="" onerror="createSvgFallback(this, 'TAR', '#8B0000', '#FFFFFF')"></div>
+                                <a href="equipos/cetarragona.html" class="team-link">CE Tarragona</a>
                             </td>
                             <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
                         </tr>
                         <tr>
                             <td class="pos-cell blue-rank-top">6</td>
                             <td class="team-td">
-                                <div class="team-crest-wrapper"><img src="img/zaragoza.png" alt="" onerror="createSvgFallback(this, 'ZAR', '#A71930', '#D4AF37')"></div>
-                                <a href="equipos/equipo-5.html" class="team-link">RCD Zaragoza</a>
+                                <div class="team-crest-wrapper"><img src="img/deportivobarakaldo.png" alt="" onerror="createSvgFallback(this, 'BAK', '#C99400', '#FFFFFF')"></div>
+                                <a href="equipos/deportivobarakaldo.html" class="team-link">D. Barakaldo</a>
                             </td>
                             <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
                         </tr>
@@ -718,69 +714,13 @@
                         <tr>
                             <td class="pos-cell blue-rank-mid">9</td>
                             <td class="team-td">
-                                <div class="team-crest-wrapper"><img src="img/castrelos.png" alt="" onerror="createSvgFallback(this, 'CAS', '#1E3F20', '#E2E5E8')"></div>
-                                <a href="equipos/equipo-1.html" class="team-link">CD Castrelos</a>
+                                <div class="team-crest-wrapper"><img src="img/metropolitanosc.png" alt="" onerror="createSvgFallback(this, 'MET', '#1B4D3E', '#C5A059')"></div>
+                                <a href="equipos/metropolitanosc.html" class="team-link">Metropolitano SC</a>
                             </td>
                             <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
                         </tr>
                         <tr>
                             <td class="pos-cell blue-rank-mid">10</td>
-                            <td class="team-td">
-                                <div class="team-crest-wrapper"><img src="img/cetarragona.png" alt="" onerror="createSvgFallback(this, 'TAR', '#8B0000', '#FFFFFF')"></div>
-                                <a href="equipos/cetarragona.html" class="team-link">CE Tarragona</a>
-                            </td>
-                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="pos-cell blue-rank-mid">11</td>
-                            <td class="team-td">
-                                <div class="team-crest-wrapper"><img src="img/rayocanario.png" alt="" onerror="createSvgFallback(this, 'RAC', '#FFC800', '#002855')"></div>
-                                <a href="equipos/rayocanario.html" class="team-link">Rayo Canario</a>
-                            </td>
-                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="pos-cell blue-rank-mid">12</td>
-                            <td class="team-td">
-                                <div class="team-crest-wrapper"><img src="img/triana.png" alt="" onerror="createSvgFallback(this, 'TRI', '#9E1B32', '#F8F9FA')"></div>
-                                <a href="equipos/equipo-3.html" class="team-link">Triana Balompié</a>
-                            </td>
-                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="pos-cell blue-rank-low">13</td>
-                            <td class="team-td">
-                                <div class="team-crest-wrapper"><img src="img/sdpucela.png" alt="" onerror="createSvgFallback(this, 'PUC', '#5B2C6F', '#FFFFFF')"></div>
-                                <a href="equipos/sdpucela.html" class="team-link">SD Pucela</a>
-                            </td>
-                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="pos-cell blue-rank-low">14</td>
-                            <td class="team-td">
-                                <div class="team-crest-wrapper"><img src="img/gijon.png" alt="" onerror="createSvgFallback(this, 'GIJ', '#C8102E', '#FFFFFF')"></div>
-                                <a href="equipos/equipo-4.html" class="team-link">UD Gijón</a>
-                            </td>
-                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="pos-cell blue-rank-low">15</td>
-                            <td class="team-td">
-                                <div class="team-crest-wrapper"><img src="img/lucentino.png" alt="" onerror="createSvgFallback(this, 'LUC', '#0055A5', '#E5A93C')"></div>
-                                <a href="equipos/equipo-2.html" class="team-link">Sp. Lucentino</a>
-                            </td>
-                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="pos-cell blue-rank-low">16</td>
-                            <td class="team-td">
-                                <div class="team-crest-wrapper"><img src="img/deportivobarakaldo.png" alt="" onerror="createSvgFallback(this, 'BAK', '#C99400', '#FFFFFF')"></div>
-                                <a href="equipos/deportivobarakaldo.html" class="team-link">D. Barakaldo</a>
-                            </td>
-                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="pos-cell blue-rank-low">17</td>
                             <td class="team-td">
                                 <div class="team-crest-wrapper"><img src="img/rclugo.png" alt="" onerror="createSvgFallback(this, 'LUG', '#D32F2F', '#FFFFFF')"></div>
                                 <a href="equipos/rclugo.html" class="team-link">RC Lugo</a>
@@ -788,10 +728,66 @@
                             <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
                         </tr>
                         <tr>
+                            <td class="pos-cell blue-rank-mid">11</td>
+                            <td class="team-td">
+                                <div class="team-crest-wrapper"><img src="img/zaragoza.png" alt="" onerror="createSvgFallback(this, 'ZAR', '#A71930', '#D4AF37')"></div>
+                                <a href="equipos/equipo-5.html" class="team-link">RCD Zaragoza</a>
+                            </td>
+                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="pos-cell blue-rank-mid">12</td>
+                            <td class="team-td">
+                                <div class="team-crest-wrapper"><img src="img/rcfmadrid.png" alt="" onerror="createSvgFallback(this, 'MAD', '#800020', '#FFFFFF')"></div>
+                                <a href="equipos/rcfmadrid.html" class="team-link">RCF Madrid</a>
+                            </td>
+                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="pos-cell blue-rank-low">13</td>
+                            <td class="team-td">
+                                <div class="team-crest-wrapper"><img src="img/rayocanario.png" alt="" onerror="createSvgFallback(this, 'RAC', '#FFC800', '#002855')"></div>
+                                <a href="equipos/rayocanario.html" class="team-link">Rayo Canario</a>
+                            </td>
+                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="pos-cell blue-rank-low">14</td>
+                            <td class="team-td">
+                                <div class="team-crest-wrapper"><img src="img/realsevilla.png" alt="" onerror="createSvgFallback(this, 'SEV', '#0A192F', '#C0C0C0')"></div>
+                                <a href="equipos/realsevilla.html" class="team-link">Real Sevilla</a>
+                            </td>
+                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="pos-cell blue-rank-low">15</td>
+                            <td class="team-td">
+                                <div class="team-crest-wrapper"><img src="img/sdpucela.png" alt="" onerror="createSvgFallback(this, 'PUC', '#5B2C6F', '#FFFFFF')"></div>
+                                <a href="equipos/sdpucela.html" class="team-link">SD Pucela</a>
+                            </td>
+                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="pos-cell blue-rank-low">16</td>
+                            <td class="team-td">
+                                <div class="team-crest-wrapper"><img src="img/lucentino.png" alt="" onerror="createSvgFallback(this, 'LUC', '#0055A5', '#E5A93C')"></div>
+                                <a href="equipos/equipo-2.html" class="team-link">Sp. Lucentino</a>
+                            </td>
+                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="pos-cell blue-rank-low">17</td>
+                            <td class="team-td">
+                                <div class="team-crest-wrapper"><img src="img/triana.png" alt="" onerror="createSvgFallback(this, 'TRI', '#9E1B32', '#F8F9FA')"></div>
+                                <a href="equipos/equipo-3.html" class="team-link">Triana Balompié</a>
+                            </td>
+                            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
+                        </tr>
+                        <tr>
                             <td class="pos-cell blue-rank-low">18</td>
                             <td class="team-td">
-                                <div class="team-crest-wrapper"><img src="img/advallecas.png" alt="" onerror="createSvgFallback(this, 'VLL', '#EE2E3B', '#FFFFFF')"></div>
-                                <a href="equipos/advallecas.html" class="team-link">AD Vallecas</a>
+                                <div class="team-crest-wrapper"><img src="img/gijon.png" alt="" onerror="createSvgFallback(this, 'GIJ', '#C8102E', '#FFFFFF')"></div>
+                                <a href="equipos/equipo-4.html" class="team-link">UD Gijón</a>
                             </td>
                             <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
                         </tr>
@@ -799,11 +795,11 @@
                 </table>
             </section>
 
-            <!-- COLUMNA DERECHA: ESTADÍSTICAS CON FOTO Y NOTICIAS CON DIMENSIÓN RÍGIDA -->
+            <!-- COLUMNA DERECHA: ESTADÍSTICAS + NOTICIAS PERFECTAMENTE ALINEADAS -->
             <div class="right-column">
                 
                 <!-- BLOQUE DE ESTADÍSTICAS SLIDER -->
-                <section id="estadisticas" class="card">
+                <section id="estadisticas" class="card" style="margin-bottom: 0;">
                     <div class="stats-header">
                         <h2 id="statTitle" style="margin-bottom:0;">Top Goleadores</h2>
                         <div>
@@ -879,7 +875,7 @@
                     </div>
                 </section>
 
-                <!-- BLOQUE FIJO DE NOTICIAS (5 NOTICIAS CON FOTO DE TAMAÑO FIJO Y DURA) -->
+                <!-- BLOQUE FIJO DE NOTICIAS CON SELLO Y ALTURA AJUSTADA AL FINAL DE LA TABLA -->
                 <section id="noticias" class="card news-card-container">
                     <div class="news-header">
                         <h2 style="margin-bottom:0;">Prensa & Actualidad</h2>
@@ -948,15 +944,15 @@
 
         </div>
 
-        <!-- SECCIÓN INFERIOR: GALERÍA DE LOS 18 CLUBES (3 FILAS DE 6) -->
+        <!-- SECCIÓN INFERIOR: GALERÍA DE LOS 18 CLUBES ORDENADOS ALFABÉTICAMENTE (3 FILAS DE 6) -->
         <section id="equipos" class="card" style="margin-top: 15px;">
             <h2>Clubes Participantes</h2>
             <div class="teams-grid">
-                <div class="team-card bg-rcfmadrid">
-                    <div class="team-crest-wrapper"><img src="img/rcfmadrid.png" alt="" onerror="createSvgFallback(this, 'MAD', '#800020', '#FFFFFF')"></div>
-                    <h3>RCF Madrid</h3>
+                <div class="team-card bg-advallecas">
+                    <div class="team-crest-wrapper"><img src="img/advallecas.png" alt="" onerror="createSvgFallback(this, 'VLL', '#EE2E3B', '#FFFFFF')"></div>
+                    <h3>AD Vallecas</h3>
                     <p>Madrid</p>
-                    <a href="equipos/rcfmadrid.html" class="btn-team">Ver Club →</a>
+                    <a href="equipos/advallecas.html" class="btn-team">Ver Club →</a>
                 </div>
                 <div class="team-card bg-aebarcelona">
                     <div class="team-crest-wrapper"><img src="img/aebarcelona.png" alt="" onerror="createSvgFallback(this, 'BAR', '#003366', '#C0C0C0')"></div>
@@ -970,23 +966,23 @@
                     <p>Valencia</p>
                     <a href="equipos/athleticvalenciano.html" class="btn-team">Ver Club →</a>
                 </div>
-                <div class="team-card bg-realsevilla">
-                    <div class="team-crest-wrapper"><img src="img/realsevilla.png" alt="" onerror="createSvgFallback(this, 'SEV', '#0A192F', '#C0C0C0')"></div>
-                    <h3>Real Sevilla</h3>
-                    <p>Sevilla</p>
-                    <a href="equipos/realsevilla.html" class="btn-team">Ver Club →</a>
+                <div class="team-card bg-castrelos">
+                    <div class="team-crest-wrapper"><img src="img/castrelos.png" alt="" onerror="createSvgFallback(this, 'CAS', '#1E3F20', '#E2E5E8')"></div>
+                    <h3>CD Castrelos</h3>
+                    <p>Vigo</p>
+                    <a href="equipos/equipo-1.html" class="btn-team">Ver Club →</a>
                 </div>
-                <div class="team-card bg-metropolitanosc">
-                    <div class="team-crest-wrapper"><img src="img/metropolitanosc.png" alt="" onerror="createSvgFallback(this, 'MET', '#1B4D3E', '#C5A059')"></div>
-                    <h3>Metropolitano SC</h3>
-                    <p>Madrid</p>
-                    <a href="equipos/metropolitanosc.html" class="btn-team">Ver Club →</a>
+                <div class="team-card bg-cetarragona">
+                    <div class="team-crest-wrapper"><img src="img/cetarragona.png" alt="" onerror="createSvgFallback(this, 'TAR', '#8B0000', '#FFFFFF')"></div>
+                    <h3>CE Tarragona</h3>
+                    <p>Tarragona</p>
+                    <a href="equipos/cetarragona.html" class="btn-team">Ver Club →</a>
                 </div>
-                <div class="team-card bg-rcdzaragoza">
-                    <div class="team-crest-wrapper"><img src="img/zaragoza.png" alt="" onerror="createSvgFallback(this, 'ZAR', '#A71930', '#D4AF37')"></div>
-                    <h3>RCD Zaragoza</h3>
-                    <p>Zaragoza</p>
-                    <a href="equipos/equipo-5.html" class="btn-team">Ver Club →</a>
+                <div class="team-card bg-deportivobarakaldo">
+                    <div class="team-crest-wrapper"><img src="img/deportivobarakaldo.png" alt="" onerror="createSvgFallback(this, 'BAK', '#C99400', '#FFFFFF')"></div>
+                    <h3>D. Barakaldo</h3>
+                    <p>Barakaldo</p>
+                    <a href="equipos/deportivobarakaldo.html" class="btn-team">Ver Club →</a>
                 </div>
                 <div class="team-card bg-euskaria">
                     <div class="team-crest-wrapper"><img src="img/euskaria.png" alt="" onerror="createSvgFallback(this, 'EUS', '#009B48', '#FFFFFF')"></div>
@@ -1000,53 +996,11 @@
                     <p>Málaga</p>
                     <a href="equipos/fcmalaga.html" class="btn-team">Ver Club →</a>
                 </div>
-                <div class="team-card bg-castrelos">
-                    <div class="team-crest-wrapper"><img src="img/castrelos.png" alt="" onerror="createSvgFallback(this, 'CAS', '#1E3F20', '#E2E5E8')"></div>
-                    <h3>CD Castrelos</h3>
-                    <p>Vigo</p>
-                    <a href="equipos/equipo-1.html" class="btn-team">Ver Club →</a>
-                </div>
-                <div class="team-card bg-cetarragona">
-                    <div class="team-crest-wrapper"><img src="img/cetarragona.png" alt="" onerror="createSvgFallback(this, 'TAR', '#8B0000', '#FFFFFF')"></div>
-                    <h3>CE Tarragona</h3>
-                    <p>Tarragona</p>
-                    <a href="equipos/cetarragona.html" class="btn-team">Ver Club →</a>
-                </div>
-                <div class="team-card bg-rayocanario">
-                    <div class="team-crest-wrapper"><img src="img/rayocanario.png" alt="" onerror="createSvgFallback(this, 'RAC', '#FFC800', '#002855')"></div>
-                    <h3>Rayo Canario</h3>
-                    <p>Las Palmas</p>
-                    <a href="equipos/rayocanario.html" class="btn-team">Ver Club →</a>
-                </div>
-                <div class="team-card bg-triana">
-                    <div class="team-crest-wrapper"><img src="img/triana.png" alt="" onerror="createSvgFallback(this, 'TRI', '#9E1B32', '#F8F9FA')"></div>
-                    <h3>Triana Balompié</h3>
-                    <p>Sevilla</p>
-                    <a href="equipos/equipo-3.html" class="btn-team">Ver Club →</a>
-                </div>
-                <div class="team-card bg-sdpucela">
-                    <div class="team-crest-wrapper"><img src="img/sdpucela.png" alt="" onerror="createSvgFallback(this, 'PUC', '#5B2C6F', '#1A1A1A')"></div>
-                    <h3>SD Pucela</h3>
-                    <p>Valladolid</p>
-                    <a href="equipos/sdpucela.html" class="btn-team">Ver Club →</a>
-                </div>
-                <div class="team-card bg-udgijon">
-                    <div class="team-crest-wrapper"><img src="img/gijon.png" alt="" onerror="createSvgFallback(this, 'GIJ', '#C8102E', '#FFFFFF')"></div>
-                    <h3>UD Gijón</h3>
-                    <p>Gijón</p>
-                    <a href="equipos/equipo-4.html" class="btn-team">Ver Club →</a>
-                </div>
-                <div class="team-card bg-lucentino">
-                    <div class="team-crest-wrapper"><img src="img/lucentino.png" alt="" onerror="createSvgFallback(this, 'LUC', '#0055A5', '#E5A93C')"></div>
-                    <h3>Sp. Lucentino</h3>
-                    <p>Alicante</p>
-                    <a href="equipos/equipo-2.html" class="btn-team">Ver Club →</a>
-                </div>
-                <div class="team-card bg-deportivobarakaldo">
-                    <div class="team-crest-wrapper"><img src="img/deportivobarakaldo.png" alt="" onerror="createSvgFallback(this, 'BAK', '#C99400', '#FFFFFF')"></div>
-                    <h3>D. Barakaldo</h3>
-                    <p>Barakaldo</p>
-                    <a href="equipos/deportivobarakaldo.html" class="btn-team">Ver Club →</a>
+                <div class="team-card bg-metropolitanosc">
+                    <div class="team-crest-wrapper"><img src="img/metropolitanosc.png" alt="" onerror="createSvgFallback(this, 'MET', '#1B4D3E', '#C5A059')"></div>
+                    <h3>Metropolitano SC</h3>
+                    <p>Madrid</p>
+                    <a href="equipos/metropolitanosc.html" class="btn-team">Ver Club →</a>
                 </div>
                 <div class="team-card bg-rclugo">
                     <div class="team-crest-wrapper"><img src="img/rclugo.png" alt="" onerror="createSvgFallback(this, 'LUG', '#D32F2F', '#FFFFFF')"></div>
@@ -1054,11 +1008,53 @@
                     <p>Lugo</p>
                     <a href="equipos/rclugo.html" class="btn-team">Ver Club →</a>
                 </div>
-                <div class="team-card bg-advallecas">
-                    <div class="team-crest-wrapper"><img src="img/advallecas.png" alt="" onerror="createSvgFallback(this, 'VLL', '#EE2E3B', '#FFFFFF')"></div>
-                    <h3>AD Vallecas</h3>
+                <div class="team-card bg-rcdzaragoza">
+                    <div class="team-crest-wrapper"><img src="img/zaragoza.png" alt="" onerror="createSvgFallback(this, 'ZAR', '#A71930', '#D4AF37')"></div>
+                    <h3>RCD Zaragoza</h3>
+                    <p>Zaragoza</p>
+                    <a href="equipos/equipo-5.html" class="btn-team">Ver Club →</a>
+                </div>
+                <div class="team-card bg-rcfmadrid">
+                    <div class="team-crest-wrapper"><img src="img/rcfmadrid.png" alt="" onerror="createSvgFallback(this, 'MAD', '#800020', '#FFFFFF')"></div>
+                    <h3>RCF Madrid</h3>
                     <p>Madrid</p>
-                    <a href="equipos/advallecas.html" class="btn-team">Ver Club →</a>
+                    <a href="equipos/rcfmadrid.html" class="btn-team">Ver Club →</a>
+                </div>
+                <div class="team-card bg-rayocanario">
+                    <div class="team-crest-wrapper"><img src="img/rayocanario.png" alt="" onerror="createSvgFallback(this, 'RAC', '#FFC800', '#002855')"></div>
+                    <h3>Rayo Canario</h3>
+                    <p>Las Palmas</p>
+                    <a href="equipos/rayocanario.html" class="btn-team">Ver Club →</a>
+                </div>
+                <div class="team-card bg-realsevilla">
+                    <div class="team-crest-wrapper"><img src="img/realsevilla.png" alt="" onerror="createSvgFallback(this, 'SEV', '#0A192F', '#C0C0C0')"></div>
+                    <h3>Real Sevilla</h3>
+                    <p>Sevilla</p>
+                    <a href="equipos/realsevilla.html" class="btn-team">Ver Club →</a>
+                </div>
+                <div class="team-card bg-sdpucela">
+                    <div class="team-crest-wrapper"><img src="img/sdpucela.png" alt="" onerror="createSvgFallback(this, 'PUC', '#5B2C6F', '#1A1A1A')"></div>
+                    <h3>SD Pucela</h3>
+                    <p>Valladolid</p>
+                    <a href="equipos/sdpucela.html" class="btn-team">Ver Club →</a>
+                </div>
+                <div class="team-card bg-lucentino">
+                    <div class="team-crest-wrapper"><img src="img/lucentino.png" alt="" onerror="createSvgFallback(this, 'LUC', '#0055A5', '#E5A93C')"></div>
+                    <h3>Sp. Lucentino</h3>
+                    <p>Alicante</p>
+                    <a href="equipos/equipo-2.html" class="btn-team">Ver Club →</a>
+                </div>
+                <div class="team-card bg-triana">
+                    <div class="team-crest-wrapper"><img src="img/triana.png" alt="" onerror="createSvgFallback(this, 'TRI', '#9E1B32', '#F8F9FA')"></div>
+                    <h3>Triana Balompié</h3>
+                    <p>Sevilla</p>
+                    <a href="equipos/equipo-3.html" class="btn-team">Ver Club →</a>
+                </div>
+                <div class="team-card bg-udgijon">
+                    <div class="team-crest-wrapper"><img src="img/gijon.png" alt="" onerror="createSvgFallback(this, 'GIJ', '#C8102E', '#FFFFFF')"></div>
+                    <h3>UD Gijón</h3>
+                    <p>Gijón</p>
+                    <a href="equipos/equipo-4.html" class="btn-team">Ver Club →</a>
                 </div>
             </div>
         </section>
