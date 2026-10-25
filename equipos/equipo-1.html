@@ -294,7 +294,7 @@
             padding-bottom: 3px;
         }
 
-        /* Estilo visual avanzado para jugadores con foto cuadrada, posición y dorsal a la derecha */
+        /* Estilos para las tarjetas de jugador */
         .player-card-list {
             display: flex;
             flex-direction: column;
@@ -318,7 +318,7 @@
         .player-left {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .player-face {
@@ -327,6 +327,21 @@
             object-fit: cover;
             border-radius: 4px;
             border: 1px solid #333;
+        }
+
+        /* Cuadrado pequeño del dorsal */
+        .player-num-box {
+            width: 24px;
+            height: 24px;
+            background: #262626;
+            border: 1px solid #3a3a3a;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cb-white);
+            font-weight: 800;
+            font-size: 0.78rem;
         }
 
         .player-info-text {
@@ -350,7 +365,7 @@
         .player-right {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .player-flag {
@@ -361,42 +376,27 @@
             border: 1px solid #444;
         }
 
-        .player-num {
-            color: #888;
-            font-weight: 700;
-            font-size: 0.88rem;
-            width: 22px;
-            text-align: right;
-        }
-
-        /* Resto de listas normales para medios/delanteros */
-        .player-list {
-            list-style: none;
-        }
-
-        .player-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 8px;
-            border-bottom: 1px solid #222;
-            font-size: 0.82rem;
-        }
-
-        .player-item:hover {
-            background: #252525;
-            border-radius: 4px;
-        }
-
-        .palmares-item {
+        /* Cuadrado de Overall con esquinas redondeadas tipo FIFA/FC */
+        .player-ovr {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 6px 0;
-            border-bottom: 1px solid #222;
-            font-size: 0.82rem;
-            color: var(--cb-white);
-            font-weight: 600;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
         }
+
+        /* Colores de Overall */
+        .ovr-red { background-color: #a61212; }
+        .ovr-orange { background-color: #f08233; }
+        .ovr-yellow { background-color: #f3cb3c; color: #111; text-shadow: none; }
+        .ovr-light-green { background-color: #82e133; color: #111; text-shadow: none; }
+        .ovr-dark-green { background-color: #1c8211; }
+        .ovr-cyan { background-color: #52aba4; }
 
         @media (max-width: 768px) {
             .container {
@@ -507,6 +507,7 @@
                         <div class="player-card-item">
                             <div class="player-left">
                                 <img src="../img/braisalvarez.png" alt="Brais Álvarez" class="player-face" onerror="this.src='https://via.placeholder.com/38?text=BA'">
+                                <div class="player-num-box">1</div>
                                 <div class="player-info-text">
                                     <span class="player-name">Brais Álvarez</span>
                                     <span class="player-pos">POR</span>
@@ -514,13 +515,14 @@
                             </div>
                             <div class="player-right">
                                 <img src="../img/españaround.png" alt="España" class="player-flag" onerror="this.style.display='none'">
-                                <span class="player-num">1</span>
+                                <div class="player-ovr ovr-dark-green">81</div>
                             </div>
                         </div>
 
                         <div class="player-card-item">
                             <div class="player-left">
                                 <img src="../img/gonçalosilva.png" alt="Gonçalo Silva" class="player-face" onerror="this.src='https://via.placeholder.com/38?text=GS'">
+                                <div class="player-num-box">13</div>
                                 <div class="player-info-text">
                                     <span class="player-name">Gonçalo Silva</span>
                                     <span class="player-pos">POR</span>
@@ -528,13 +530,14 @@
                             </div>
                             <div class="player-right">
                                 <img src="../img/portugalround.png" alt="Portugal" class="player-flag" onerror="this.style.display='none'">
-                                <span class="player-num">13</span>
+                                <div class="player-ovr ovr-light-green">74</div>
                             </div>
                         </div>
 
                         <div class="player-card-item">
                             <div class="player-left">
                                 <img src="../img/iagogiraldez.png" alt="Iago Giráldez" class="player-face" onerror="this.src='https://via.placeholder.com/38?text=IG'">
+                                <div class="player-num-box">25</div>
                                 <div class="player-info-text">
                                     <span class="player-name">Iago Giráldez</span>
                                     <span class="player-pos">POR</span>
@@ -542,161 +545,13 @@
                             </div>
                             <div class="player-right">
                                 <img src="../img/españaround.png" alt="España" class="player-flag" onerror="this.style.display='none'">
-                                <span class="player-num">25</span>
+                                <div class="player-ovr ovr-yellow">68</div>
                             </div>
                         </div>
 
                     </div>
                 </div>
 
-                <!-- Defensas (ordenados por posición específica: DFC, LD, LI, y luego por dorsal) -->
-                <div class="position-group">
-                    <div class="position-title">Defensas (8)</div>
-                    <div class="player-card-list">
-                        
-                        <!-- DFC -->
-                        <div class="player-card-item">
-                            <div class="player-left">
-                                <img src="../img/mateofontan.png" alt="Mateo Fontán" class="player-face" onerror="this.src='https://via.placeholder.com/38?text=MF'">
-                                <div class="player-info-text">
-                                    <span class="player-name">Mateo Fontán</span>
-                                    <span class="player-pos">DFC</span>
-                                </div>
-                            </div>
-                            <div class="player-right">
-                                <img src="../img/españaround.png" alt="España" class="player-flag" onerror="this.style.display='none'">
-                                <span class="player-num">4</span>
-                            </div>
-                        </div>
-
-                        <div class="player-card-item">
-                            <div class="player-left">
-                                <img src="../img/uxiocarballo.png" alt="Uxío Carballo" class="player-face" onerror="this.src='https://via.placeholder.com/38?text=UC'">
-                                <div class="player-info-text">
-                                    <span class="player-name">Uxío Carballo</span>
-                                    <span class="player-pos">DFC</span>
-                                </div>
-                            </div>
-                            <div class="player-right">
-                                <img src="../img/españaround.png" alt="España" class="player-flag" onerror="this.style.display='none'">
-                                <span class="player-num">5</span>
-                            </div>
-                        </div>
-
-                        <div class="player-card-item">
-                            <div class="player-left">
-                                <img src="../img/jeancarlospeña.png" alt="Jean Carlos Peña" class="player-face" onerror="this.src='https://via.placeholder.com/38?text=JC'">
-                                <div class="player-info-text">
-                                    <span class="player-name">Jean Carlos Peña</span>
-                                    <span class="player-pos">DFC</span>
-                                </div>
-                            </div>
-                            <div class="player-right">
-                                <img src="../img/españaround.png" alt="España" class="player-flag" onerror="this.style.display='none'">
-                                <span class="player-num">15</span>
-                            </div>
-                        </div>
-
-                        <div class="player-card-item">
-                            <div class="player-left">
-                                <img src="../img/xoancomesaña.png" alt="Xoán Comesaña" class="player-face" onerror="this.src='https://via.placeholder.com/38?text=XC'">
-                                <div class="player-info-text">
-                                    <span class="player-name">Xoán Comesaña</span>
-                                    <span class="player-pos">DFC</span>
-                                </div>
-                            </div>
-                            <div class="player-right">
-                                <img src="../img/españaround.png" alt="España" class="player-flag" onerror="this.style.display='none'">
-                                <span class="player-num">22</span>
-                            </div>
-                        </div>
-
-                        <!-- LD -->
-                        <div class="player-card-item">
-                            <div class="player-left">
-                                <img src="../img/diogoribeiro.png" alt="Diogo Ribeiro" class="player-face" onerror="this.src='https://via.placeholder.com/38?text=DR'">
-                                <div class="player-info-text">
-                                    <span class="player-name">Diogo Ribeiro</span>
-                                    <span class="player-pos">LD</span>
-                                </div>
-                            </div>
-                            <div class="player-right">
-                                <img src="../img/portugalround.png" alt="Portugal" class="player-flag" onerror="this.style.display='none'">
-                                <span class="player-num">2</span>
-                            </div>
-                        </div>
-
-                        <div class="player-card-item">
-                            <div class="player-left">
-                                <img src="../img/roivarela.png" alt="Roi Varela" class="player-face" onerror="this.src='https://via.placeholder.com/38?text=RV'">
-                                <div class="player-info-text">
-                                    <span class="player-name">Roi Varela</span>
-                                    <span class="player-pos">LD</span>
-                                </div>
-                            </div>
-                            <div class="player-right">
-                                <img src="../img/españaround.png" alt="España" class="player-flag" onerror="this.style.display='none'">
-                                <span class="player-num">12</span>
-                            </div>
-                        </div>
-
-                        <!-- LI -->
-                        <div class="player-card-item">
-                            <div class="player-left">
-                                <img src="../img/alexblanco.png" alt="Álex Blanco" class="player-face" onerror="this.src='https://via.placeholder.com/38?text=AB'">
-                                <div class="player-info-text">
-                                    <span class="player-name">Álex Blanco</span>
-                                    <span class="player-pos">LI</span>
-                                </div>
-                            </div>
-                            <div class="player-right">
-                                <img src="../img/españaround.png" alt="España" class="player-flag" onerror="this.style.display='none'">
-                                <span class="player-num">3</span>
-                            </div>
-                        </div>
-
-                        <div class="player-card-item">
-                            <div class="player-left">
-                                <img src="../img/hugopiñeiro.png" alt="Hugo Piñeiro" class="player-face" onerror="this.src='https://via.placeholder.com/38?text=HP'">
-                                <div class="player-info-text">
-                                    <span class="player-name">Hugo Piñeiro</span>
-                                    <span class="player-pos">LI</span>
-                                </div>
-                            </div>
-                            <div class="player-right">
-                                <img src="../img/españaround.png" alt="España" class="player-flag" onerror="this.style.display='none'">
-                                <span class="player-num">18</span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="position-group">
-                    <div class="position-title">Centrocampistas (8)</div>
-                    <ul class="player-list">
-                        <li class="player-item"><span class="player-num">6</span><span class="player-name">Gael Vázquez</span></li>
-                        <li class="player-item"><span class="player-num">8</span><span class="player-name">Antón Mouriño</span></li>
-                        <li class="player-item"><span class="player-num">10</span><span class="player-name">Pablo Domínguez</span></li>
-                        <li class="player-item"><span class="player-num">14</span><span class="player-name">Samuel Penas</span></li>
-                        <li class="player-item"><span class="player-num">16</span><span class="player-name">Xabi Loureiro</span></li>
-                        <li class="player-item"><span class="player-num">20</span><span class="player-name">Mateo Silva</span></li>
-                        <li class="player-item"><span class="player-num">21</span><span class="player-name">Breogán Nogueira</span></li>
-                        <li class="player-item"><span class="player-num">23</span><span class="player-name">Unai Cambón</span></li>
-                    </ul>
-                </div>
-
-                <div class="position-group">
-                    <div class="position-title">Delanteros (6)</div>
-                    <ul class="player-list">
-                        <li class="player-item"><span class="player-num">7</span><span class="player-name">Damián Castro</span></li>
-                        <li class="player-item"><span class="player-num">9</span><span class="player-name">Thiago Da Silva</span></li>
-                        <li class="player-item"><span class="player-num">11</span><span class="player-name">Mateo Aspas</span></li>
-                        <li class="player-item"><span class="player-num">15</span><span class="player-name">Anxo Villar</span></li>
-                        <li class="player-item"><span class="player-num">17</span><span class="player-name">Cibrán Loureiro</span></li>
-                        <li class="player-item"><span class="player-num">19</span><span class="player-name">Lucas Rivas</span></li>
-                    </ul>
-                </div>
             </section>
         </main>
 
