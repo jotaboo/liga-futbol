@@ -329,7 +329,6 @@
             border: 1px solid #333;
         }
 
-        /* Cuadrado pequeño del dorsal */
         .player-num-box {
             width: 24px;
             height: 24px;
@@ -376,7 +375,6 @@
             border: 1px solid #444;
         }
 
-        /* Cuadrado de Overall con esquinas redondeadas tipo FIFA/FC */
         .player-ovr {
             width: 28px;
             height: 28px;
@@ -390,13 +388,32 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
         }
 
-        /* Colores de Overall */
         .ovr-red { background-color: #a61212; }
         .ovr-orange { background-color: #f08233; }
         .ovr-yellow { background-color: #f3cb3c; color: #111; text-shadow: none; }
         .ovr-light-green { background-color: #82e133; color: #111; text-shadow: none; }
         .ovr-dark-green { background-color: #1c8211; }
         .ovr-cyan { background-color: #52aba4; }
+
+        /* Estilo para el palmarés */
+        .palmares-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            background: #161616;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--cb-white);
+            font-weight: 700;
+            border-left: 2px solid var(--castrelos-green);
+        }
+
+        .trophy-img {
+            max-height: 28px !important;
+            width: auto !important;
+            object-fit: contain;
+        }
 
         @media (max-width: 768px) {
             .container {
@@ -658,8 +675,10 @@
 
             <section class="card">
                 <h2>Palmarés Oficial</h2>
-                <div class="palmares-item" style="margin-bottom: 8px;">🏆 1x Copa Federación de Segunda Div.</div>
-                <div class="palmares-item">🥈 2x Subcampeonatos Copa del Norte</div>
+                <div class="palmares-item">
+                    <img src="../img/trofeoliga.png" alt="Liga CaixaBank" class="trophy-img" onerror="this.style.display='none'">
+                    <span>2x Liga CaixaBank</span>
+                </div>
             </section>
         </aside>
 
