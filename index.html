@@ -203,11 +203,19 @@
             font-weight: 600;
         }
 
-        /* LAYOUT PRINCIPAL: 2 COLUMNAS 50% - 50% */
+        /* LAYOUT PRINCIPAL (50% - 50%) */
         .main-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
+            align-items: start;
+        }
+
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            height: 100%;
         }
 
         /* TABLA DE CLASIFICACIÓN AMPLIADA */
@@ -293,7 +301,7 @@
         .legend-item { display: flex; align-items: center; gap: 5px; }
         .legend-color { width: 10px; height: 10px; border-radius: 2px; }
 
-        /* CARRUSEL DE ESTADÍSTICAS EN SLIDE */
+        /* CARRUSEL DE ESTADÍSTICAS */
         .stats-header {
             display: flex;
             align-items: center;
@@ -335,44 +343,65 @@
         .stat-table td:nth-child(2) { color: var(--cb-white); font-weight: 600; }
         .stat-table td:last-child { text-align: right; color: var(--cb-blue); font-weight: 800; }
 
-        /* SECCIÓN DE NOTICIAS CON AUTO-DESPLAZAMIENTO CADA 15s */
+        /* SECCIÓN DE NOTICIAS VERTICAL (ALINEADA AL FINAL DE LA CLASIFICACIÓN) */
+        .news-card-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
         .news-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin-bottom: 10px;
         }
 
         .news-card-wrapper {
             position: relative;
             overflow: hidden;
-            min-height: 180px;
+            min-height: 290px;
         }
 
         .news-slide {
             display: none;
-            gap: 12px;
-            align-items: center;
+            flex-direction: column;
+            gap: 10px;
             background: #161616;
             padding: 12px;
             border-radius: 6px;
             border: 1px solid #282828;
-            animation: fadeIn 0.5s ease-in-out;
+            height: 100%;
         }
 
         .news-slide.active { display: flex; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
+        /* Animaciones verticales */
+        .news-slide.slide-up {
+            animation: slideUp 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .news-slide.slide-down {
+            animation: slideDown 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .news-img {
-            width: 110px;
-            height: 85px;
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .news-big-img {
+            width: 100%;
+            height: 155px;
             object-fit: cover;
             border-radius: 6px;
             border: 1px solid #333;
-            flex-shrink: 0;
         }
 
         .news-content {
@@ -386,18 +415,20 @@
             color: var(--cb-blue);
             font-weight: 800;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .news-title {
             color: var(--cb-white);
-            font-size: 0.88rem;
-            font-weight: 700;
-            line-height: 1.2;
+            font-size: 0.95rem;
+            font-weight: 800;
+            line-height: 1.25;
         }
 
         .news-desc {
-            font-size: 0.75rem;
-            color: #aaa;
+            font-size: 0.78rem;
+            color: #b0b0b0;
+            line-height: 1.35;
         }
 
         /* GALERÍA DE CLUBES (3 FILAS DE 6) */
@@ -493,7 +524,6 @@
     <nav>
         <a href="index.html" class="active">Inicio</a>
         <a href="calendario.html">Calendario</a>
-        <a href="#jornada">Jornada 1</a>
         <a href="#clasificacion">Clasificación</a>
         <a href="#estadisticas">Estadísticas</a>
         <a href="#equipos">Equipos</a>
@@ -502,7 +532,7 @@
 
     <div class="container">
         
-        <!-- CARRUSEL SUPERIOR: PRÓXIMA JORNADA (Sincronizado con Calendario) -->
+        <!-- CARRUSEL SUPERIOR: PRÓXIMA JORNADA -->
         <section id="jornada" class="card">
             <h2>Próxima Jornada (Jornada 1)</h2>
             <div class="slider-container">
@@ -512,7 +542,7 @@
                     <div class="match-card">
                         <div class="match-time">Vie 21 Ago • 19:00</div>
                         <div class="match-teams">
-                            <div class="team-crest-wrapper"><img src="img/lucentino.png" alt="" onerror="createSvgFallback(this, 'SL', '#0055A5', '#E5A93C')"></div>
+                            <div class="team-crest-wrapper"><img src="img/lucentino.png" alt="" onerror="createSvgFallback(this, 'LUC', '#0055A5', '#E5A93C')"></div>
                             <div class="match-vs">VS</div>
                             <div class="team-crest-wrapper"><img src="img/realsevilla.png" alt="" onerror="createSvgFallback(this, 'SEV', '#0A192F', '#C0C0C0')"></div>
                         </div>
@@ -522,9 +552,9 @@
                     <div class="match-card">
                         <div class="match-time">Vie 21 Ago • 22:00</div>
                         <div class="match-teams">
-                            <div class="team-crest-wrapper"><img src="img/gijon.png" alt="" onerror="createSvgFallback(this, 'UDG', '#C8102E', '#FFFFFF')"></div>
+                            <div class="team-crest-wrapper"><img src="img/gijon.png" alt="" onerror="createSvgFallback(this, 'GIJ', '#C8102E', '#FFFFFF')"></div>
                             <div class="match-vs">VS</div>
-                            <div class="team-crest-wrapper"><img src="img/aebarcelona.png" alt="" onerror="createSvgFallback(this, 'AEB', '#003366', '#C0C0C0')"></div>
+                            <div class="team-crest-wrapper"><img src="img/aebarcelona.png" alt="" onerror="createSvgFallback(this, 'BAR', '#003366', '#C0C0C0')"></div>
                         </div>
                         <p style="font-size: 0.72rem; font-weight: 700;">UD Gijón vs AE Barcelona</p>
                     </div>
@@ -532,9 +562,9 @@
                     <div class="match-card">
                         <div class="match-time">Sáb 22 Ago • 17:00</div>
                         <div class="match-teams">
-                            <div class="team-crest-wrapper"><img src="img/athleticvalenciano.png" alt="" onerror="createSvgFallback(this, 'ATV', '#DA291C', '#FFFFFF')"></div>
+                            <div class="team-crest-wrapper"><img src="img/athleticvalenciano.png" alt="" onerror="createSvgFallback(this, 'VAL', '#DA291C', '#FFFFFF')"></div>
                             <div class="match-vs">VS</div>
-                            <div class="team-crest-wrapper"><img src="img/advallecas.png" alt="" onerror="createSvgFallback(this, 'ADV', '#EE2E3B', '#FFFFFF')"></div>
+                            <div class="team-crest-wrapper"><img src="img/advallecas.png" alt="" onerror="createSvgFallback(this, 'VLL', '#EE2E3B', '#FFFFFF')"></div>
                         </div>
                         <p style="font-size: 0.72rem; font-weight: 700;">Ath. Valenciano vs AD Vallecas</p>
                     </div>
@@ -544,7 +574,7 @@
                         <div class="match-teams">
                             <div class="team-crest-wrapper"><img src="img/sdpucela.png" alt="" onerror="createSvgFallback(this, 'PUC', '#5B2C6F', '#FFFFFF')"></div>
                             <div class="match-vs">VS</div>
-                            <div class="team-crest-wrapper"><img src="img/deportivobarakaldo.png" alt="" onerror="createSvgFallback(this, 'BAR', '#C99400', '#FFFFFF')"></div>
+                            <div class="team-crest-wrapper"><img src="img/deportivobarakaldo.png" alt="" onerror="createSvgFallback(this, 'BAK', '#C99400', '#FFFFFF')"></div>
                         </div>
                         <p style="font-size: 0.72rem; font-weight: 700;">SD Pucela vs D. Barakaldo</p>
                     </div>
@@ -552,9 +582,9 @@
                     <div class="match-card">
                         <div class="match-time">Sáb 22 Ago • 22:00</div>
                         <div class="match-teams">
-                            <div class="team-crest-wrapper"><img src="img/zaragoza.png" alt="" onerror="createSvgFallback(this, 'RZ', '#A71930', '#D4AF37')"></div>
+                            <div class="team-crest-wrapper"><img src="img/zaragoza.png" alt="" onerror="createSvgFallback(this, 'ZAR', '#A71930', '#D4AF37')"></div>
                             <div class="match-vs">VS</div>
-                            <div class="team-crest-wrapper"><img src="img/cetarragona.png" alt="" onerror="createSvgFallback(this, 'CET', '#8B0000', '#FFFFFF')"></div>
+                            <div class="team-crest-wrapper"><img src="img/cetarragona.png" alt="" onerror="createSvgFallback(this, 'TAR', '#8B0000', '#FFFFFF')"></div>
                         </div>
                         <p style="font-size: 0.72rem; font-weight: 700;">RCD Zaragoza vs CE Tarragona</p>
                     </div>
@@ -572,9 +602,9 @@
                     <div class="match-card">
                         <div class="match-time">Dom 23 Ago • 19:00</div>
                         <div class="match-teams">
-                            <div class="team-crest-wrapper"><img src="img/triana.png" alt="" onerror="createSvgFallback(this, 'TB', '#9E1B32', '#F8F9FA')"></div>
+                            <div class="team-crest-wrapper"><img src="img/triana.png" alt="" onerror="createSvgFallback(this, 'TRI', '#9E1B32', '#F8F9FA')"></div>
                             <div class="match-vs">VS</div>
-                            <div class="team-crest-wrapper"><img src="img/rayocanario.png" alt="" onerror="createSvgFallback(this, 'RAY', '#FFC800', '#002855')"></div>
+                            <div class="team-crest-wrapper"><img src="img/rayocanario.png" alt="" onerror="createSvgFallback(this, 'RAC', '#FFC800', '#002855')"></div>
                         </div>
                         <p style="font-size: 0.72rem; font-weight: 700;">Triana Balompié vs Rayo Canario</p>
                     </div>
@@ -582,9 +612,9 @@
                     <div class="match-card">
                         <div class="match-time">Dom 23 Ago • 19:00</div>
                         <div class="match-teams">
-                            <div class="team-crest-wrapper"><img src="img/castrelos.png" alt="" onerror="createSvgFallback(this, 'CDC', '#1E3F20', '#E2E5E8')"></div>
+                            <div class="team-crest-wrapper"><img src="img/castrelos.png" alt="" onerror="createSvgFallback(this, 'CAS', '#1E3F20', '#E2E5E8')"></div>
                             <div class="match-vs">VS</div>
-                            <div class="team-crest-wrapper"><img src="img/rcfmadrid.png" alt="" onerror="createSvgFallback(this, 'RCF', '#800020', '#FFFFFF')"></div>
+                            <div class="team-crest-wrapper"><img src="img/rcfmadrid.png" alt="" onerror="createSvgFallback(this, 'MAD', '#800020', '#FFFFFF')"></div>
                         </div>
                         <p style="font-size: 0.72rem; font-weight: 700;">CD Castrelos vs RCF Madrid</p>
                     </div>
@@ -791,8 +821,8 @@
                 </div>
             </section>
 
-            <!-- COLUMNA DERECHA: ESTADÍSTICAS CON FLECHAS + NOTICIAS CON AUTO-SCROLL (50%) -->
-            <div>
+            <!-- COLUMNA DERECHA: ESTADÍSTICAS + NOTICIAS AMPLIADAS -->
+            <div class="right-column">
                 
                 <!-- BLOQUE DE ESTADÍSTICAS SLIDER -->
                 <section id="estadisticas" class="card">
@@ -871,13 +901,13 @@
                     </div>
                 </section>
 
-                <!-- BLOQUE DE NOTICIAS AUTO-DESPLAZABLE (CADA 15 SEGUNDOS) -->
-                <section id="noticias" class="card">
+                <!-- BLOQUE DE NOTICIAS CON FOTO GRANDE Y AUTO-SCROLL VERTICAL CADA 15s -->
+                <section id="noticias" class="card news-card-container">
                     <div class="news-header">
-                        <h2>Última Hora</h2>
+                        <h2 style="margin-bottom:0;">Prensa & Actualidad</h2>
                         <div>
-                            <button class="stats-nav-btn" onclick="changeNewsSlide(-1)">❮</button>
-                            <button class="stats-nav-btn" onclick="changeNewsSlide(1)">❯</button>
+                            <button class="stats-nav-btn" onclick="changeNewsSlide(-1)">▲</button>
+                            <button class="stats-nav-btn" onclick="changeNewsSlide(1)">▼</button>
                         </div>
                     </div>
 
@@ -885,31 +915,31 @@
                         
                         <!-- NOTICIA 1 -->
                         <div class="news-slide active" id="news-0">
-                            <img src="img/estadiocastrelos.png" alt="Noticia" class="news-img" onerror="this.src='https://via.placeholder.com/110x85?text=Liga'">
+                            <img src="img/estadiocastrelos.png" alt="Estadio Castrelos" class="news-big-img" onerror="this.src='https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600'">
                             <div class="news-content">
-                                <span class="news-tag">LIGA CAIXABANK</span>
-                                <h4 class="news-title">¡Arranca la temporada oficial de la Liga CaixaBank 2026!</h4>
-                                <p class="news-desc">Los 18 equipos calientan motores para un año histórico con máximas expectativas.</p>
+                                <span class="news-tag">LIGA CAIXABANK • TEMPORADA 2026</span>
+                                <h3 class="news-title">¡Todo listo para el inicio de la temporada más competitiva del fútbol nacional!</h3>
+                                <p class="news-desc">Los 18 clubes completan sus sesiones de entrenamiento previas al estreno de la Jornada 1. Con plantillas renovadas y duelos de altísimo nivel desde la primera fecha, la emoción está servida.</p>
                             </div>
                         </div>
 
                         <!-- NOTICIA 2 -->
                         <div class="news-slide" id="news-1">
-                            <img src="img/celsomoure.png" alt="Noticia" class="news-img" onerror="this.src='https://via.placeholder.com/110x85?text=Castrelos'">
+                            <img src="img/celsomoure.png" alt="Celso Moure" class="news-big-img" onerror="this.src='https://images.unsplash.com/photo-1556157382-97eda2d62296?w=600'">
                             <div class="news-content">
-                                <span class="news-tag">CD CASTRELOS</span>
-                                <h4 class="news-title">Celso Moure ratifica el compromiso con la cantera cantera</h4>
-                                <p class="news-desc">El presidente destaca la solidez económica y el modelo asociativo del club de Vigo.</p>
+                                <span class="news-tag">CD CASTRELOS • DECLARACIONES</span>
+                                <h3 class="news-title">Celso Moure: "Nuestro objetivo es ser imbatibles en el Estadio Municipal de Castrelos"</h3>
+                                <p class="news-desc">El presidente del conjunto cantero repasó la actualidad económica e institucional antes del choque ante el RCF Madrid. Reafirmó la confianza ciega en la plantilla de 25 jugadores.</p>
                             </div>
                         </div>
 
                         <!-- NOTICIA 3 -->
                         <div class="news-slide" id="news-2">
-                            <img src="img/logo-liga.png" alt="Noticia" class="news-img" onerror="this.src='https://via.placeholder.com/110x85?text=Calendario'">
+                            <img src="img/logo-liga.png" alt="Calendario" class="news-big-img" onerror="this.src='https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600'">
                             <div class="news-content">
-                                <span class="news-tag">CALENDARIO</span>
-                                <h4 class="news-title">Ya disponible la programación completa de la Jornada 1</h4>
-                                <p class="news-desc">Consulta los horarios oficializados ajustados a factores climáticos de agosto.</p>
+                                <span class="news-tag">CALENDARIO & HORARIOS</span>
+                                <h3 class="news-title">Oficializados los horarios definitivos de la Jornada 1 estival</h3>
+                                <p class="news-desc">La Liga CaixaBank confirma las franjas horarias de agosto organizadas estratégicamente para optimizar el descanso y el rendimiento físico bajo altas temperaturas.</p>
                             </div>
                         </div>
 
@@ -1038,7 +1068,7 @@
     </div>
 
     <script>
-        // Fallback para escudos en SVG
+        // Fallback SVG para escudos
         function createSvgFallback(imgElement, initials, bgColor, strokeColor) {
             const svg = `
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
@@ -1050,14 +1080,14 @@
             wrapper.innerHTML = svg;
         }
 
-        // Desplazamiento del Carrusel de Partidos
+        // Carrusel de partidos superior
         function scrollMatches(direction) {
             const container = document.getElementById('matchesScroll');
             const scrollAmount = 220;
             container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
         }
 
-        // Lógica de Carrusel de Estadísticas
+        // Slider de Estadísticas
         let currentStatIndex = 0;
         const totalStats = 6;
         const statTitles = [
@@ -1076,17 +1106,23 @@
             document.getElementById('statTitle').innerText = statTitles[currentStatIndex];
         }
 
-        // Lógica de Carrusel de Noticias (Auto-scroll 15s)
+        // Slider Vertical de Noticias (Auto-scroll 15s)
         let currentNewsIndex = 0;
         const totalNews = 3;
 
         function changeNewsSlide(direction) {
-            document.getElementById(`news-${currentNewsIndex}`).classList.remove('active');
+            const currentSlide = document.getElementById(`news-${currentNewsIndex}`);
+            currentSlide.classList.remove('active', 'slide-up', 'slide-down');
+
             currentNewsIndex = (currentNewsIndex + direction + totalNews) % totalNews;
-            document.getElementById(`news-${currentNewsIndex}`).classList.add('active');
+
+            const nextSlide = document.getElementById(`news-${currentNewsIndex}`);
+            const animationClass = direction > 0 ? 'slide-up' : 'slide-down';
+            
+            nextSlide.classList.add('active', animationClass);
         }
 
-        // Auto avance de noticias cada 15.000 ms (15 segundos)
+        // Avance automático cada 15 segundos
         setInterval(() => {
             changeNewsSlide(1);
         }, 15000);
