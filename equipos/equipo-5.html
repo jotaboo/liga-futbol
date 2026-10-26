@@ -1,1 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCD Zaragoza - Ficha Oficial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cb-dark: #121212;
+            --cb-card: #1E1E1E;
+            --cb-gray: #E5E8EB;
+            --cb-white: #FFFFFF;
+            --zaragoza-red: #A71930;
+            --zaragoza-blue: #1D2A44;
+            --zaragoza-gold: #D4AF37;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        img, svg {
+            max-width: 100% !important;
+            height: auto !important;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        body {
+            background-color: var(--cb-dark);
+            color: var(--cb-gray);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--zaragoza-red) 0%, var(--zaragoza-blue) 100%);
+            border-bottom: 3px solid var(--zaragoza-gold);
+            padding: 20px 15px;
+            text-align: center;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .team-crest-wrapper {
+            width: 55px !important;
+            height: 55px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header h1 {
+            color: var(--cb-white);
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        nav {
+            background-color: #0d0d0d;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 8px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        nav a:hover {
+            background-color: var(--zaragoza-red);
+            color: var(--cb-white);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 15px auto;
+            padding: 0 10px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+        }
+
+        .card {
+            background: var(--cb-card);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #2a2a2a;
+        }
+
+        h2 {
+            color: var(--cb-white);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            border-left: 3px solid var(--zaragoza-red);
+            padding-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stadium-photo {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border: 1px solid #333;
+        }
+
+        .club-info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .info-box {
+            background: #161616;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border-left: 2px solid var(--zaragoza-red);
+        }
+
+        .info-box span {
+            display: block;
+            font-size: 0.7rem;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .info-box strong {
+            font-size: 0.85rem;
+            color: var(--cb-white);
+        }
+
+        .president-card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .president-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #161616;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border-left: 2px solid var(--zaragoza-red);
+        }
+
+        .president-photo {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #333;
+        }
+
+        .history-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .timeline-item {
+            background: #161616;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid var(--zaragoza-red);
+        }
+
+        .timeline-item strong {
+            color: var(--cb-white);
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .timeline-item p {
+            font-size: 0.8rem;
+            color: #ccc;
+            text-align: justify;
+        }
+
+        .kits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            text-align: center;
+        }
+
+        .kit-card {
+            background: #161616;
+            border: 1px solid #2a2a2a;
+            border-radius: 6px;
+            padding: 8px;
+        }
+
+        .kit-card img {
+            max-height: 120px !important;
+            object-fit: contain;
+            margin-bottom: 5px;
+        }
+
+        .kit-card span {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--cb-white);
+            display: block;
+        }
+
+        table.history-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        table.history-table td {
+            padding: 6px 8px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        table.history-table td:nth-child(odd) {
+            color: #aaa;
+        }
+
+        table.history-table td:nth-child(even) {
+            color: var(--cb-white);
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .sponsor-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #161616;
+            padding: 8px 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 2px solid var(--zaragoza-red);
+        }
+
+        .sponsor-logo-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sponsor-logo-name img {
+            max-height: 24px !important;
+            width: auto !important;
+            object-fit: contain;
+        }
+
+        .sponsor-info span {
+            display: block;
+            font-size: 0.68rem;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .sponsor-info strong {
+            font-size: 0.82rem;
+            color: var(--cb-white);
+        }
+
+        .sponsor-amount {
+            color: #7ce38b;
+            font-weight: 700;
+            font-size: 0.82rem;
+        }
+
+        .palmares-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            background: #161616;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--cb-white);
+            font-weight: 700;
+            border-left: 2px solid var(--zaragoza-red);
+        }
+
+        .trophy-img {
+            max-height: 28px !important;
+            width: auto !important;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .kits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="team-crest-wrapper">
+                <img src="../img/zaragoza.png" alt="RCD Zaragoza" onerror="createSvgFallback(this, 'ZAR', '#A71930', '#D4AF37')">
+            </div>
+            <div>
+                <h1>Real Club Deportivo Zaragoza</h1>
+                <p>Fundado en 1932 • "Los Maños / Los Blanquillos"</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="../index.html">← Volver a la Liga</a>
+        <a href="../calendario.html">Calendario</a>
+        <a href="#historia">Historia</a>
+        <a href="#equipaciones">Equipaciones</a>
+        <a href="#estadio">Estadio & Ciudad</a>
+        <a href="#presidente">Presidencia</a>
+        <a href="#patrocinadores">Patrocinio</a>
+        <a href="#clasificacion-historica">Historial 1ª Div</a>
+        <a href="#masasocial">Masa Social</a>
+    </nav>
+
+    <div class="container">
+        
+        <main>
+            <section id="historia" class="card">
+                <h2>Historia y Evolución del Club</h2>
+                <div class="history-timeline">
+                    <div class="timeline-item">
+                        <strong>Nacimiento y Primeros Años (1932)</strong>
+                        <p>Nacido de la fusión del Zaragoza CD y el Ibérica SC, el club aragonés adoptó el león rampante y los colores blanquillos con calzón azul como distintivo regio e histórico.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Época de Esplendor y Copas (1960–1990)</strong>
+                        <p>Periodo dorado donde el club maño forjó su prestigio a nivel nacional con un juego vistoso, competitivo y de garra, conquistando el respeto de toda la categoría.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Consolidación e Identidad (2000–Presente)</strong>
+                        <p>Consolidado como uno de los históricos indispensables de la Liga CaixaBank, respaldado por una masa social devota que abarrota La Romareda en cada jornada.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="equipaciones" class="card">
+                <h2>Equipaciones Oficiales</h2>
+                <div class="kits-grid">
+                    <div class="kit-card">
+                        <img src="../img/1equipacionzaragoza.png" alt="1ª Equipación" onerror="this.src='https://via.placeholder.com/100?text=1ª+Zaragoza'">
+                        <span>1ª Equipación (Local)</span>
+                    </div>
+                    <div class="kit-card">
+                        <img src="../img/2equipacionzaragoza.png" alt="2ª Equipación" onerror="this.src='https://via.placeholder.com/100?text=2ª+Zaragoza'">
+                        <span>2ª Equipación (Visitante)</span>
+                    </div>
+                    <div class="kit-card">
+                        <img src="../img/3equipacionzaragoza.png" alt="3ª Equipación" onerror="this.src='https://via.placeholder.com/100?text=3ª+Zaragoza'">
+                        <span>3ª Equipación (Alternativa)</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="clasificacion-historica" class="card">
+                <h2>Clasificación Histórica en Primera División</h2>
+                <table class="history-table">
+                    <tr><td>Temporadas en Primera</td><td>32 temporadas</td></tr>
+                    <tr><td>Partidos jugados</td><td>1.180</td></tr>
+                    <tr><td>Victorias</td><td>420</td></tr>
+                    <tr><td>Empates</td><td>310</td></tr>
+                    <tr><td>Derrotas</td><td>450</td></tr>
+                    <tr><td>Goles a favor (GF)</td><td>1.540</td></tr>
+                    <tr><td>Goles en contra (GC)</td><td>1.590</td></tr>
+                    <tr><td>Diferencia de goles (DG)</td><td>-50</td></tr>
+                    <tr><td>Puntos totales históricos</td><td><strong>1.570 puntos</strong></td></tr>
+                </table>
+            </section>
+        </main>
+
+        <aside>
+            <section id="estadio" class="card">
+                <h2>Estadio & Ciudad</h2>
+                <img src="../img/estadiozaragoza.png" alt="Estadio La Romareda" class="stadium-photo" onerror="this.src='https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600'">
+                
+                <div class="club-info-grid">
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Ciudad</span>
+                        <strong>Zaragoza (Aragón)</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Habitantes</span>
+                        <strong>675.301 hab.</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Nombre estadio</span>
+                        <strong>Estadio La Romareda</strong>
+                    </div>
+                    <div class="info-box">
+                        <span>Capacidad</span>
+                        <strong>33.608 espectadores</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section id="presidente" class="card">
+                <h2>Presidencia</h2>
+                <div class="president-card-content">
+                    <div class="president-header">
+                        <img src="../img/presidentezaragoza.png" alt="Presidente Zaragoza" class="president-photo" onerror="this.src='https://via.placeholder.com/50?text=ZAR'">
+                        <div class="info-text">
+                            <span style="font-size:0.68rem; color:#888; text-transform:uppercase; display:block;">Presidente</span>
+                            <strong style="color:var(--cb-white); font-size:0.9rem;">Jorge Mas</strong>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <span>Fecha de nacimiento</span>
+                        <strong>18 de mayo de 1963</strong>
+                    </div>
+                    <div class="info-box">
+                        <span>En el cargo desde</span>
+                        <strong>24 de mayo de 2022</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section id="patrocinadores" class="card">
+                <h2>Patrocinio y Marcas</h2>
+                
+                <div class="sponsor-item">
+                    <div class="sponsor-logo-name">
+                        <img src="../img/adidas.png" alt="Adidas" onerror="this.style.display='none'">
+                        <div class="sponsor-info">
+                            <span>Proveedor Técnico</span>
+                            <strong>Adidas</strong>
+                        </div>
+                    </div>
+                    <div class="sponsor-amount">1.3M € / año</div>
+                </div>
+
+                <div class="sponsor-item">
+                    <div class="sponsor-logo-name">
+                        <img src="../img/caravan.png" alt="Caravan Fragancias" onerror="this.style.display='none'">
+                        <div class="sponsor-info">
+                            <span>Patrocinador Principal</span>
+                            <strong>Caravan Fragancias</strong>
+                        </div>
+                    </div>
+                    <div class="sponsor-amount">3.4M € / año</div>
+                </div>
+
+                <p style="font-size: 0.75rem; color: #7ce38b; margin-top: 8px; font-weight: 600;">
+                    Ingresos anuales totales: 6,1 millones de euros
+                </p>
+            </section>
+
+            <section id="masasocial" class="card">
+                <h2>Masa Social</h2>
+                <div class="club-info-grid">
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Socios totales</span>
+                        <strong>28.500</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Abonados</span>
+                        <strong>24.200</strong>
+                    </div>
+                    <div class="info-box">
+                        <span>Grupo de Animación / Ultras</span>
+                        <strong style="color: #7ce38b;">Ligallo Fondo Norte</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Palmarés Oficial</h2>
+                <div class="palmares-item">
+                    <img src="../img/trofeoliga.png" alt="Liga CaixaBank" class="trophy-img" onerror="this.style.display='none'">
+                    <span>2x Liga CaixaBank</span>
+                </div>
+            </section>
+        </aside>
+
+    </div>
+
+    <script>
+        function createSvgFallback(imgElement, initials, bgColor, strokeColor) {
+            const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+                    <path d="M50 5 L85 20 V50 C85 72 50 95 50 95 C50 95 15 72 15 50 V20 Z" fill="${bgColor}" stroke="${strokeColor}" stroke-width="6"/>
+                    <text x="50" y="58" font-family="'Inter', sans-serif" font-size="30" font-weight="800" fill="${strokeColor}" text-anchor="middle" dominant-baseline="middle">${initials}</text>
+                </svg>
+            `;
+            const wrapper = imgElement.parentElement;
+            wrapper.innerHTML = svg;
+        }
+    </script>
+</body>
+</html>
