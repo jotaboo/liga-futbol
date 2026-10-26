@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Jugadores - Liga Caixabank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cb-blue: #007FAE;
+            --cb-dark: #121212;
+            --cb-card: #1E1E1E;
+            --cb-gray: #E5E8EB;
+            --cb-white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--cb-dark);
+            color: var(--cb-gray);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        header {
+            background: linear-gradient(135deg, #080808 0%, #1a1a1a 100%);
+            border-bottom: 3px solid var(--cb-blue);
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        header h1 {
+            color: var(--cb-white);
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        nav {
+            background-color: #0d0d0d;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 8px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--cb-blue);
+            color: var(--cb-white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 15px auto;
+            padding: 0 10px;
+        }
+
+        .card {
+            background: var(--cb-card);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #2a2a2a;
+        }
+
+        h2 {
+            color: var(--cb-white);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            border-left: 3px solid var(--cb-blue);
+            padding-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* GRID DE FILTROS TIPO SOFIFA */
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .filter-group label {
+            font-size: 0.72rem;
+            color: #aaa;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .filter-group input, .filter-group select {
+            background: #121212;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 6px 8px;
+            color: #fff;
+            font-size: 0.82rem;
+            outline: none;
+        }
+
+        .filter-group input:focus, .filter-group select:focus {
+            border-color: var(--cb-blue);
+        }
+
+        .range-inputs {
+            display: flex;
+            gap: 6px;
+        }
+
+        .range-inputs input {
+            width: 50%;
+        }
+
+        .btn-reset {
+            background: #2a2a2a;
+            color: #fff;
+            border: 1px solid #444;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 700;
+            align-self: flex-end;
+            transition: 0.2s;
+        }
+
+        .btn-reset:hover {
+            background: var(--cb-blue);
+            border-color: var(--cb-blue);
+        }
+
+        /* TABLA DE RESULTADOS */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table.sofifa-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.83rem;
+            min-width: 800px;
+        }
+
+        table.sofifa-table th, table.sofifa-table td {
+            padding: 8px 10px;
+            text-align: left;
+            border-bottom: 1px solid #282828;
+        }
+
+        table.sofifa-table th {
+            background-color: #121212;
+            color: var(--cb-blue);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .player-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .player-img {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid #333;
+        }
+
+        .player-info-meta strong {
+            color: #fff;
+            display: block;
+            font-size: 0.85rem;
+        }
+
+        .player-info-meta span {
+            color: #888;
+            font-size: 0.7rem;
+        }
+
+        /* BADGES DE OVERALL Y POTENCIAL */
+        .badge-rating {
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #fff;
+            font-size: 0.82rem;
+        }
+
+        .ovr-high { background-color: #1c8211; }
+        .ovr-mid { background-color: #82e133; color: #111; }
+        .ovr-low { background-color: #f3cb3c; color: #111; }
+
+        .pot-text {
+            color: #7ce38b;
+            font-weight: 700;
+        }
+
+        .val-text {
+            color: #00bfff;
+            font-weight: 700;
+        }
+
+        .wage-text {
+            color: #e5a93c;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Liga Caixabank</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="calendario.html">Calendario</a>
+        <a href="buscador.html" class="active">🔍 Buscador SoFIFA</a>
+    </nav>
+
+    <div class="container">
+        
+        <!-- PANEL DE FILTROS -->
+        <section class="card">
+            <h2>Filtros Avanzados de Jugadores</h2>
+            <div class="filter-grid">
+                
+                <div class="filter-group">
+                    <label>Nombre Jugador</label>
+                    <input type="text" id="searchName" placeholder="Ej: Gabriel, Silva..." oninput="filterPlayers()">
+                </div>
+
+                <div class="filter-group">
+                    <label>Club</label>
+                    <select id="filterClub" onchange="filterPlayers()">
+                        <option value="">Todos los clubes</option>
+                        <option value="CD Castrelos">CD Castrelos</option>
+                        <option value="Sp. Lucentino">Sp. Lucentino</option>
+                        <option value="Triana Balompié">Triana Balompié</option>
+                        <option value="UD Gijón">UD Gijón</option>
+                        <option value="RCD Zaragoza">RCD Zaragoza</option>
+                        <option value="Real Sevilla">Real Sevilla</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Edad (Mín - Máx)</label>
+                    <div class="range-inputs">
+                        <input type="number" id="minAge" placeholder="16" oninput="filterPlayers()">
+                        <input type="number" id="maxAge" placeholder="40" oninput="filterPlayers()">
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Overall (Mín - Máx)</label>
+                    <div class="range-inputs">
+                        <input type="number" id="minOvr" placeholder="50" oninput="filterPlayers()">
+                        <input type="number" id="maxOvr" placeholder="99" oninput="filterPlayers()">
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Potencial Mínimo</label>
+                    <input type="number" id="minPot" placeholder="60" oninput="filterPlayers()">
+                </div>
+
+                <div class="filter-group">
+                    <label>Valor Máximo (€ M)</label>
+                    <input type="number" id="maxValue" placeholder="Ej: 50" oninput="filterPlayers()">
+                </div>
+
+                <div class="filter-group">
+                    <label>Salario Máximo (€/sem)</label>
+                    <input type="number" id="maxWage" placeholder="Ej: 100000" oninput="filterPlayers()">
+                </div>
+
+                <button class="btn-reset" onclick="resetFilters()">Limpiar Filtros</button>
+            </div>
+        </section>
+
+        <!-- TABLA RESULTADOS -->
+        <section class="card">
+            <h2>Resultados (<span id="playerCount">0</span> jugadores encontrados)</h2>
+            <div class="table-responsive">
+                <table class="sofifa-table">
+                    <thead>
+                        <tr>
+                            <th>Jugador</th>
+                            <th>Pos</th>
+                            <th>Edad</th>
+                            <th>OVR</th>
+                            <th>POT</th>
+                            <th>Equipo</th>
+                            <th>Valor Merc.</th>
+                            <th>Salario / sem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="playerTableBody">
+                        <!-- Se llena dinámicamente con JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // BASE DE DATOS LOCAL DE JUGADORES (Ampliable fácilmente)
+        const players = [
+            { id: 1, name: "Gabriel Santos", club: "CD Castrelos", pos: "DC", age: 24, ovr: 82, pot: 87, value: 38.5, wage: 45000, img: "img/gabrielsantos.png" },
+            { id: 2, name: "Mateo Gigli", club: "CD Castrelos", pos: "DC", age: 22, ovr: 78, pot: 85, value: 24.0, wage: 30000, img: "img/mateogigli.png" },
+            { id: 3, name: "Peke", club: "CD Castrelos", pos: "EI", age: 26, ovr: 80, pot: 82, value: 28.0, wage: 35000, img: "img/peke.png" },
+            { id: 4, name: "Álex Blanco", club: "CD Castrelos", pos: "ED", age: 25, ovr: 79, pot: 83, value: 22.5, wage: 28000, img: "img/alexblanco.png" },
+            { id: 5, name: "Brais Álvarez", club: "CD Castrelos", pos: "POR", age: 28, ovr: 81, pot: 83, value: 25.0, wage: 32000, img: "img/braisalvarez.png" },
+            { id: 6, name: "Rodrigo Moreno", club: "Sp. Lucentino", pos: "DC", age: 31, ovr: 81, pot: 81, value: 20.0, wage: 40000, img: "https://via.placeholder.com/32?text=RM" },
+            { id: 7, name: "Lucas Ocampos", club: "Real Sevilla", pos: "ED", age: 29, ovr: 82, pot: 82, value: 30.0, wage: 50000, img: "https://via.placeholder.com/32?text=LO" },
+            { id: 8, name: "Iñaki Williams", club: "EK Euskaria", pos: "DC", age: 29, ovr: 83, pot: 83, value: 35.0, wage: 60000, img: "https://via.placeholder.com/32?text=IW" },
+            { id: 9, name: "David Silva", club: "Ath. Valenciano", pos: "MCO", age: 37, ovr: 83, pot: 83, value: 12.0, wage: 45000, img: "https://via.placeholder.com/32?text=DS" }
+        ];
+
+        function getRatingClass(ovr) {
+            if (ovr >= 82) return 'ovr-high';
+            if (ovr >= 78) return 'ovr-mid';
+            return 'ovr-low';
+        }
+
+        function renderPlayers(data) {
+            const tbody = document.getElementById('playerTableBody');
+            document.getElementById('playerCount').innerText = data.length;
+            tbody.innerHTML = '';
+
+            if (data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:20px; color:#888;">No se encontraron jugadores con los filtros seleccionados.</td></tr>';
+                return;
+            }
+
+            data.forEach(p => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>
+                        <div class="player-cell">
+                            <img src="${p.img}" class="player-img" onerror="this.src='https://via.placeholder.com/32?text=P'">
+                            <div class="player-info-meta">
+                                <strong>${p.name}</strong>
+                                <span>${p.club}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td><strong>${p.pos}</strong></td>
+                    <td>${p.age} añ.</td>
+                    <td><span class="badge-rating ${getRatingClass(p.ovr)}">${p.ovr}</span></td>
+                    <td><span class="pot-text">${p.pot}</span></td>
+                    <td>${p.club}</td>
+                    <td><span class="val-text">${p.value.toFixed(1)} M €</span></td>
+                    <td><span class="wage-text">${p.wage.toLocaleString('es-ES')} €</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function filterPlayers() {
+            const name = document.getElementById('searchName').value.toLowerCase();
+            const club = document.getElementById('filterClub').value;
+            const minAge = parseInt(document.getElementById('minAge').value) || 0;
+            const maxAge = parseInt(document.getElementById('maxAge').value) || 99;
+            const minOvr = parseInt(document.getElementById('minOvr').value) || 0;
+            const maxOvr = parseInt(document.getElementById('maxOvr').value) || 99;
+            const minPot = parseInt(document.getElementById('minPot').value) || 0;
+            const maxValue = parseFloat(document.getElementById('maxValue').value) || 999;
+            const maxWage = parseInt(document.getElementById('maxWage').value) || 9999999;
+
+            const filtered = players.filter(p => {
+                return (p.name.toLowerCase().includes(name)) &&
+                       (club === '' || p.club === club) &&
+                       (p.age >= minAge && p.age <= maxAge) &&
+                       (p.ovr >= minOvr && p.ovr <= maxOvr) &&
+                       (p.pot >= minPot) &&
+                       (p.value <= maxValue) &&
+                       (p.wage <= maxWage);
+            });
+
+            renderPlayers(filtered);
+        }
+
+        function resetFilters() {
+            document.getElementById('searchName').value = '';
+            document.getElementById('filterClub').value = '';
+            document.getElementById('minAge').value = '';
+            document.getElementById('maxAge').value = '';
+            document.getElementById('minOvr').value = '';
+            document.getElementById('maxOvr').value = '';
+            document.getElementById('minPot').value = '';
+            document.getElementById('maxValue').value = '';
+            document.getElementById('maxWage').value = '';
+            renderPlayers(players);
+        }
+
+        // Carga inicial
+        renderPlayers(players);
+    </script>
+</body>
+</html>
