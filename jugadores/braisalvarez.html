@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brais Álvarez - Ficha Oficial de Jugador</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cb-blue: #007FAE;
+            --cb-dark: #121212;
+            --cb-card: #1E1E1E;
+            --cb-gray: #E5E8EB;
+            --cb-white: #FFFFFF;
+            --castrelos-green: #1E3F20;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--cb-dark);
+            color: var(--cb-gray);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        header {
+            background: linear-gradient(135deg, #080808 0%, #1a1a1a 100%);
+            border-bottom: 3px solid var(--cb-blue);
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        header h1 {
+            color: var(--cb-white);
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        nav {
+            background-color: #0d0d0d;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 8px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--cb-blue);
+            color: var(--cb-white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 10px;
+        }
+
+        .card {
+            background: var(--cb-card);
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #2a2a2a;
+        }
+
+        h2 {
+            color: var(--cb-white);
+            font-size: 0.95rem;
+            margin-bottom: 14px;
+            border-left: 3px solid var(--cb-blue);
+            padding-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* LAYOUT CABECERA DEL JUGADOR */
+        .player-profile-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .player-photo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #161616;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #282828;
+            text-align: center;
+        }
+
+        .player-photo-big {
+            width: 180px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 2px solid var(--cb-blue);
+            margin-bottom: 12px;
+        }
+
+        .club-badge-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--cb-white);
+        }
+
+        .club-badge-row img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        /* DETALLES DE INFORMACIÓN PRINCIPAL */
+        .player-header-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .title-rating-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #161616;
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: 1px solid #282828;
+        }
+
+        .player-fullname h1 {
+            color: var(--cb-white);
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .player-fullname p {
+            color: var(--cb-blue);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .ratings-badges {
+            display: flex;
+            gap: 15px;
+        }
+
+        .rating-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .rating-box label {
+            font-size: 0.65rem;
+            color: #888;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+
+        .stat-badge {
+            width: 38px;
+            height: 38px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+        }
+
+        /* PALETA DE COLORES REUTILIZADA */
+        .ovr-red { background-color: #a61212; }
+        .ovr-orange { background-color: #f08233; }
+        .ovr-yellow { background-color: #f3cb3c; color: #111; text-shadow: none; }
+        .ovr-light-green { background-color: #82e133; color: #111; text-shadow: none; }
+        .ovr-dark-green { background-color: #1c8211; }
+
+        /* TABLA DE BIOGRAFÍA Y CONTRATO */
+        .bio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .bio-item {
+            background: #161616;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border-left: 3px solid var(--cb-blue);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bio-item label {
+            font-size: 0.68rem;
+            color: #888;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .bio-item span {
+            font-size: 0.88rem;
+            color: var(--cb-white);
+            font-weight: 600;
+        }
+
+        .highlight-green { color: #7ce38b !important; font-weight: 700 !important; }
+        .highlight-gold { color: #e5a93c !important; font-weight: 700 !important; }
+
+        /* SECCIÓN DE ATRIBUTOS EN RECUADROS (STATS DE IMAGEN) */
+        .stats-columns-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .stat-group-card {
+            background: #161616;
+            border-radius: 6px;
+            padding: 12px;
+            border: 1px solid #282828;
+        }
+
+        .stat-group-card h3 {
+            color: var(--cb-white);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #333;
+        }
+
+        .stat-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .stat-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #ccc;
+            font-weight: 600;
+        }
+
+        .mini-badge {
+            width: 26px;
+            height: 22px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.78rem;
+        }
+
+        @media (max-width: 900px) {
+            .player-profile-grid { grid-template-columns: 1fr; }
+            .bio-grid { grid-template-columns: 1fr; }
+            .stats-columns-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 550px) {
+            .stats-columns-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Liga Caixabank - Ficha de Jugador</h1>
+    </header>
+
+    <nav>
+        <a href="../index.html">← Volver al Inicio</a>
+        <a href="../calendario.html">Calendario</a>
+        <a href="../equipos/equipo-1.html">CD Castrelos</a>
+    </nav>
+
+    <div class="container">
+        
+        <!-- BLOQUE PRINCIPAL PERFIL -->
+        <section class="card">
+            <div class="player-profile-grid">
+                
+                <!-- COLUMNA IZQUIERDA: FOTO EN GRANDE -->
+                <div class="player-photo-container">
+                    <img src="../img/braisalvarez.png" alt="Brais Álvarez" class="player-photo-big" onerror="this.src='https://via.placeholder.com/180x220?text=Brais+%C3%81lvarez'">
+                    <div class="club-badge-row">
+                        <img src="../img/castrelos.png" alt="CD Castrelos" onerror="this.style.display='none'">
+                        <span>CD Castrelos</span>
+                    </div>
+                </div>
+
+                <!-- COLUMNA DERECHA: INFORMACIÓN DETALLADA -->
+                <div class="player-header-info">
+                    
+                    <div class="title-rating-row">
+                        <div class="player-fullname">
+                            <h1>Brais Álvarez Gómez</h1>
+                            <p>Portero (POR) • #1</p>
+                        </div>
+                        <div class="ratings-badges">
+                            <div class="rating-box">
+                                <label>Overall</label>
+                                <div class="stat-badge ovr-mid">79</div>
+                            </div>
+                            <div class="rating-box">
+                                <label>Potencial</label>
+                                <div class="stat-badge ovr-light-green">82</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GRID DE BIOGRAFÍA COMPLETA -->
+                    <div class="bio-grid">
+                        <div class="bio-item">
+                            <label>Fecha y Edad</label>
+                            <span>12 de mayo de 2000 (26 años)</span>
+                        </div>
+                        <div class="bio-item">
+                            <label>Lugar de Nacimiento</label>
+                            <span>Vigo, España 🇪🇸</span>
+                        </div>
+                        <div class="bio-item">
+                            <label>Nacionalidad</label>
+                            <span>🇪🇸 Española (100%)</span>
+                        </div>
+                        <div class="bio-item">
+                            <label>Físico (Altura / Peso)</label>
+                            <span>1.90 m / 84 kg</span>
+                        </div>
+                        <div class="bio-item">
+                            <label>En el club desde</label>
+                            <span>1 de julio de 2022</span>
+                        </div>
+                        <div class="bio-item">
+                            <label>Contrato hasta</label>
+                            <span>30 de junio de 2029</span>
+                        </div>
+                        <div class="bio-item">
+                            <label>Pie Hábil</label>
+                            <span>Derecho</span>
+                        </div>
+                        <div class="bio-item">
+                            <label>Filigranas / Pierna Mala</label>
+                            <span>⭐ / ⭐⭐⭐ (3/5)</span>
+                        </div>
+                        <div class="bio-item">
+                            <label>Valor de Mercado</label>
+                            <span class="highlight-green">17.500.000 €</span>
+                        </div>
+                        <div class="bio-item">
+                            <label>Salario Anual</label>
+                            <span class="highlight-gold">1.248.000 € / año</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BLOQUE DE ATRIBUTOS TÉCNICOS (DESGLOSE SOFIFA) -->
+        <section class="card">
+            <h2>Atributos y Estadísticas Detalladas</h2>
+            <div class="stats-columns-grid">
+                
+                <!-- OFENSIVA -->
+                <div class="stat-group-card">
+                    <h3>Ofensiva</h3>
+                    <div class="stat-row"><span class="stat-label">Centros</span><div class="mini-badge ovr-red">13</div></div>
+                    <div class="stat-row"><span class="stat-label">Definición</span><div class="mini-badge ovr-red">11</div></div>
+                    <div class="stat-row"><span class="stat-label">Precisión cabeza</span><div class="mini-badge ovr-red">10</div></div>
+                    <div class="stat-row"><span class="stat-label">Pases cortos</span><div class="mini-badge ovr-red">17</div></div>
+                    <div class="stat-row"><span class="stat-label">Voleas</span><div class="mini-badge ovr-red">10</div></div>
+                </div>
+
+                <!-- TÉCNICA -->
+                <div class="stat-group-card">
+                    <h3>Técnica</h3>
+                    <div class="stat-row"><span class="stat-label">Regates</span><div class="mini-badge ovr-red">11</div></div>
+                    <div class="stat-row"><span class="stat-label">Efecto</span><div class="mini-badge ovr-red">20</div></div>
+                    <div class="stat-row"><span class="stat-label">Precisión faltas</span><div class="mini-badge ovr-red">19</div></div>
+                    <div class="stat-row"><span class="stat-label">Pases largos</span><div class="mini-badge ovr-red">21</div></div>
+                    <div class="stat-row"><span class="stat-label">Control del balón</span><div class="mini-badge ovr-red">23</div></div>
+                </div>
+
+                <!-- MOVIMIENTO -->
+                <div class="stat-group-card">
+                    <h3>Movimiento</h3>
+                    <div class="stat-row"><span class="stat-label">Aceleración</span><div class="mini-badge ovr-red">44</div></div>
+                    <div class="stat-row"><span class="stat-label">Velocidad</span><div class="mini-badge ovr-red">40</div></div>
+                    <div class="stat-row"><span class="stat-label">Agilidad</span><div class="mini-badge ovr-red">36</div></div>
+                    <div class="stat-row"><span class="stat-label">Reflejos</span><div class="mini-badge ovr-light-green">76</div></div>
+                    <div class="stat-row"><span class="stat-label">Equilibrio</span><div class="mini-badge ovr-red">25</div></div>
+                </div>
+
+                <!-- POTENCIA -->
+                <div class="stat-group-card">
+                    <h3>Potencia</h3>
+                    <div class="stat-row"><span class="stat-label">Potencia tiro</span><div class="mini-badge ovr-red">18</div></div>
+                    <div class="stat-row"><span class="stat-label">Salto</span><div class="mini-badge ovr-yellow">62</div></div>
+                    <div class="stat-row"><span class="stat-label">Resistencia</span><div class="mini-badge ovr-red">34</div></div>
+                    <div class="stat-row"><span class="stat-label">Fuerza</span><div class="mini-badge ovr-orange">55</div></div>
+                    <div class="stat-row"><span class="stat-label">Tiros lejanos</span><div class="mini-badge ovr-red">10</div></div>
+                </div>
+
+                <!-- MENTALIDAD -->
+                <div class="stat-group-card">
+                    <h3>Mentalidad</h3>
+                    <div class="stat-row"><span class="stat-label">Agresividad</span><div class="mini-badge ovr-red">23</div></div>
+                    <div class="stat-row"><span class="stat-label">Intercepciones</span><div class="mini-badge ovr-red">24</div></div>
+                    <div class="stat-row"><span class="stat-label">Pos. ataque</span><div class="mini-badge ovr-red">10</div></div>
+                    <div class="stat-row"><span class="stat-label">Visión</span><div class="mini-badge ovr-red">41</div></div>
+                    <div class="stat-row"><span class="stat-label">Penaltis</span><div class="mini-badge ovr-red">20</div></div>
+                    <div class="stat-row"><span class="stat-label">Compostura</span><div class="mini-badge ovr-red">38</div></div>
+                </div>
+
+                <!-- DEFENSA -->
+                <div class="stat-group-card">
+                    <h3>Defensa</h3>
+                    <div class="stat-row"><span class="stat-label">Conciencia def.</span><div class="mini-badge ovr-red">11</div></div>
+                    <div class="stat-row"><span class="stat-label">Robos</span><div class="mini-badge ovr-red">11</div></div>
+                    <div class="stat-row"><span class="stat-label">Entrada agresiva</span><div class="mini-badge ovr-red">12</div></div>
+                </div>
+
+                <!-- PORTERO (CARACTERÍSTICAS CLAVE) -->
+                <div class="stat-group-card" style="border: 1px solid var(--cb-blue);">
+                    <h3 style="color: var(--cb-blue);">Portero</h3>
+                    <div class="stat-row"><span class="stat-label">Estirada</span><div class="mini-badge ovr-light-green">80</div></div>
+                    <div class="stat-row"><span class="stat-label">Paradas</span><div class="mini-badge ovr-light-green">76</div></div>
+                    <div class="stat-row"><span class="stat-label">Saques</span><div class="mini-badge ovr-mid">79</div></div>
+                    <div class="stat-row"><span class="stat-label">Colocación</span><div class="mini-badge ovr-light-green">80</div></div>
+                    <div class="stat-row"><span class="stat-label">Reflejos</span><div class="mini-badge ovr-light-green">82</div></div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
