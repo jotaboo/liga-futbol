@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AD Vallecas - Ficha Oficial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cb-dark: #121212;
+            --cb-card: #1E1E1E;
+            --cb-gray: #E5E8EB;
+            --cb-white: #FFFFFF;
+            --vallecas-red: #EE2E3B;
+            --vallecas-dark: #1A1A1A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        img, svg {
+            max-width: 100% !important;
+            height: auto !important;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        body {
+            background-color: var(--cb-dark);
+            color: var(--cb-gray);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--vallecas-red) 0%, var(--vallecas-dark) 100%);
+            border-bottom: 3px solid #FFFFFF;
+            padding: 20px 15px;
+            text-align: center;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .team-crest-wrapper {
+            width: 55px !important;
+            height: 55px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header h1 {
+            color: var(--cb-white);
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        nav {
+            background-color: #0d0d0d;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 8px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        nav a:hover {
+            background-color: var(--vallecas-red);
+            color: var(--cb-white);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 15px auto;
+            padding: 0 10px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+        }
+
+        .card {
+            background: var(--cb-card);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #2a2a2a;
+        }
+
+        h2 {
+            color: var(--cb-white);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            border-left: 3px solid var(--vallecas-red);
+            padding-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stadium-photo {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border: 1px solid #333;
+        }
+
+        .club-info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .info-box {
+            background: #161616;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border-left: 2px solid var(--vallecas-red);
+        }
+
+        .info-box span {
+            display: block;
+            font-size: 0.7rem;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .info-box strong {
+            font-size: 0.85rem;
+            color: var(--cb-white);
+        }
+
+        .president-card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .president-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #161616;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border-left: 2px solid var(--vallecas-red);
+        }
+
+        .president-photo {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #333;
+        }
+
+        .history-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .timeline-item {
+            background: #161616;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid var(--vallecas-red);
+        }
+
+        .timeline-item strong {
+            color: var(--cb-white);
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .timeline-item p {
+            font-size: 0.8rem;
+            color: #ccc;
+            text-align: justify;
+        }
+
+        .kits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            text-align: center;
+        }
+
+        .kit-card {
+            background: #161616;
+            border: 1px solid #2a2a2a;
+            border-radius: 6px;
+            padding: 8px;
+        }
+
+        .kit-card img {
+            max-height: 120px !important;
+            object-fit: contain;
+            margin-bottom: 5px;
+        }
+
+        .kit-card span {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--cb-white);
+            display: block;
+        }
+
+        table.history-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        table.history-table td {
+            padding: 6px 8px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        table.history-table td:nth-child(odd) {
+            color: #aaa;
+        }
+
+        table.history-table td:nth-child(even) {
+            color: var(--cb-white);
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .sponsor-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #161616;
+            padding: 8px 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 2px solid var(--vallecas-red);
+        }
+
+        .sponsor-logo-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sponsor-info span {
+            display: block;
+            font-size: 0.68rem;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .sponsor-info strong {
+            font-size: 0.82rem;
+            color: var(--cb-white);
+        }
+
+        .sponsor-amount {
+            color: #7ce38b;
+            font-weight: 700;
+            font-size: 0.82rem;
+        }
+
+        .palmares-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            background: #161616;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--cb-white);
+            font-weight: 700;
+            border-left: 2px solid var(--vallecas-red);
+        }
+
+        .trophy-img {
+            max-height: 28px !important;
+            width: auto !important;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .kits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="team-crest-wrapper">
+                <img src="../img/advallecas.png" alt="AD Vallecas" onerror="createSvgFallback(this, 'ADV', '#EE2E3B', '#FFFFFF')">
+            </div>
+            <div>
+                <h1>Asociación Deportiva Vallecas</h1>
+                <p>Fundada en 1924 • "La Deportiva / Los Vallecanos"</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="../index.html">← Volver a la Liga</a>
+        <a href="../calendario.html">Calendario</a>
+        <a href="#historia">Historia</a>
+        <a href="#equipaciones">Equipaciones</a>
+        <a href="#estadio">Estadio & Ciudad</a>
+        <a href="#presidente">Presidencia</a>
+        <a href="#masasocial">Masa Social</a>
+        <a href="#clasificacion-historica">Historial 1ª Div</a>
+    </nav>
+
+    <div class="container">
+        
+        <main>
+            <!-- SECCIÓN HISTORIA -->
+            <section id="historia" class="card">
+                <h2>Historia y Evolución del Club</h2>
+                <div class="history-timeline">
+                    <div class="timeline-item">
+                        <strong>1924-1939: Los orígenes de la Deportiva</strong>
+                        <p>La Asociación Deportiva Vallecas nació el 17 de septiembre de 1924, fruto de la unión de varios equipos aficionados y asociaciones deportivas de Vallecas. Su creación respondió al deseo de los vecinos de contar con un equipo que representase al barrio en las competiciones madrileñas. Durante sus primeros años disputó encuentros en campos de tierra y pequeñas instalaciones, construyendo una identidad basada en el esfuerzo, la cercanía con sus aficionados y el sentimiento de pertenencia.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>1939-1960: El nacimiento de la leyenda</strong>
+                        <p>Con la reorganización del fútbol español tras la Guerra Civil y el comienzo de la Liga en la temporada 1939/1940, el Vallecas inició su camino por las categorías nacionales. El crecimiento deportivo culminó con su primera participación en Primera División en la temporada 1948/1949. Aquella generación de futbolistas convirtió al equipo en una de las historias más reconocibles del fútbol madrileño.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>1960-1985: El club del ascensor</strong>
+                        <p>Fueron décadas de altibajos. El Vallecas alternó temporadas en Primera y Segunda División, llegando a consolidarse durante algunos periodos entre los equipos más competitivos de la zona media de la clasificación. Su estadio comenzó a ganar popularidad por el ambiente de sus gradas y por una afición que acompañaba al equipo incluso en sus desplazamientos más complicados.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>1985-2005: Consolidación y modernización</strong>
+                        <p>La entidad experimentó una importante transformación institucional. Se profesionalizó la gestión, se invirtió en las categorías inferiores y se modernizaron las instalaciones. Durante estos años el club consiguió regresar a Primera División y protagonizó algunas de sus mejores temporadas históricas.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>2005-2026: Tradición y ambición</strong>
+                        <p>La A.D. Vallecas se convirtió en una entidad reconocida dentro del fútbol profesional español. Sin perder sus raíces populares, comenzó a apostar por una estructura deportiva más ambiciosa, una cantera competitiva y una gestión económica más profesionalizada. Su objetivo actual es recuperar la regularidad en Primera División y volver a competir por puestos europeos.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN EQUIPACIONES -->
+            <section id="equipaciones" class="card">
+                <h2>Equipaciones Oficiales</h2>
+                <div class="kits-grid">
+                    <div class="kit-card">
+                        <img src="../img/1equipacionvallecas.png" alt="1ª Equipación" onerror="this.src='https://via.placeholder.com/100?text=1ª+Vallecas'">
+                        <span>1ª Equipación (Local)</span>
+                    </div>
+                    <div class="kit-card">
+                        <img src="../img/2equipacionvallecas.png" alt="2ª Equipación" onerror="this.src='https://via.placeholder.com/100?text=2ª+Vallecas'">
+                        <span>2ª Equipación (Visitante)</span>
+                    </div>
+                    <div class="kit-card">
+                        <img src="../img/3equipacionvallecas.png" alt="3ª Equipación" onerror="this.src='https://via.placeholder.com/100?text=3ª+Vallecas'">
+                        <span>3ª Equipación (Alternativa)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN CLASIFICACIÓN HISTÓRICA COMPLETA -->
+            <section id="clasificacion-historica" class="card">
+                <h2>Historial en Primera División (1939/1940 – 2025/2026)</h2>
+                
+                <table class="history-table" style="margin-bottom: 15px;">
+                    <tr><td>Temporadas en Primera</td><td>22 temporadas</td></tr>
+                    <tr><td>Partidos disputados</td><td>798 partidos</td></tr>
+                    <tr><td>Victorias</td><td>267</td></tr>
+                    <tr><td>Empates</td><td>205</td></tr>
+                    <tr><td>Derrotas</td><td>326</td></tr>
+                    <tr><td>Goles a favor (GF)</td><td>934</td></tr>
+                    <tr><td>Goles en contra (GC)</td><td>1.098</td></tr>
+                    <tr><td>Diferencia de goles (DG)</td><td>-164</td></tr>
+                    <tr><td>Puntos totales históricos</td><td><strong>1.006 puntos</strong></td></tr>
+                </table>
+
+                <h2 style="font-size:0.85rem; border-left-color: var(--cb-white);">Otros Registros Históricos</h2>
+                <table class="history-table">
+                    <tr><td>Primer ascenso a Primera</td><td>1956/1957</td></tr>
+                    <tr><td>Mejor clasificación histórica</td><td>7.º puesto</td></tr>
+                    <tr><td>Peor clasificación histórica</td><td>20.º puesto</td></tr>
+                    <tr><td>Mayor victoria conseguida</td><td>6 - 0</td></tr>
+                    <tr><td>Mayor derrota encajada</td><td>0 - 7</td></tr>
+                    <tr><td>Máximo goleador histórico</td><td>Francisco Javier Ortega</td></tr>
+                    <tr><td>Máximo goleador en una temporada</td><td>23 goles</td></tr>
+                    <tr><td>Más partidos disputados</td><td>Manuel Sánchez</td></tr>
+                    <tr><td>Temporadas consecutivas en 1ª</td><td>6 temporadas</td></tr>
+                </table>
+            </section>
+        </main>
+
+        <aside>
+            <!-- ESTADIO Y CIUDAD -->
+            <section id="estadio" class="card">
+                <h2>Estadio & Ciudad</h2>
+                <img src="../img/estadiovallecas.png" alt="Estadio Cerro Almodóvar" class="stadium-photo" onerror="this.src='https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600'">
+                
+                <div class="club-info-grid">
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Ciudad</span>
+                        <strong>Madrid, España</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Población</span>
+                        <strong>3.506.730 hab.</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Estadio</span>
+                        <strong>Estadio Cerro Almodóvar</strong>
+                    </div>
+                    <div class="info-box">
+                        <span>Capacidad</span>
+                        <strong>24.850 espectadores</strong>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRESIDENCIA Y ESTRUCTURA -->
+            <section id="presidente" class="card">
+                <h2>Presidencia & Estructura</h2>
+                <div class="president-card-content">
+                    <div class="president-header">
+                        <img src="../img/presidentevallecas.png" alt="Julián Martín de la Vega" class="president-photo" onerror="this.src='https://via.placeholder.com/50?text=ADV'">
+                        <div class="info-text">
+                            <span style="font-size:0.68rem; color:#888; text-transform:uppercase; display:block;">Presidente</span>
+                            <strong style="color:var(--cb-white); font-size:0.9rem;">Julián Martín de la Vega</strong>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <span>Edad / Nació el</span>
+                        <strong>55 años (12/09/1971)</strong>
+                    </div>
+                    <div class="info-box">
+                        <span>Lugar de Nacimiento</span>
+                        <strong>Madrid, España</strong>
+                    </div>
+                    <div class="info-box">
+                        <span>En el cargo desde</span>
+                        <strong>15 de junio de 2022</strong>
+                    </div>
+                    <div class="info-box">
+                        <span>Fin de mandato</span>
+                        <strong>Temporada 2028/2029</strong>
+                    </div>
+                    <div class="info-box">
+                        <span>Tipo / Derecho a voto</span>
+                        <strong>Presidencia electa (Sí)</strong>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MASA SOCIAL DETALLADA -->
+            <section id="masasocial" class="card">
+                <h2>Masa Social & Registro</h2>
+                <div class="club-info-grid">
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Socios Totales</span>
+                        <strong>16.284</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Socios Mayores (+18) c/ voto</span>
+                        <strong>14.920</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Socios Menores de Edad</span>
+                        <strong>1.364</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Abonados (Temp. 2026/27)</span>
+                        <strong>13.480</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Asistencia / Ocupación</span>
+                        <strong>19.760 (79,5 %)</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Peñas Oficiales / Lista espera</span>
+                        <strong>26 peñas / 620 en espera</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Abono Adulto (Rango)</span>
+                        <strong>210 € - 590 €</strong>
+                    </div>
+                    <div class="info-box" style="margin-bottom: 6px;">
+                        <span>Antigüedad media socio</span>
+                        <strong>13 años</strong>
+                    </div>
+                    <div class="info-box">
+                        <span>Grupo Animación / Ultras</span>
+                        <strong style="color: #7ce38b;">Frente 1924</strong>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PALMARÉS -->
+            <section class="card">
+                <h2>Palmarés Oficial</h2>
+                <div class="palmares-item">
+                    <img src="../img/trofeoliga.png" alt="Liga CaixaBank" class="trophy-img" onerror="this.style.display='none'">
+                    <span>1x Liga CaixaBank</span>
+                </div>
+            </section>
+        </aside>
+
+    </div>
+
+    <script>
+        function createSvgFallback(imgElement, initials, bgColor, strokeColor) {
+            const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+                    <path d="M50 5 L85 20 V50 C85 72 50 95 50 95 C50 95 15 72 15 50 V20 Z" fill="${bgColor}" stroke="${strokeColor}" stroke-width="6"/>
+                    <text x="50" y="58" font-family="'Inter', sans-serif" font-size="30" font-weight="800" fill="${strokeColor}" text-anchor="middle" dominant-baseline="middle">${initials}</text>
+                </svg>
+            `;
+            const wrapper = imgElement.parentElement;
+            wrapper.innerHTML = svg;
+        }
+    </script>
+</body>
+</html>
